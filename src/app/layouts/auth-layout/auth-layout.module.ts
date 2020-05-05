@@ -5,6 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { AuthLayoutRoutes } from "./auth-layout.routing";
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { RegisterComponent } from './pages/register/register.component';
   ],
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent
   ]
 })
 export class AuthLayoutModule {}

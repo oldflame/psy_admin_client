@@ -37,6 +37,12 @@ export const ROUTES: RouteInfo[] = [
     type: "link",
     icontype: "ni-app text-info",
   },
+  {
+    path: "/questions",
+    title: "Questions",
+    type: "link",
+    icontype: "ni-app text-danger",
+  },
 ];
 
 @Component({

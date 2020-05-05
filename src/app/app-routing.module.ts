@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
 import { OverviewModule } from "./modules/overview/overview.module";
 import { AuthLayoutModule } from "./layouts/auth-layout/auth-layout.module";
+import { QuestionsModule } from './modules/questions/questions.module';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: "overview",
         loadChildren: () => OverviewModule,
+      },
+      {
+        path: "questions",
+        loadChildren: () => QuestionsModule,
       },
     ],
   },
