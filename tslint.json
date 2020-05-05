@@ -59,6 +59,7 @@
     "quotemark": [
       false
     ],
+    "triple-equals": false,
     "trailing-comma": false,
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
