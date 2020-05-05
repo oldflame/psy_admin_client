@@ -1,44 +1,54 @@
-.toast {
-  max-width: $toast-max-width;
-  overflow: hidden; // cheap rounded corners on nested items
-  @include font-size($toast-font-size);
-  color: $toast-color;
-  background-color: $toast-background-color;
-  background-clip: padding-box;
-  border: $toast-border-width solid $toast-border-color;
-  box-shadow: $toast-box-shadow;
-  backdrop-filter: blur(10px);
-  opacity: 0;
-  @include border-radius($toast-border-radius);
+.alert {
+  border: 0;
+  border-radius: 0;
 
-  &:not(:last-child) {
-    margin-bottom: $toast-padding-x;
+  padding: 20px 15px;
+  line-height: 20px;
+
+  //@include shadow-z-2();
+
+  b{
+      font-weight: $font-weight-bold;
+      text-transform: uppercase;
+      font-size: $font-size-small;
+  }
+  // SASS conversion note: please mirror any content change in _mixins-shared.scss alert-variations-content
+  @include alert-variations(unquote(".alert"), unquote(""), $mdb-text-color-light);
+
+  &-info, &-danger, &-warning, &-success {
+      color: $mdb-text-color-light;
   }
 
-  &.showing {
-    opacity: 1;
+  &-default {
+      a, .alert-link {
+          color: $mdb-text-color-primary;
+      }
   }
 
-  &.show {
-    display: block;
-    opacity: 1;
+  .alert-icon{
+      display: block;
+      float: left;
+      margin-right: $margin-base;
+
+      i{
+          margin-top: -7px;
+          top: 5px;
+          position: relative;
+      }
   }
+  .mat-button.close{
+      min-width: auto;
+      color: $white-color;
+      text-shadow: none;
+      opacity: .9;
 
-  &.hide {
-    display: none;
+      i{
+          font-size: 11px;
+      }
+
+      &:hover,
+      &:focus{
+          opacity: 1;
+      }
   }
-}
-
-.toast-header {
-  display: flex;
-  align-items: center;
-  padding: $toast-padding-y $toast-padding-x;
-  color: $toast-header-color;
-  background-color: $toast-header-background-color;
-  background-clip: padding-box;
-  border-bottom: $toast-border-width solid $toast-header-border-color;
-}
-
-.toast-body {
-  padding: $toast-padding-x; // apply to both vertical and horizontal
 }

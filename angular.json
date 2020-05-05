@@ -31,7 +31,9 @@
               "src/assets/vendor/nucleo/css/nucleo.css",
               "src/assets/scss/argon.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/bootstrap-notify/bootstrap-notify.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
