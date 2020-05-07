@@ -4,7 +4,7 @@
       <div class="header-body text-center mb-6">
         <div class=" row justify-content-center">
           <div class=" col-xl-5 col-lg-6 col-md-8 px-5">
-            <h1 class=" text-white">Welcome to Psych Admin!</h1>
+            <h1 class=" text-white">Welcome to Pysch Admin!</h1>
           </div>
         </div>
       </div>
@@ -51,7 +51,38 @@
               <small> Or sign in with credentials </small>
             </div>
 
-        
+            <form [formGroup]="loginForm">
+              <div class="row">
+                <div class="col-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="loginForm.get('email').hasError('required')">Email is <strong>required.</strong>
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.get('email').hasError('email')">Email is <strong>invalid.</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password">
+                    <mat-icon matSuffix (click)="showPassword = !showPassword" class="pointer" [matTooltip]="showPassword ? 'Hide Password' : 'Show Password'" matTooltipPosition="below">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    <mat-error *ngIf="loginForm.get('password').hasError('required')">Password is
+                      <strong>required.</strong>
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.get('password').hasError('password')">Password must be <strong>atleast
+                        {{ loginForm.get('password').errors.requiredLength }}
+                        characters.</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 text-center">
+                  <button mat-raised-button color="primary" (click)="login()">Login</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
 

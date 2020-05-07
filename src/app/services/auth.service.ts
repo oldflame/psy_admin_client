@@ -64,4 +64,8 @@ export class AuthService {
     this.secureStorageService.clearStorage();
     this.router.navigate(['/login']);
   }
+
+  getAdminData(): Admin {
+    return this.secureStorageService.getValue('ud') as Admin
+  }
 }

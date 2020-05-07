@@ -10,6 +10,7 @@ import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component
 import { SharedModule } from "./modules/shared/components.module";
 import { AppRoutingModule } from './app-routing.module';
 import { InterceptorService } from './services/interceptor.service';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { InterceptorService } from './services/interceptor.service';
     HttpClientModule,
     SharedModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [{
