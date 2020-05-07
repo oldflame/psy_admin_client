@@ -18,39 +18,24 @@
       </ul>
       <!-- User -->
       <ul class="navbar-nav align-items-center ml-auto ml-md-0">
-        <li class="nav-item dropdown" dropdown placement="bottom-right">
-          <a class="nav-link pr-0 dropdown-toggle" role="button" dropdownToggle>
+        <li class="nav-item pointer">
+          <a class="nav-link pr-0" role="button" [matMenuTriggerFor]="userMenu">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
                 <img alt="Image placeholder" src="assets/img/theme/team-1.jpg" />
               </span>
               <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">Jainam Sheth</span>
+                <span class="mb-0 text-sm  font-weight-bold">{{ (admin$ | async)?.firstName }}
+                  {{ (admin$ | async)?.lastName }}</span>
               </div>
             </div>
           </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" *dropdownMenu>
-            <div class=" dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-            <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-              <i class="ni ni-single-02"></i> <span>My profile</span>
-            </a>
-            <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i> <span>Settings</span>
-            </a>
-            <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i> <span>Activity</span>
-            </a>
-            <a routerLinkActive="active" [routerLink]="['/examples/user-profile']" class="dropdown-item">
-              <i class="ni ni-support-16"></i> <span>Support</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="javascript:void()" class="dropdown-item">
-              <i class="ni ni-user-run"></i> <span>Logout</span>
-            </a>
-          </div>
         </li>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item>My Profile</button>
+          <button mat-menu-item (click)="logout()">Logout
+          </button>
+        </mat-menu>
       </ul>
     </div>
   </div>

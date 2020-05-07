@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-declare const $: any;
-
 export enum TOAST_TYPE {
   SUCCESS = "success",
   INFO = "info",

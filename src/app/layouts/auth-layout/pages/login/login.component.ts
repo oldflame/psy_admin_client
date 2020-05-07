@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthService } from "../../../../services/auth.service";
-import { ToastService, TOAST_TYPE } from '../../../../services/toast.service';
+import { ToastService, TOAST_TYPE } from "../../../../services/toast.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "login",
@@ -18,7 +19,11 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
-  constructor(private authService: AuthService, private toastService: ToastService) {}
+  constructor(
+    private authService: AuthService,
+    private toastService: ToastService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -27,7 +32,11 @@ export class LoginComponent implements OnInit {
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe((res: boolean) => {
         if (res) {
-          this.toastService.showToast(`Welcome, ${this.authService.getAdminData().firstName}`, TOAST_TYPE.SUCCESS);
+          this.toastService.showToast(
+            `Welcome, ${this.authService.getAdminData().firstName}`,
+            TOAST_TYPE.SUCCESS
+          );
+          this.router.navigate(['/overview']);
         }
       });
   }

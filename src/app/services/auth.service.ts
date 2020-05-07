@@ -20,7 +20,11 @@ export class AuthService {
     private dataService: DataService,
     private secureStorageService: SecureStorageService,
     private router: Router
-  ) {}
+  ) {
+    if (this.getAdminData()) {
+      this.authSubject.next(this.getAdminData());
+    }
+  }
 
   login(email: string, password: string): Observable<boolean> {
     const reqBody = { email, password };
@@ -60,12 +64,17 @@ export class AuthService {
     );
   }
 
-  logout() {
+  logout(): boolean {
     this.secureStorageService.clearStorage();
     this.router.navigate(['/login']);
+    return true;
   }
 
   getAdminData(): Admin {
     return this.secureStorageService.getValue('ud') as Admin
+  }
+
+  isAuthenticated(): boolean {
+    return this.secureStorageService.getValue("at") !== "";
   }
 }
