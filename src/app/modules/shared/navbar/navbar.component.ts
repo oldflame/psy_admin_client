@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef } from "@angular/core";
 import { ROUTES } from "../sidebar/sidebar.component";
+import { AuthService } from '../../../services/auth.service';
+import { Observable } from 'rxjs';
 import {
   Router,
   Event,
@@ -13,6 +15,7 @@ import {
   LocationStrategy,
   PathLocationStrategy,
 } from "@angular/common";
+import { Admin } from 'src/app/models/admin';
 
 @Component({
   selector: "app-navbar",
@@ -24,10 +27,12 @@ export class NavbarComponent implements OnInit {
   public listTitles: any[];
   public location: Location;
   sidenavOpen: boolean = true;
+  admin$: Observable<Admin>;
   constructor(
     location: Location,
     private element: ElementRef,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.location = location;
     this.router.events.subscribe((event: Event) => {
@@ -55,6 +60,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
+    this.admin$ = this.authService.auth$;
   }
 
   getTitle() {
@@ -92,5 +98,9 @@ export class NavbarComponent implements OnInit {
       document.body.classList.remove("g-sidenav-hidden");
       this.sidenavOpen = true;
     }
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

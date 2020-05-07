@@ -1,99 +1,137 @@
-<div class=" main-content">
-    <div class=" header bg-gradient-danger py-7 py-lg-8 pt-lg-9">
-      <div class=" container">
-        <div class="header-body text-center mb-6">
-          <div class=" row justify-content-center">
-            <div class=" col-xl-5 col-lg-6 col-md-8 px-5">
-              <h1 class=" text-white">Welcome to Psych Admin!</h1>
-  
-              <!-- <p class=" text-lead text-white">
-                Login to 
-              </p> -->
-            </div>
+<div class=" page-content">
+  <div class=" header bg-gradient-danger py-7 py-lg-8 pt-lg-9">
+    <div class=" container">
+      <div class="header-body text-center mb-6">
+        <div class=" row justify-content-center">
+          <div class=" col-xl-5 col-lg-6 col-md-8 px-5">
+            <h1 class=" text-white">Welcome to Pysch Admin!</h1>
           </div>
         </div>
       </div>
-  
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
-          xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
     </div>
-  
-    <div class=" container mt--8 pb-5">
-      <div class=" row justify-content-center">
-        <div class=" col-lg-5 col-md-7">
-          <div class=" card bg-secondary border-0 mb-0">
-            <div class=" card-header bg-transparent pb-5">
-              <div class=" text-muted text-center mt-2 mb-3">
-                <small> Sign in with </small>
-              </div>
-  
-              <div class=" btn-wrapper text-center">
-                <a class=" btn btn-neutral btn-icon" href="javascript:void(0)">
-                  <span class=" btn-inner--icon">
-                    <img src="assets/img/icons/common/github.svg" />
-                  </span>
-  
-                  <span class=" btn-inner--text"> Github </span>
-                </a>
-  
-                <a class=" btn btn-neutral btn-icon" href="javascript:void(0)">
-                  <span class=" btn-inner--icon">
-                    <img src="assets/img/icons/common/google.svg" />
-                  </span>
-  
-                  <span class=" btn-inner--text"> Google </span>
-                </a>
-              </div>
+
+    <div class="separator separator-bottom separator-skew zindex-100">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+        xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </div>
+
+  <div class=" container mt--8 pb-5">
+    <div class=" row justify-content-center">
+      <div class=" col-lg-7 col-md-9">
+        <div class=" card bg-secondary border-0 mb-0">
+          <div class=" card-body px-lg-5 py-lg-5">
+            <div class=" text-center text-muted mb-4">
+              <small> Register for Pysch Admin </small>
             </div>
-  
-            <div class=" card-body px-lg-5 py-lg-5">
-              <div class=" text-center text-muted mb-4">
-                <small> Or sign in with credentials </small>
+            <form [formGroup]="registrationForm">
+              <div class="row">
+                <div class="col-12 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="First Name" formControlName="firstName">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="registrationForm.get('firstName').hasError('required')">First Name is
+                      <strong>required.</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder="Last Name" formControlName="lastName">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="registrationForm.get('lastName').hasError('required')">Last Name is
+                      <strong>required.</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
               </div>
-  
-              <form role="form">
-                <div class="form-group mb-3 focused">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Email" type="email" (focus)="focus = true"
-                      (blur)="focus = false" />
-                  </div>
+              <div class="row">
+                <div class="col-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-icon matSuffix>mail</mat-icon>
+                    <mat-error *ngIf="registrationForm.get('email').hasError('required')">Email is
+                      <strong>required.</strong>
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.get('email').hasError('email')">Email is
+                      <strong>invalid.</strong>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
-                <div class="form-group">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Password" type="password" (focus)="focus1 = true"
-                      (blur)="focus1 = false" />
-                  </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Mobile</mat-label>
+                    <input type="number" matInput placeholder="Mobile" formControlName="mobile">
+                    <mat-icon matSuffix>phone</mat-icon>
+                    <mat-error *ngIf="registrationForm.get('mobile').hasError('required')">Mobile is
+                      <strong>required.</strong>
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.get('mobile').hasError('pattern')">Mobile is
+                      <strong>invalid.</strong>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox" />
+                <div class="col-12 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                      <mat-option *ngFor="let gender of genderTypes" [value]="gender.value">
+                        {{gender.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="registrationForm.get('gender').hasError('required')">Gender is
+                      <strong>required.</strong>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
-                <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">
-                    Sign in
-                  </button>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput placeholder="Password" formControlName="password"
+                      (blur)="matchPasswords()">
+                    <mat-icon matSuffix>lock</mat-icon>
+                    <mat-error *ngIf="registrationForm.get('password').hasError('required')">Password is
+                      <strong>required.</strong>
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.get('password').hasError('minLength')">Password must be
+                      <strong>atleast {{ registrationForm.get('password').errors.requiredLength }} characters.</strong>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
-              </form>
-            </div>
-          </div>
-  
-          <div class=" row mt-3">
-            <div class=" col-6">
-              <a class=" text-light" href="javascript:void(0)">
-                <small> Forgot password? </small>
-              </a>
-            </div>
+                <div class="col-12 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Re-Type Password</mat-label>
+                    <input type="password" matInput placeholder="Re-Type Password" formControlName="retypePassword"
+                      (blur)="matchPasswords()">
+                    <mat-icon matSuffix>lock</mat-icon>
+                    <mat-error *ngIf="registrationForm.get('retypePassword').hasError('required')">Password is
+                      <strong>required.</strong>
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.get('retypePassword').hasError('minLength')">Password must be
+                      <strong>atleast {{ registrationForm.get('password').errors.requiredLength }} characters.</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 text-center">
+                  <button mat-raised-button color="primary" (click)="registerAdmin()"
+                    [disabled]="registrationForm.invalid">Submit</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

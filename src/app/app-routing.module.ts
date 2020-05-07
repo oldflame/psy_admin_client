@@ -8,6 +8,7 @@ import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component
 import { OverviewModule } from "./modules/overview/overview.module";
 import { AuthLayoutModule } from "./layouts/auth-layout/auth-layout.module";
 import { QuestionsModule } from './modules/questions/questions.module';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -22,10 +23,12 @@ const routes: Routes = [
       {
         path: "overview",
         loadChildren: () => OverviewModule,
+        canActivate: [AuthGuardService]
       },
       {
         path: "questions",
         loadChildren: () => QuestionsModule,
+        canActivate: [AuthGuardService]
       },
     ],
   },

@@ -13,13 +13,15 @@ import { FooterComponent } from "./footer/footer.component";
 
 import { RouterModule } from "@angular/router";
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { MaterialModule } from '../../material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     PerfectScrollbarModule,
-    CollapseModule
+    CollapseModule,
+    MaterialModule
   ],
   declarations: [
     FooterComponent,

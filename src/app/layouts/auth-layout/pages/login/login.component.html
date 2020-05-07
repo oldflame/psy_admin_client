@@ -1,14 +1,10 @@
-<div class=" main-content">
+<div class=" page-content">
   <div class=" header bg-gradient-danger py-7 py-lg-8 pt-lg-9">
     <div class=" container">
       <div class="header-body text-center mb-6">
         <div class=" row justify-content-center">
           <div class=" col-xl-5 col-lg-6 col-md-8 px-5">
-            <h1 class=" text-white">Welcome to Psych Admin!</h1>
-
-            <!-- <p class=" text-lead text-white">
-              Login to 
-            </p> -->
+            <h1 class=" text-white">Welcome to Pysch Admin!</h1>
           </div>
         </div>
       </div>
@@ -26,20 +22,12 @@
     <div class=" row justify-content-center">
       <div class=" col-lg-5 col-md-7">
         <div class=" card bg-secondary border-0 mb-0">
-          <div class=" card-header bg-transparent pb-5">
+          <!-- <div class=" card-header bg-transparent pb-5">
             <div class=" text-muted text-center mt-2 mb-3">
               <small> Sign in with </small>
             </div>
 
             <div class=" btn-wrapper text-center">
-              <a class=" btn btn-neutral btn-icon" href="javascript:void(0)">
-                <span class=" btn-inner--icon">
-                  <img src="assets/img/icons/common/linkedin.svg" />
-                </span>
-
-                <span class=" btn-inner--text"> Linkedin </span>
-              </a>
-
               <a class=" btn btn-neutral btn-icon" href="javascript:void(0)">
                 <span class=" btn-inner--icon">
                   <img src="assets/img/icons/common/google.svg" />
@@ -48,39 +36,43 @@
                 <span class=" btn-inner--text"> Google </span>
               </a>
             </div>
-          </div>
+          </div> -->
 
           <div class=" card-body px-lg-5 py-lg-5">
             <div class=" text-center text-muted mb-4">
-              <small> Or sign in with credentials </small>
+              <small> Sign in with credentials </small>
             </div>
 
-            <form role="form">
-              <div class="form-group mb-3 focused">
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                  </div>
-                  <input class="form-control" placeholder="Email" type="email" (focus)="focus = true"
-                    (blur)="focus = false" />
+            <form [formGroup]="loginForm">
+              <div class="row">
+                <div class="col-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="loginForm.get('email').hasError('required')">Email is <strong>required.</strong>
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.get('email').hasError('email')">Email is <strong>invalid.</strong>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                  </div>
-                  <input class="form-control" placeholder="Password" type="password" (focus)="focus1 = true"
-                    (blur)="focus1 = false" />
+                <div class="col-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password">
+                    <mat-icon matSuffix (click)="showPassword = !showPassword" class="pointer" [matTooltip]="showPassword ? 'Hide Password' : 'Show Password'" matTooltipPosition="below">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    <mat-error *ngIf="loginForm.get('password').hasError('required')">Password is
+                      <strong>required.</strong>
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.get('password').hasError('password')">Password must be <strong>atleast
+                        {{ loginForm.get('password').errors.requiredLength }}
+                        characters.</strong>
+                    </mat-error>
+                  </mat-form-field>
                 </div>
-              </div>
-              <div class="custom-control custom-control-alternative custom-checkbox">
-                <input class="custom-control-input" id=" customCheckLogin" type="checkbox" />
-              </div>
-              <div class="text-center">
-                <button type="button" class="btn btn-primary my-4">
-                  Sign in
-                </button>
+                <div class="col-12 text-center">
+                  <button mat-raised-button color="primary" (click)="login()">Login</button>
+                </div>
               </div>
             </form>
           </div>

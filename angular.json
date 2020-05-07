@@ -32,8 +32,6 @@
               "src/assets/scss/argon.scss"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap-notify/bootstrap-notify.js"
             ],
             "es5BrowserSupport": true
           },
