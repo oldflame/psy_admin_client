@@ -9,6 +9,7 @@ import { OverviewModule } from "./modules/overview/overview.module";
 import { AuthLayoutModule } from "./layouts/auth-layout/auth-layout.module";
 import { QuestionsModule } from './modules/questions/questions.module';
 import { AuthGuardService } from './services/auth-guard.service';
+import { LocationsModule } from './modules/locations/locations.module';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
       {
         path: "questions",
         loadChildren: () => QuestionsModule,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: "locations",
+        loadChildren: () => LocationsModule,
         canActivate: [AuthGuardService]
       },
     ],
