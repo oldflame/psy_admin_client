@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
-var misc: any = {
+const misc: any = {
   sidebar_mini_active: true,
 };
 
@@ -29,7 +29,7 @@ export interface ChildrenItems2 {
   title?: string;
   type?: string;
 }
-//Menu Items
+// Menu Items
 export const ROUTES: RouteInfo[] = [
   {
     path: "/overview",
@@ -38,10 +38,16 @@ export const ROUTES: RouteInfo[] = [
     icontype: "ni-app text-primary",
   },
   {
-    path: "/questions",
-    title: "Questions",
-    type: "link",
-    icontype: "ni-app text-primary",
+    path: "/question-management",
+    title: "Questions Management",
+    type: "sub",
+    icontype: "ni-app text-info",
+    collapse: "questions-management",
+    isCollapsed: true,
+    children: [
+      {path: "categories", title:"Questions Category", type: "link"},
+      {path: "questions", title:"Questions", type: "link"}
+    ]
   },
   {
     path: "/locations",

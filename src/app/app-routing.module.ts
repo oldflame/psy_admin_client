@@ -7,8 +7,8 @@ import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
 import { OverviewModule } from "./modules/overview/overview.module";
 import { AuthLayoutModule } from "./layouts/auth-layout/auth-layout.module";
-import { QuestionsModule } from './modules/questions/questions.module';
 import { AuthGuardService } from './services/auth-guard.service';
+import { QuestionManagementModule } from './modules/question-management/question-management.module';
 import { LocationsModule } from './modules/locations/locations.module';
 
 const routes: Routes = [
@@ -27,8 +27,8 @@ const routes: Routes = [
         canActivate: [AuthGuardService]
       },
       {
-        path: "questions",
-        loadChildren: () => QuestionsModule,
+        path: "question-management",
+        loadChildren: () => QuestionManagementModule,
         canActivate: [AuthGuardService]
       },
       {
