@@ -14,6 +14,12 @@ export const ADMIN_API = {
     APPROVE_ADMIN: "/api/account/admin/approveAdmin/{newAdminID}"
 }
 
+export const LOCATIONS_API = {
+    GET_ACTIVE_LOCATIONS: "/api/account/location",
+    ADD_LOCATION: "/api/account/location",
+    DELETE_LOCATION: "/api/account/location/{locationID}"
+}
+
 export enum HTTP_RESPONSE_STATUS {
     OK = 200,
     BAD_REQUEST = 400,

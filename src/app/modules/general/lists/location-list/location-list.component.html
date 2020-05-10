@@ -1,0 +1,38 @@
+<div *ngIf="showLocationsLoader === true; then locationsLoader else locationsList"></div>
+<ng-template #locationsLoader>
+    <div class="row mt-3">
+        <div class="col-12" align="center">
+            <h4>
+                <mat-spinner mode="indeterminate" color="primary" [diameter]=30></mat-spinner> Fetching Locations ...
+            </h4>
+        </div>
+    </div>
+</ng-template>
+<ng-template #locationsList>
+    <div class="card">
+        <div class="card-header bg-transparent">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h5 class=" h3 mb-0">Active Locations</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="locations.length > 0; else noLocations">
+            <mat-list>
+                <mat-list-item *ngFor="let location of locations" (click)="viewLocationClicked($event, location)">
+                    <mat-icon mat-list-icon>location_on</mat-icon>
+                    <div mat-line>{{location.name}}</div>
+                    <div mat-line> {{location.description }} </div>
+                    <mat-icon color="warn" (click)="deleteLocationClicked($event, location._id)">delete</mat-icon>
+                    <mat-icon color="warn" (click)="editLocationClicked($event, location)">edit</mat-icon>
+                    <mat-divider></mat-divider>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+</ng-template>
+<ng-template #noLocations>
+    <div class="card-body" align="center">
+        <h4>No Locations Found!</h4>
+    </div>
+</ng-template>

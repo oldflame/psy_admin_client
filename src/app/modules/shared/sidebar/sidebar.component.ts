@@ -35,13 +35,19 @@ export const ROUTES: RouteInfo[] = [
     path: "/overview",
     title: "Overview",
     type: "link",
-    icontype: "ni-app text-info",
+    icontype: "ni-app text-primary",
   },
   {
     path: "/questions",
     title: "Questions",
     type: "link",
-    icontype: "ni-app text-danger",
+    icontype: "ni-app text-primary",
+  },
+  {
+    path: "/locations",
+    title: "Locations",
+    type: "link",
+    icontype: "ni-building text-primary",
   },
 ];
 
