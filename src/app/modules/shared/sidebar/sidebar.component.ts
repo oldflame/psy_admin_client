@@ -35,7 +35,7 @@ export const ROUTES: RouteInfo[] = [
     path: "/overview",
     title: "Overview",
     type: "link",
-    icontype: "ni-app text-info",
+    icontype: "ni-app text-primary",
   },
   {
     path: "/question-management",
@@ -48,7 +48,13 @@ export const ROUTES: RouteInfo[] = [
       {path: "categories", title:"Questions Category", type: "link"},
       {path: "questions", title:"Questions", type: "link"}
     ]
-  }
+  },
+  {
+    path: "/locations",
+    title: "Locations",
+    type: "link",
+    icontype: "ni-building text-primary",
+  },
 ];
 
 @Component({
