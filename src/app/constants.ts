@@ -20,6 +20,12 @@ export const LOCATIONS_API = {
     DELETE_LOCATION: "/api/account/location/{locationID}"
 }
 
+export const IMAGES_API = {
+    ADD_CATEGORY: "/api/account/imgCategory",
+    GET_ACTIVE_CATEGORIES: "/api/account/imgCategory",
+    DELETE_CATEGORY: "/api/account/imgCategory/{imageCategoryID}",
+}
+
 export enum HTTP_RESPONSE_STATUS {
     OK = 200,
     BAD_REQUEST = 400,

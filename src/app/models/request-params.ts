@@ -20,3 +20,8 @@ export interface AddLocationParams {
   mobile: string;
   email: string;
 }
+
+export interface AddImageCategoryParams {
+  name: string;
+  description?: string;
+}
