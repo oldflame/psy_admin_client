@@ -1,1 +1,37 @@
-<p>categories-list works!</p>
+<div *ngIf="showCategoriesLoader === true; then categoriesLoader else categoriesList"></div>
+<ng-template #categoriesLoader>
+    <div class="row mt-3">
+        <div class="col-12" align="center">
+            <h4>
+                <mat-spinner mode="indeterminate" color="primary" [diameter]=30></mat-spinner> Fetching Categories ...
+            </h4>
+        </div>
+    </div>
+</ng-template>
+<ng-template #categoriesList>
+    <div class="card">
+        <div class="card-header bg-transparent">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h5 class=" h3 mb-0">Active  Categories</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="categories.length > 0; else noCategories">
+            <mat-list>
+                <mat-list-item *ngFor="let category of categories" (click)="viewCategoryClicked($event, category)">
+                    <mat-icon mat-list-icon>photo_filter</mat-icon>
+                    <div mat-line>{{category.name}}</div>
+                    <div mat-line> {{category.description }} </div>
+                    <mat-icon color="warn" class="pointer" matTooltip="Delete Category" matTooltipPosition="below" (click)="deleteCategoryClicked($event, category._id)">delete</mat-icon>
+                    <mat-divider></mat-divider>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+</ng-template>
+<ng-template #noCategories>
+    <div class="card-body" align="center">
+        <h4>No Categories Found!</h4>
+    </div>
+</ng-template>

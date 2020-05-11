@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ImageManagementRoutes } from './image-management.routing';
 import { MaterialModule } from '../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListsModule } from '../general/lists/lists.module';
 
 
 
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule.forChild(ImageManagementRoutes),
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ListsModule
   ]
 })
 export class ImageManagementModule { }
