@@ -20,3 +20,17 @@ export interface AddLocationParams {
   mobile: string;
   email: string;
 }
+
+export interface AddCategoryParams {
+  categoryName: string;
+  description: string;
+  responseType: string;
+  startLabel: string;
+  endLabel: string;
+}
+
+export interface AddQuestionParams {
+  questionName: string;
+  description: string;
+  questionCategory: string;
+}
