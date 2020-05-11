@@ -12,9 +12,7 @@ export class AddQuestionComponent implements OnInit {
   addQuestionCategoryControl: FormGroup = new FormGroup({
     categoryName: new FormControl("", [Validators.required]),
     description: new FormControl(""),
-    responseType: new FormControl("", [Validators.required]),
-    startLabel: new FormControl(""),
-    endLabel: new FormControl(""),
+    questionCategory: new FormControl("", [Validators.required])
   })
   ngOnInit(): void {
   }

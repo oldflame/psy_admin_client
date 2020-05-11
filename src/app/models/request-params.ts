@@ -28,3 +28,9 @@ export interface AddCategoryParams {
   startLabel: string;
   endLabel: string;
 }
+
+export interface AddQuestionParams {
+  questionName: string;
+  description: string;
+  questionCategory: string;
+}

@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { AddQuestionComponent } from "../../dialogues/add-question/add-question.component";
 import { switchMap } from "rxjs/operators";
 import { QuestionCategory } from "src/app/models/question-category";
 import { EMPTY } from "rxjs";
 import { CategoryService } from 'src/app/services/category.service';
+import { AddQuestionCategoryComponent } from '../../dialogues/add-question-category/add-question-category.component';
 
 @Component({
   selector: "categories",
@@ -19,7 +19,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {}
 
   showAddCategoryDialog() {
-    this.dialogRef = this.dialog.open(AddQuestionComponent, {
+    this.dialogRef = this.dialog.open(AddQuestionCategoryComponent, {
       width: "800px",
       closeOnNavigation: true,
     });
