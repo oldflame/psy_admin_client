@@ -60,7 +60,7 @@ export class ImageManagementService {
   }
 
   deleteCategory(imageCategoryID: string): Observable<boolean> {
-    return this.dataService.sendPOST(IMAGES_API.ADD_CATEGORY.replace("{imageCategoryID}", imageCategoryID)).pipe(
+    return this.dataService.sendDELETE(IMAGES_API.DELETE_CATEGORY.replace("{imageCategoryID}", imageCategoryID)).pipe(
       map(
         (res: HttpResponse<any>) => {
           if (res.status == HTTP_RESPONSE_STATUS.OK) {
