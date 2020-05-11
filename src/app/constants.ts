@@ -25,6 +25,18 @@ export const IMAGES_API = {
     GET_ACTIVE_CATEGORIES: "/api/account/imgCategory",
     DELETE_CATEGORY: "/api/account/imgCategory/{imageCategoryID}",
 }
+export const QUESTIONS_CATEGORY_API = {
+    GET_ALL_QUESTION_CATEGORIES: "/api/account/questionsCategory",
+    ADD_QUESTION_CATEGORY: "/api/account/addQuestionsCategory",
+    DELETE_QUESTION_CATEGORY: "/api/account/deleteQuestionCategory"
+}
+
+export const QUESTIONS_API = {
+    GET_ALL_QUESTIONS: "/api/account/questions",
+    GET_QUESTIONS_FOR_CATEGORY: "/api/account/questions/{questioncategory}",
+    ADD_QUESTION: "/api/account/addQuestion",
+    DELETE_QUESTION: "/app/account/deleteQuestion"
+}
 
 export enum HTTP_RESPONSE_STATUS {
     OK = 200,
@@ -32,4 +44,4 @@ export enum HTTP_RESPONSE_STATUS {
     UNAUTHORIZED = 401,
     FORBIDDEN = 403,
     SERVER_ERROR = 500
-}
+} 

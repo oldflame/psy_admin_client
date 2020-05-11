@@ -4,6 +4,7 @@ import { QuestionsComponent } from './questions/questions.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { RouterModule } from '@angular/router';
 import { QuestionManagementRoutes } from './question-management.routing';
+import { MaterialModule } from 'src/app/material.module';
 
 
 
@@ -11,6 +12,7 @@ import { QuestionManagementRoutes } from './question-management.routing';
   declarations: [QuestionsComponent, CategoriesComponent],
   imports: [
     CommonModule,
+    MaterialModule,
     RouterModule.forChild(QuestionManagementRoutes)
   ]
 })
