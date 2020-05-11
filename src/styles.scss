@@ -7,7 +7,7 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: Montserrat, "Helvetica Neue", sans-serif;
 }
 
 mat-form-field {
@@ -19,7 +19,7 @@ mat-form-field {
 }
 
 .fab {
-    position: fixed;
+    position: fixed !important;
     right: 2rem;
-    bottom: 10rem;
+    bottom: 5rem;
 }

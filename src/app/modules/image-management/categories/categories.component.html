@@ -2,8 +2,15 @@
     <div class="container-fluid animated fadeIn">
         <div class="row">
             <div class="col-12 col-md-8 offset-md-2">
-                <categories-list [categories]="categories$ | async" (categoryDeleted)="deleteCategory($event)"></categories-list>
+                <categories-list [categories]="categories$ | async" (categoryDeleted)="deleteCategory($event)">
+                </categories-list>
             </div>
         </div>
     </div>
+    <button mat-fab color="primary" class="fab" (click)=addNewImageCategory() matTooltip="Add new category"
+        matTooltipPosition="before">
+        <mat-icon>
+            add
+        </mat-icon>
+    </button>
 </div>
