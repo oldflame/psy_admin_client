@@ -21,7 +21,7 @@ export interface AddLocationParams {
   email: string;
 }
 
-export interface AddImageCategoryParams {
+export interface AddCategoryParams {
   name: string;
   description?: string;
 }

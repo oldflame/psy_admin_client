@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
-import { ImageCategory } from "../models/image-category";
 import { DataService } from "./data.service";
-import { AddImageCategoryParams } from "../models/request-params";
+import { AddCategoryParams } from "../models/request-params";
 import { IMAGES_API, HTTP_RESPONSE_STATUS } from "../constants";
 import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { catchError, map } from "rxjs/operators";
 import * as _ from "lodash";
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: "root",
@@ -14,12 +14,12 @@ import * as _ from "lodash";
 export class ImageManagementService {
   private categoriesSubject = new BehaviorSubject(null);
   imageCategories$: Observable<
-    ImageCategory
+    Category[]
   > = this.categoriesSubject.asObservable();
 
   constructor(private dataService: DataService) {}
 
-  addImageCategory(requestBody: AddImageCategoryParams): Observable<boolean> {
+  addCategory(requestBody: AddCategoryParams): Observable<boolean> {
     return this.dataService.sendPOST(IMAGES_API.ADD_CATEGORY, requestBody).pipe(
       map(
         (res: HttpResponse<any>) => {
@@ -59,12 +59,12 @@ export class ImageManagementService {
     );
   }
 
-  deleteImageCategory(imageCategoryID: string): Observable<boolean> {
+  deleteCategory(imageCategoryID: string): Observable<boolean> {
     return this.dataService.sendPOST(IMAGES_API.ADD_CATEGORY.replace("{imageCategoryID}", imageCategoryID)).pipe(
       map(
         (res: HttpResponse<any>) => {
           if (res.status == HTTP_RESPONSE_STATUS.OK) {
-            const imageCategories: ImageCategory[] = this.categoriesSubject.value;
+            const imageCategories: Category[] = this.categoriesSubject.value;
             const imageCategoryIndexToDelete = _.findIndex(imageCategories, {_id: imageCategoryID});
 
             if (imageCategoryIndexToDelete != -1) {

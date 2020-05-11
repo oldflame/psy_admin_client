@@ -12,6 +12,6 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
     CommonModule,
     MaterialModule
   ],
-  exports: [LocationListComponent]
+  exports: [LocationListComponent, CategoriesListComponent]
 })
 export class ListsModule { }
