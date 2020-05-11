@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddQuestionComponent } from '../../dialogues/add-question/add-question.component';
+import { AddQuestionComponent } from '../../general/dialogs/add-question/add-question.component';
 import { switchMap } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { QuestionsService } from 'src/app/services/questions.service';

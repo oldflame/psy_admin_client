@@ -5,6 +5,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { RouterModule } from '@angular/router';
 import { QuestionManagementRoutes } from './question-management.routing';
 import { MaterialModule } from 'src/app/material.module';
+import { DialogsModule } from '../general/dialogs/dialogs.module';
 
 
 
@@ -13,7 +14,8 @@ import { MaterialModule } from 'src/app/material.module';
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule.forChild(QuestionManagementRoutes)
+    RouterModule.forChild(QuestionManagementRoutes),
+    DialogsModule
   ]
 })
 export class QuestionManagementModule { }

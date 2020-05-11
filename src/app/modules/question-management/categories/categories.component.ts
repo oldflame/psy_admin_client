@@ -4,7 +4,7 @@ import { switchMap } from "rxjs/operators";
 import { QuestionCategory } from "src/app/models/question-category";
 import { EMPTY } from "rxjs";
 import { CategoryService } from 'src/app/services/category.service';
-import { AddQuestionCategoryComponent } from '../../dialogues/add-question-category/add-question-category.component';
+import { AddQuestionCategoryComponent } from '../../general/dialogs/add-question-category/add-question-category.component';
 
 @Component({
   selector: "categories",

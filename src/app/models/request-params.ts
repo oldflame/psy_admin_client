@@ -21,10 +21,11 @@ export interface AddLocationParams {
   email: string;
 }
 
-export interface AddCategoryParams {
+export interface AddImageCategoryParams {
   name: string;
   description?: string;
 }
+
 export interface AddCategoryParams {
   categoryName: string;
   description: string;

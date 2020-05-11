@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
 import { DataService } from "./data.service";
-import { AddCategoryParams } from "../models/request-params";
 import { IMAGES_API, HTTP_RESPONSE_STATUS } from "../constants";
 import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { catchError, map } from "rxjs/operators";
 import * as _ from "lodash";
 import { Category } from '../models/category';
+import { AddImageCategoryParams } from '../models/request-params';
 
 @Injectable({
   providedIn: "root",
@@ -19,7 +19,7 @@ export class ImageManagementService {
 
   constructor(private dataService: DataService) {}
 
-  addCategory(requestBody: AddCategoryParams): Observable<boolean> {
+  addCategory(requestBody: AddImageCategoryParams): Observable<boolean> {
     return this.dataService.sendPOST(IMAGES_API.ADD_CATEGORY, requestBody).pipe(
       map(
         (res: HttpResponse<any>) => {
