@@ -15,25 +15,29 @@
               <!--If is a single link-->
               <a routerLinkActive="active" [routerLink]="[menuitem.path]" *ngIf="menuitem.type === 'link'"
                 class="nav-link">
-                <i class="ni {{ menuitem.icontype }}"></i>
+                <mat-icon class="mr-3">{{ menuitem.icontype }}</mat-icon>
                 <span class="nav-link-text">{{ menuitem.title }}</span>
               </a>
               <!--If it has a submenu-->
-              <a data-toggle="collapse" routerLinkActive="active" *ngIf="menuitem.type === 'sub'"
+              <a routerLinkActive="active" *ngIf="menuitem.type === 'sub'"
                 (click)="menuitem.isCollapsed = !menuitem.isCollapsed" [attr.aria-expanded]="!menuitem.isCollapsed"
-                [attr.aria-controls]="menuitem.collapse" class="nav-link">
-                <i class="ni {{ menuitem.icontype }}"></i>
-                <span class="nav-link-text">{{ menuitem.title }}</span>
+                [attr.aria-controls]="menuitem.collapse" class="nav-link pointer">
+                <mat-icon class="mr-3">{{ menuitem.icontype }}</mat-icon>
+                <span class="d-flex justify-content-between">
+                  <span class="nav-link-text">{{ menuitem.title }}</span>
+                  <mat-icon class="mt-1">arrow_drop_down</mat-icon>
+                </span>
               </a>
 
               <!--Display the submenu items-->
-              <div id="{{ menuitem.collapse }}" class="collapse" *ngIf="menuitem.type === 'sub'"
+              <div id="{{ menuitem.collapse }}" class="collapse pointer" *ngIf="menuitem.type === 'sub'"
                 [collapse]="menuitem.isCollapsed" [isAnimated]="true">
                 <ul class="nav nav-sm flex-column">
                   <li *ngFor="let childitems of menuitem.children" class="nav-item">
                     <!--If is a single link-->
                     <a routerLinkActive="active" [routerLink]="[menuitem.path, childitems.path]" class="nav-link"
                       *ngIf="childitems.type === 'link'">
+                      <mat-icon class="mr-2">{{ menuitem.icontype }}</mat-icon>
                       {{ childitems.title }}
                     </a>
                     <!--If it have a submenu-->

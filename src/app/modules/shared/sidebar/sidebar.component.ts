@@ -33,27 +33,39 @@ export interface ChildrenItems2 {
 export const ROUTES: RouteInfo[] = [
   {
     path: "/overview",
-    title: "Overview",
+    title: "Dashboard",
     type: "link",
-    icontype: "ni-app text-primary",
-  },
-  {
-    path: "/question-management",
-    title: "Questions Management",
-    type: "sub",
-    icontype: "ni-app text-info",
-    collapse: "questions-management",
-    isCollapsed: true,
-    children: [
-      {path: "categories", title:"Questions Category", type: "link"},
-      {path: "questions", title:"Questions", type: "link"}
-    ]
+    icontype: "dashboard",
   },
   {
     path: "/locations",
     title: "Locations",
     type: "link",
-    icontype: "ni-building text-primary",
+    icontype: "business",
+  },
+  {
+    path: "/question-management",
+    title: "Questions Management",
+    type: "sub",
+    icontype: "question_answer",
+    collapse: "questions-management",
+    isCollapsed: true,
+    children: [
+      {path: "categories", title:"Question Categories", type: "link"},
+      {path: "questions", title:"Questions", type: "link"}
+    ]
+  },
+  {
+    path: "/image-management",
+    title: "Image Management",
+    type: "sub",
+    icontype: "photo_library",
+    collapse: "image-management",
+    isCollapsed: true,
+    children: [
+      {path: "categories", title:"Image Categories", type: "link"},
+      {path: "images", title:"Images", type: "link"}
+    ]
   },
 ];
 

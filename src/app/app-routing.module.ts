@@ -10,6 +10,7 @@ import { AuthLayoutModule } from "./layouts/auth-layout/auth-layout.module";
 import { AuthGuardService } from './services/auth-guard.service';
 import { QuestionManagementModule } from './modules/question-management/question-management.module';
 import { LocationsModule } from './modules/locations/locations.module';
+import { ImageManagementModule } from './modules/image-management/image-management.module';
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
       {
         path: "question-management",
         loadChildren: () => QuestionManagementModule,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: "image-management",
+        loadChildren: () => ImageManagementModule,
         canActivate: [AuthGuardService]
       },
       {

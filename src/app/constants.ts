@@ -20,6 +20,11 @@ export const LOCATIONS_API = {
     DELETE_LOCATION: "/api/account/location/{locationID}"
 }
 
+export const IMAGES_API = {
+    ADD_CATEGORY: "/api/account/imgCategory",
+    GET_ACTIVE_CATEGORIES: "/api/account/imgCategory",
+    DELETE_CATEGORY: "/api/account/imgCategory/{imageCategoryID}",
+}
 export const QUESTIONS_CATEGORY_API = {
     GET_ALL_QUESTION_CATEGORIES: "/api/account/questionsCategory",
     ADD_QUESTION_CATEGORY: "/api/account/addQuestionsCategory",
@@ -39,4 +44,4 @@ export enum HTTP_RESPONSE_STATUS {
     UNAUTHORIZED = 401,
     FORBIDDEN = 403,
     SERVER_ERROR = 500
-}
+} 
