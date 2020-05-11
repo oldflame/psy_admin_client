@@ -1,0 +1,43 @@
+<h4 mat-dialog-title>Add a new Question Category</h4>
+<div mat-dialog-content>
+  <form [formGroup]="addQuestionControl" class="form">
+    <div class="row">
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> Question Category Name </mat-label>
+          <input matInput type="text" formControlName="categoryName">
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> Description </mat-label>
+          <input matInput type="text-area" formControlName="description">
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> Response Type </mat-label>
+          <input matInput type="text" formControlName="responseType">
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> Start Label </mat-label>
+          <input matInput type="text" formControlName="startLabel">
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label> End Label </mat-label>
+          <input matInput type="text" formControlName="endLabel">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close color="primary" [mat-dialog-close]>Cancel </button>
+    <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="addQuestionControl.value"
+      [disabled]="addQuestionControl.invalid">Submit</button>
+  </mat-dialog-actions>
+
+</div>
