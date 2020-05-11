@@ -13,7 +13,7 @@ import { AddQuestionCategoryComponent } from '../../general/dialogs/add-question
 })
 export class CategoriesComponent implements OnInit {
   dialogRef;
-
+  questionCategories$;
   constructor(private dialog: MatDialog, private categoryService: CategoryService) {}
 
   ngOnInit(): void {}
