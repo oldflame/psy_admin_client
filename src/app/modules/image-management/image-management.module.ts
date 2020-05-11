@@ -7,6 +7,7 @@ import { ImageManagementRoutes } from './image-management.routing';
 import { MaterialModule } from '../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListsModule } from '../general/lists/lists.module';
+import { DialogsModule } from '../general/dialogs/dialogs.module';
 
 
 
@@ -18,7 +19,8 @@ import { ListsModule } from '../general/lists/lists.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    ListsModule
+    ListsModule,
+    DialogsModule
   ]
 })
 export class ImageManagementModule { }
