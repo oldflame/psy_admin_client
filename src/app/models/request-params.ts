@@ -27,7 +27,7 @@ export interface AddImageCategoryParams {
 }
 
 export interface AddCategoryParams {
-  categoryName: string;
+  name: string;
   description: string;
   responseType: string;
   startLabel: string;

@@ -10,7 +10,7 @@ export class AddQuestionCategoryComponent implements OnInit {
 
   constructor() { }
   addQuestionControl: FormGroup = new FormGroup({
-    categoryName: new FormControl("", [Validators.required]),
+    name: new FormControl("", [Validators.required]),
     description: new FormControl(""),
     responseType: new FormControl("", [Validators.required]),
     startLabel: new FormControl(""),

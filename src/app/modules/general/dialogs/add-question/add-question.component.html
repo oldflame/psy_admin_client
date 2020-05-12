@@ -18,8 +18,8 @@
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label> Question Category </mat-label>
                     <mat-select formControlName="questionCategory">
-                        <mat-option *ngFor="let category of questionCategories$|async" [value]="category.categoryName">
-                          {{category.categoryName}}
+                        <mat-option *ngFor="let category of questionCategories$|async" [value]="category.name">
+                          {{category.name}}
                         </mat-option>
                       </mat-select>
                 </mat-form-field>
