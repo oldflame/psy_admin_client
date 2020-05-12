@@ -66,7 +66,7 @@ export class CategoryService {
     return this.dataService
       .sendDELETE(
         QUESTIONS_CATEGORY_API.DELETE_QUESTION_CATEGORY.replace(
-          "{}",
+          "{questionCategoryId}",
           categoryId
         )
       )

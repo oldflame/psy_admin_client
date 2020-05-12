@@ -28,7 +28,7 @@ export const IMAGES_API = {
 export const QUESTIONS_CATEGORY_API = {
   GET_ALL_QUESTION_CATEGORIES: "/api/account/questionsCategory",
   ADD_QUESTION_CATEGORY: "/api/account/addQuestionsCategory",
-  DELETE_QUESTION_CATEGORY: "/api/account/deleteQuestionCategory",
+  DELETE_QUESTION_CATEGORY: "/api/account/deleteQuestionCategory/{questionCategoryId}",
 };
 
 export const QUESTIONS_API = {
