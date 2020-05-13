@@ -28,14 +28,43 @@ export class QuestionsService {
         map(
           (res: HttpResponse<any>) => {
             if (res.status == HTTP_RESPONSE_STATUS.OK) {
-              const categories: Question[] = this.questionSubject.value;
-              categories.push(res.body);
-              this.questionSubject.next(_.cloneDeep(categories));
+              const questions: Question[] = this.questionSubject.value;
+              questions.push(res.body);
+              this.questionSubject.next(_.cloneDeep(questions));
             }
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
             console.log("Add location error", err);
+            return of(false);
+          })
+        )
+      );
+  }
+
+  deleteQuestion(questionId: string): Observable<boolean> {
+    return this.dataService
+      .sendDELETE(
+        QUESTIONS_API.DELETE_QUESTION.replace(
+          "{questionId}",
+          questionId
+        )
+      )
+      .pipe(
+        map(
+          (res: HttpResponse<any>) => {
+            if (res.status == HTTP_RESPONSE_STATUS.OK) {
+              const questions = this.questionSubject.value;
+              const categoryIndexToDelete = _.findIndex(questions, {
+                _id: questionId,
+              });
+              questions.splice(categoryIndexToDelete, 1);
+              this.questionSubject.next(_.cloneDeep(questions));
+            }
+            return res.status == HTTP_RESPONSE_STATUS.OK;
+          },
+          catchError((err: HttpErrorResponse) => {
+            console.log("Delete Question Category error", err);
             return of(false);
           })
         )
