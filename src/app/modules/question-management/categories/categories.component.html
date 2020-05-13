@@ -1,8 +1,14 @@
 <div class="page-content">
-  <div class="container-fluid">
-    Categories works!
-  </div>
-  <button mat-fab color="primary" class="fab" (click)=showAddCategoryDialog()>
+  <div class="page-content">
+    <div class="container-fluid animated fadeIn">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+                <categories-list [categories]="categories$ | async" (categoryDeleted)="deleteCategory($event)"></categories-list>
+            </div>
+        </div>
+    </div>
+</div>
+  <button mat-fab color="primary" class="fab" (click)=showAddCategoryDialog() matTooltip="Add a question Category">
     <mat-icon>
       add
     </mat-icon>

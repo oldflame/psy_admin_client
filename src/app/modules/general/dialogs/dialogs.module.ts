@@ -25,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     ActionConfirmDialogComponent,
     AddQuestionCategoryComponent,
     AddQuestionComponent,
-    AddImageCategoryComponent,
+    AddImageCategoryComponent
   ],
 })
 export class DialogsModule {}

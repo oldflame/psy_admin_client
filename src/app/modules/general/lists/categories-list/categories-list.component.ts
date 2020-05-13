@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { Category } from 'src/app/models/category';
+import { QuestionCategory } from 'src/app/models/question-category';
 @Component({
   selector: 'categories-list',
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss']
 })
-export class CategoriesListComponent implements OnInit {
-  @Input("categories") categories: Category[];
+export class CategoriesListComponent implements OnInit, OnChanges {
+  @Input("categories") categories: Category[] | QuestionCategory[];
 
   @Output("categoryDeleted") categoryDeleted = new EventEmitter();
   @Output("categoryViewed") categoryViewed = new EventEmitter();
