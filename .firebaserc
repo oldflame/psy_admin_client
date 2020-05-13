@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pysch-changiz": {
+      "hosting": {
+        "pysch": [
+          "pysch-changiz"
+        ]
+      }
+    }
+  }
+}

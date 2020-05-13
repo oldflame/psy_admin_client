@@ -5,3 +5,4 @@ export const APP_SERVER_OPTIONS = {
   port: environment.PORT,
 };
 
+export const FIREBASE_CONFIG = environment.firebase;

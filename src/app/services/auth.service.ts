@@ -8,6 +8,8 @@ import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { RegisterAdminParams } from "../models/request-params";
 import { SecureStorageService } from "./secure-storage.service";
 import { Router } from "@angular/router";
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase';
 
 @Injectable({
   providedIn: "root",
@@ -19,7 +21,8 @@ export class AuthService {
   constructor(
     private dataService: DataService,
     private secureStorageService: SecureStorageService,
-    private router: Router
+    private router: Router,
+    private ngFireAuth: AngularFireAuth
   ) {
     if (this.getAdminData()) {
       this.authSubject.next(this.getAdminData());
@@ -48,6 +51,12 @@ export class AuthService {
         })
       )
     );
+  }
+
+  googleLogin() {
+    this.ngFireAuth.signInWithPopup(new auth.GoogleAuthProvider()).then((res) => {
+      console.log("Google login res", res);
+    });
   }
 
   register(requestBody: RegisterAdminParams): Observable<boolean> {

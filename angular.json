@@ -31,8 +31,7 @@
               "src/assets/vendor/nucleo/css/nucleo.css",
               "src/assets/scss/argon.scss"
             ],
-            "scripts": [
-            ],
+            "scripts": [],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -112,6 +111,10 @@
               "**/node_modules/**"
             ]
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     },
