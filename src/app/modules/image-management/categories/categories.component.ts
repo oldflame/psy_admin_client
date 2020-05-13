@@ -38,7 +38,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   deleteCategory(eventArgs: any) {
-    console.log("deleting location", eventArgs);
     this.dialogRef = this.dialog.open(ActionConfirmDialogComponent, {
       width: "450px",
       closeOnNavigation: true,

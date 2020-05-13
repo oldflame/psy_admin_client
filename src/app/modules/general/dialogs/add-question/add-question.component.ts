@@ -16,10 +16,8 @@ export class AddQuestionComponent implements OnInit {
   });
   constructor(private categoryService: CategoryService) {}
 
-
-
   ngOnInit(): void {
-      this.categoryService.getAllQuestionCategories().subscribe();
-      this.questionCategories$ = this.categoryService.categories$;
+    this.categoryService.getAllQuestionCategories().subscribe();
+    this.questionCategories$ = this.categoryService.categories$;
   }
 }

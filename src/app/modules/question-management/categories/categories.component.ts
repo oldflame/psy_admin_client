@@ -22,12 +22,12 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories$ = this.categoryService.categories$.pipe(
-      map((imageCategories: QuestionCategory[]) => {
-        if (imageCategories && imageCategories.length > 0) {
-          imageCategories = _.sortBy(imageCategories, "name");
-        }
-        return imageCategories;
-      })
+      // map((imageCategories: QuestionCategory[]) => {
+      //   if (imageCategories && imageCategories.length > 0) {
+      //     imageCategories = _.sortBy(imageCategories, "name");
+      //   }
+      //   return imageCategories;
+      // })
     );
     this.categoryService.getAllQuestionCategories().subscribe();
   }
@@ -52,7 +52,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   deleteCategory(eventArgs: any) {
-    console.log("deleting location", eventArgs);
     this.dialogRef = this.dialog.open(ActionConfirmDialogComponent, {
       width: "450px",
       closeOnNavigation: true,

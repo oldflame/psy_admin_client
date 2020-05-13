@@ -1,7 +1,11 @@
 <div class="page-content">
-    <div class="container-fluid">
-        Question works!
+  <div class="container-fluid animated fadeIn">
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+            <categories-list [categories]="questions$ | async" (categoryDeleted)="deleteCategory($event)"></categories-list>
+        </div>
     </div>
+</div>
     <button mat-fab color="primary" class="fab" (click)=showAddQuestionDialog() matTooltip="Add a Question">
         <mat-icon>
           add

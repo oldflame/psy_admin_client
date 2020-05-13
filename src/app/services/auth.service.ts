@@ -42,7 +42,6 @@ export class AuthService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          console.log("Login err", err);
           this.authSubject.next(null);
           return of(false);
         })
@@ -57,7 +56,6 @@ export class AuthService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          console.log("Register Admin Error", err);
           return of(false);
         })
       )

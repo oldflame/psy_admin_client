@@ -26,7 +26,6 @@ export class LocationListComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("Locations List Changes", changes.locations.currentValue);
     if (changes.locations && changes.locations.currentValue != null) {
       this.showLocationsLoader = false;
     }
@@ -35,13 +34,11 @@ export class LocationListComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   deleteLocationClicked($event: any, locationID: string) {
-    console.log("Delete location", locationID);
     this.locationDeleted.emit({ locationID });
     $event.stopPropagation();
   }
 
   viewLocationClicked(location: Location) {
-    console.log("View location", location);
     this.locationViewed.emit({ location });
   }
 

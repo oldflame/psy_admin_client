@@ -28,10 +28,8 @@ export class LocationsComponent implements OnInit {
   }
 
   deleteLocation(eventArgs: any) {
-    console.log("deleting location", eventArgs);
   }
 
   viewLocation(eventArgs: any) {
-    console.log("Viewing Location", eventArgs);
   }
 }
