@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Montserrat, "Helvetica Neue", sans-serif;
+}
 
 mat-form-field {
     width: 100%;
@@ -11,8 +18,8 @@ mat-form-field {
     cursor: pointer;
 }
 
-.fab{
-    position: absolute;
+.fab {
+    position: fixed !important;
     right: 2rem;
     bottom: 5rem;
-  }
+}

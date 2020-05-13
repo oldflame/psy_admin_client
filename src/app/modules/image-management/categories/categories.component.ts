@@ -7,6 +7,8 @@ import { Category } from "src/app/models/category";
 import { MatDialog } from "@angular/material/dialog";
 import { ActionConfirmDialogComponent } from "../../general/dialogs/action-confirm-dialog/action-confirm-dialog.component";
 import { ToastService, TOAST_TYPE } from "../../../services/toast.service";
+import { AddImageCategoryComponent } from '../../general/dialogs/add-image-category/add-image-category.component';
+import { AddImageCategoryParams } from '../../../models/request-params';
 
 @Component({
   selector: "categories",
@@ -73,5 +75,25 @@ export class CategoriesComponent implements OnInit {
           );
         }
       });
+  }
+
+  addNewImageCategory() {
+    this.dialogRef = this.dialog.open(AddImageCategoryComponent, {
+      width: "550px",
+      closeOnNavigation: true
+    });
+
+    this.dialogRef.afterClosed().pipe(switchMap((res: AddImageCategoryParams) => {
+      if (res) {
+        return this.imageManagementService.addCategory(res);
+      }
+      return EMPTY;
+    })).subscribe((res: boolean) => {
+      if (res) {
+        this.toastService.showToast("Image Category added successfully!", TOAST_TYPE.SUCCESS);
+      } else {
+        this.toastService.showToast("Failed to add image category. Try again!", TOAST_TYPE.DANGER);
+      }
+    })
   }
 }
