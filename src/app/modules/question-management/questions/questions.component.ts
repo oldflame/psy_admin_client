@@ -49,7 +49,7 @@ export class QuestionsComponent implements OnInit {
       .subscribe();
   }
 
-  deleteCategory(eventArgs: any) {
+  deleteQuestion(eventArgs: any) {
     this.dialogRef = this.dialog.open(ActionConfirmDialogComponent, {
       width: "450px",
       closeOnNavigation: true,
