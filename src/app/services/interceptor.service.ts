@@ -35,11 +35,9 @@ export class InterceptorService implements HttpInterceptor {
       setHeaders: headersToSet,
     });
 
-    console.log("INTERCEPTOR URL", req.url, req.headers, headersToSet);
     return next.handle(req).pipe(
       catchError((err) => {
         if (err instanceof HttpErrorResponse) {
-          console.log("err", err);
           if (err.status == 401) {
             this.authService.logout();
             this.router.navigate(["/login"]);

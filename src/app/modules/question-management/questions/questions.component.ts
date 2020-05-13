@@ -2,12 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { AddQuestionComponent } from "../../general/dialogs/add-question/add-question.component";
 import { switchMap } from "rxjs/operators";
-import { EMPTY } from "rxjs";
+import { EMPTY, Observable } from "rxjs";
 import { QuestionsService } from "src/app/services/questions.service";
 import { CategoryService } from 'src/app/services/category.service';
 import { QuestionCategory } from 'src/app/models/question-category';
 import { ActionConfirmDialogComponent } from '../../general/dialogs/action-confirm-dialog/action-confirm-dialog.component';
 import { ToastService, TOAST_TYPE } from 'src/app/services/toast.service';
+import { Question } from 'src/app/models/question';
 
 @Component({
   selector: "questions",
@@ -16,13 +17,17 @@ import { ToastService, TOAST_TYPE } from 'src/app/services/toast.service';
 })
 export class QuestionsComponent implements OnInit {
   dialogRef;
+  questions$: Observable<Question[]>;
   constructor(
     private dialog: MatDialog,
     private questionService: QuestionsService,
     private toastService: ToastService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.questions$ = this.questionService.questions$.pipe();
+    this.questionService.getQuestions().subscribe();
+  }
 
 
   showAddQuestionDialog() {
@@ -45,7 +50,6 @@ export class QuestionsComponent implements OnInit {
   }
 
   deleteCategory(eventArgs: any) {
-    console.log("deleting location", eventArgs);
     this.dialogRef = this.dialog.open(ActionConfirmDialogComponent, {
       width: "450px",
       closeOnNavigation: true,

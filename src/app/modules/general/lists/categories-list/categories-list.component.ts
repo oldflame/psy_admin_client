@@ -18,7 +18,6 @@ export class CategoriesListComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("Categories List Changes", changes.categories.currentValue);
     if (changes.categories && changes.categories.currentValue != null) {
       this.showCategoriesLoader = false;
     }
@@ -27,13 +26,11 @@ export class CategoriesListComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   deleteCategoryClicked($event: any, categoryID: string) {
-    console.log("Delete category", categoryID);
     this.categoryDeleted.emit({ categoryID });
     $event.stopPropagation();
   }
 
   viewCategoryClicked(category: Category) {
-    console.log("View category", category);
     this.categoryViewed.emit({ category });
   }
 

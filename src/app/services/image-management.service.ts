@@ -31,7 +31,6 @@ export class ImageManagementService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          console.log("Add image category err", err);
           return of(false);
         })
       )
@@ -51,7 +50,6 @@ export class ImageManagementService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          console.log("get active image categories err", err);
           this.categoriesSubject.next([]);
           return of(false);
         })
@@ -75,7 +73,6 @@ export class ImageManagementService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          console.log("Delete image category err", err);
           return of(false);
         })
       )

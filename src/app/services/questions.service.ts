@@ -18,7 +18,25 @@ export class QuestionsService {
   constructor(private dataService: DataService) {}
 
   getQuestions() {
-    this.dataService.sendGET("");
+    return this.dataService
+    .sendGET(QUESTIONS_API.GET_ALL_QUESTIONS)
+    .pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          if (res.status == HTTP_RESPONSE_STATUS.OK) {
+            this.questionSubject.next(res.body);
+          } else {
+            this.questionSubject.next([]);
+          }
+          return res.status == HTTP_RESPONSE_STATUS.OK;
+        },
+        catchError((err: HttpErrorResponse) => {
+          console.log("Get Questions error", err);
+          this.questionSubject.next([]);
+          return of(false);
+        })
+      )
+    );
   }
 
   addQuestion(requestBody: AddQuestionParams): Observable<boolean> {
