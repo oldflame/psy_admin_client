@@ -39,3 +39,14 @@ export interface AddQuestionParams {
   description: string;
   questionCategory: string;
 }
+
+export interface AddImageParams {
+  name: string;
+  description: string;
+  tags: string[];
+  category: string;
+  intensity: number;
+  imageType: number;
+  fileName: string;
+  content: string;
+}
