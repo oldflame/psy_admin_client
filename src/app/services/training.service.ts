@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AddTrainingParams } from "../models/request-params";
 import { Observable, of, BehaviorSubject } from "rxjs";
 import { DataService } from "./data.service";
-import { QUESTIONS_API, HTTP_RESPONSE_STATUS } from "../constants";
+import { QUESTIONS_API, HTTP_RESPONSE_STATUS, TRAININGS_API } from "../constants";
 import { map, catchError } from "rxjs/operators";
 import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { Training } from "../models/trainings";
@@ -19,7 +19,7 @@ export class TrainingService {
 
   addTraining(requestBody: AddTrainingParams): Observable<boolean> {
     return this.dataService
-      .sendPOST(QUESTIONS_API.ADD_QUESTION, requestBody)
+      .sendPOST(TRAININGS_API.ADD_TRAINING, requestBody)
       .pipe(
         map(
           (res: HttpResponse<any>) => {

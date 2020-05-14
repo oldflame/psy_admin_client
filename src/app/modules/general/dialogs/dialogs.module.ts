@@ -27,7 +27,8 @@ import { AddTrainingComponent } from './add-training/add-training.component';
     ActionConfirmDialogComponent,
     AddQuestionCategoryComponent,
     AddQuestionComponent,
-    AddImageCategoryComponent
+    AddImageCategoryComponent,
+    AddTrainingComponent
   ],
 })
 export class DialogsModule {}

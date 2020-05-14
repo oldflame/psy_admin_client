@@ -4,6 +4,7 @@ import { TrainingsComponent } from './trainings/trainings.component';
 import { MaterialModule } from 'src/app/material.module';
 import { RouterModule } from '@angular/router';
 import { TrainingManagementRoutes } from './training-management.routing';
+import { DialogsModule } from '../general/dialogs/dialogs.module';
 
 
 
@@ -13,6 +14,7 @@ import { TrainingManagementRoutes } from './training-management.routing';
     CommonModule,
     MaterialModule,
     RouterModule.forChild(TrainingManagementRoutes),
+    DialogsModule
   ]
 })
 export class TrainingManagementModule { }
