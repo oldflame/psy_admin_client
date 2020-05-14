@@ -1,0 +1,36 @@
+<div *ngIf="showImagesLoader === true; then imagesLoader else imagesList"></div>
+<ng-template #imagesLoader>
+    <div class="row mt-3">
+        <div class="col-12" align="center">
+            <h4>
+                <mat-spinner mode="indeterminate" color="primary" [diameter]=30></mat-spinner> Fetching Images ...
+            </h4>
+        </div>
+    </div>
+</ng-template>
+<ng-template #imagesList>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let image of images">
+                <div class="card">
+                    <img alt="Image placeholder" class="card-img-top" [src]="image.url" />
+                    <div class=" card-body">
+                        <h5 class=" h2 card-title mb-0">{{image.name}}</h5>
+                        <p class="card-text mt-4">
+                            {{ image.description }}
+                        </p>
+                        <small class=" text-muted">
+                            Added {{ image.createdAt | amTimeAgo }}
+                        </small>
+                        <button mat-button color="primary">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #noImages>
+    <div class="card-body" align="center">
+        <h4>No Images Found!</h4>
+    </div>
+</ng-template>
