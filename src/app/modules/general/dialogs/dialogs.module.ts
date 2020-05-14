@@ -10,6 +10,7 @@ import { EditImageDialogComponent } from "./edit-image-dialog/edit-image-dialog.
 import { NgxFileHelpersModule } from "ngx-file-helpers";
 import { ImageCropperModule } from "ngx-image-cropper";
 import { ImageDetailsComponent } from './image-details/image-details.component';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ImageDetailsComponent } from './image-details/image-details.component';
     ReactiveFormsModule,
     NgxFileHelpersModule,
     ImageCropperModule,
+    MomentModule
   ],
   exports: [
     ActionConfirmDialogComponent,

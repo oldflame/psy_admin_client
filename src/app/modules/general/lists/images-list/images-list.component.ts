@@ -29,7 +29,8 @@ export class ImagesListComponent implements OnInit {
     $event.stopPropagation();
   }
 
-  viewImageClicked(image: Image) {
+  viewImageClicked($event, image: Image) {
     this.imageViewed.emit({ image });
+    $event.stopPropagation();
   }
 }

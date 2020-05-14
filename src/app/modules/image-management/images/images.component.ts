@@ -1,31 +1,58 @@
-import { Component, OnInit } from '@angular/core';
-import { ImageManagementService } from '../../../services/image-management.service';
-import { Observable, EMPTY } from 'rxjs';
-import { Image } from '../../../models/image';
-import { map, switchMap } from 'rxjs/operators';
-import { MatDialog } from '@angular/material/dialog';
-import { ActionConfirmDialogComponent } from '../../general/dialogs/action-confirm-dialog/action-confirm-dialog.component';
-import { ToastService, TOAST_TYPE } from '../../../services/toast.service';
+import { Component, OnInit } from "@angular/core";
+import { ImageManagementService } from "../../../services/image-management.service";
+import { Observable, EMPTY } from "rxjs";
+import { Image } from "../../../models/image";
+import { map, switchMap } from "rxjs/operators";
+import { MatDialog } from "@angular/material/dialog";
+import { ActionConfirmDialogComponent } from "../../general/dialogs/action-confirm-dialog/action-confirm-dialog.component";
+import { ToastService, TOAST_TYPE } from "../../../services/toast.service";
+import { ImageDetailsComponent } from "../../general/dialogs/image-details/image-details.component";
+import {
+  IMAGE_TYPE_OPTIONS,
+  IMAGE_INTENSITY_OPTIONS,
+} from "../../../constants";
+import * as _ from "lodash";
 
 @Component({
-  selector: 'images',
-  templateUrl: './images.component.html',
-  styleUrls: ['./images.component.scss']
+  selector: "images",
+  templateUrl: "./images.component.html",
+  styleUrls: ["./images.component.scss"],
 })
 export class ImagesComponent implements OnInit {
   images$: Observable<Image[]>;
   dialogRef;
+  private imageTypeOptions = IMAGE_TYPE_OPTIONS.filter((option) => option);
+  private imageIntensityOptions = IMAGE_INTENSITY_OPTIONS.filter(
+    (option) => option
+  );
 
-  constructor(private imageManagementService: ImageManagementService, private dialog: MatDialog, private toastService: ToastService) { }
+  constructor(
+    private imageManagementService: ImageManagementService,
+    private dialog: MatDialog,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
-    this.images$ = this.imageManagementService.images$.pipe(map((images: Image[]) => {
-      if (images && images.length > 0) {
-        images = images.filter(image => !image.isDeleted)
-      }
+    this.images$ = this.imageManagementService.images$.pipe(
+      map((images: Image[]) => {
+        if (images && images.length > 0) {
+          images = images
+            .filter((image) => !image.isDeleted)
+            .map((image) =>
+              _.merge(image, {
+                imageType: _.find(this.imageTypeOptions, {
+                  value: image.imageType,
+                }),
+                intensity: _.find(this.imageIntensityOptions, {
+                  value: image.intensity,
+                }),
+              })
+            );
+        }
 
-      return images;
-    }));
+        return images;
+      })
+    );
     this.imageManagementService.getAllImages(0, 50).subscribe();
   }
 
@@ -45,9 +72,7 @@ export class ImagesComponent implements OnInit {
       .pipe(
         switchMap((res: boolean) => {
           if (res) {
-            return this.imageManagementService.deleteImage(
-              eventArgs.imageID
-            );
+            return this.imageManagementService.deleteImage(eventArgs.imageID);
           }
           return EMPTY;
         })
@@ -68,5 +93,13 @@ export class ImagesComponent implements OnInit {
   }
 
   viewImage(eventArgs: any) {
+    console.log("Viewing image: ", eventArgs.image);
+    this.dialogRef = this.dialog.open(ImageDetailsComponent, {
+      width: "900px",
+      closeOnNavigation: true,
+      data: {
+        image: eventArgs.image,
+      },
+    });
   }
 }

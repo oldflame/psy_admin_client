@@ -1,1 +1,18 @@
-<p>image-details works!</p>
+<h3 mat-dialog-title>{{ image.name }}</h3>
+<div class="row">
+    <div class="col-12 col-sm-6">
+        <img alt="Image placeholder" class="card-img-top" [src]="image.url" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <h2 class="mb-0">Description</h2>
+        <p>{{ image.description }}</p>
+        <h2 class="mb-0">Category</h2>
+        <p>{{ image.category.name }} - {{ image.category.description }}</p>
+        <h2 class="mb-0">Intensity</h2>
+        <p>{{ image.intensity.viewValue }}</p>
+        <h2 class="mb-0">Image Type</h2>
+        <p>{{ image.imageType.viewValue }}</p>
+        <h2 class="mb-0">Added On</h2>
+        <p>{{ image.createdAt | amDateFormat: "MM/DD/YY hh:mm:ss a" }}</p>
+    </div>
+</div>
