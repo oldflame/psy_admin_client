@@ -24,11 +24,15 @@ export const IMAGES_API = {
   ADD_CATEGORY: "/api/account/imgCategory",
   GET_ACTIVE_CATEGORIES: "/api/account/imgCategory",
   DELETE_CATEGORY: "/api/account/imgCategory/{imageCategoryID}",
+  GET_ALL_IMAGES: "/api/account/images/all/{skip}/{limit}",
+  ADD_IMAGE: "/api/account/images",
+  DELETE_IMAGE: "/api/account/images/{imageID}",
 };
 export const QUESTIONS_CATEGORY_API = {
   GET_ALL_QUESTION_CATEGORIES: "/api/account/questionsCategory",
   ADD_QUESTION_CATEGORY: "/api/account/addQuestionsCategory",
-  DELETE_QUESTION_CATEGORY: "/api/account/deleteQuestionCategory/{questionCategoryId}",
+  DELETE_QUESTION_CATEGORY:
+    "/api/account/deleteQuestionCategory/{questionCategoryId}",
 };
 
 export const QUESTIONS_API = {
@@ -45,3 +49,41 @@ export enum HTTP_RESPONSE_STATUS {
   FORBIDDEN = 403,
   SERVER_ERROR = 500,
 }
+
+export const IMAGE_INTENSITY_OPTIONS = [
+  {
+    viewValue: "5 - Very High",
+    value: 5,
+  },
+  {
+    viewValue: "4 - High",
+    value: 4,
+  },
+  {
+    viewValue: "3 - Normal",
+    value: 3,
+  },
+  {
+    viewValue: "2 - Low",
+    value: 2,
+  },
+  {
+    viewValue: "1 - Very Low",
+    value: 1,
+  },
+];
+
+export const IMAGE_TYPE_OPTIONS = [
+  {
+    viewValue: "Positive",
+    value: 1,
+  },
+  {
+    viewValue: "Neutral",
+    value: 0,
+  },
+  {
+    viewValue: "Negative",
+    value: -1,
+  }
+];
