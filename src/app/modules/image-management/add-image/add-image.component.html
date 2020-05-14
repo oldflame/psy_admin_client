@@ -1,1 +1,101 @@
-<p>add-image works!</p>
+<div class="page-content">
+    <div class="container-fluid animated fadeIn">
+        <form [formGroup]="imageDataForm">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img alt="Image placeholder" class="card-img-top" [src]="imagePreview" />
+                        <div class=" card-body p-3">
+                            <h5 class=" h2 card-title mb-0">{{imageDataForm.value.name || "Preview Image"}}</h5>
+                            <p class="card-text m-0">
+                                {{ imageDataForm.value.description || "Image Description" }}
+                            </p>
+                        </div>
+                        <div class="card-footer p-3 d-flex justify-content-between">
+                            <button mat-raised-button color="primary" ngxFilePicker accept="image/*"
+                                (filePick)="getSelectedFile($event)">Select Image</button>
+                            <button mat-button color="primary" (click)="showImageEditorDialog()"
+                                *ngIf="selectedImage">Crop Image</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-8">
+                    <div class="card">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class=" h3 mb-0">Image Details</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="Name" formControlName="name">
+                                <mat-error *ngIf="imageDataForm.get('name').hasError('required')">Name is
+                                    <strong>required.</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Description</mat-label>
+                                <input matInput placeholder="Description" formControlName="description">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Image Category</mat-label>
+                                <mat-select formControlName="category">
+                                    <mat-option *ngFor="let category of (imageCategories$ | async)"
+                                        [value]="category._id">
+                                        {{category.name}} - {{category.description}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="imageDataForm.get('category').hasError('required')">Category is
+                                    <strong>required.</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Image Intensity</mat-label>
+                                <mat-select formControlName="intensity">
+                                    <mat-option *ngFor="let option of imageIntensityOptions" [value]="option.value">
+                                        {{option.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="imageDataForm.get('intensity').hasError('required')">Intensity is
+                                    <strong>required.</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Image Type</mat-label>
+                                <mat-select formControlName="imageType">
+                                    <mat-option *ngFor="let option of imageTypeOptions" [value]="option.value">
+                                        {{option.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="imageDataForm.get('imageType').hasError('required')">Image type is
+                                    <strong>required.</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-chip-list #chipList aria-label="Add tags">
+                                    <mat-chip *ngFor="let tag of tags" [removable]="removable"
+                                        (removed)="removeTag(tag)">
+                                        {{ tag}}
+                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                    </mat-chip>
+                                    <input placeholder="Add Tags" [matChipInputFor]="chipList"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addTag($event)" />
+                                </mat-chip-list>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12 d-flex justify-content-center">
+                            <button mat-raised-button color="primary" *ngIf="!isImageUploading" (click)="submitImage()" [disabled]="imageDataForm.invalid">Submit Image</button>
+                            <mat-spinner mode="indeterminate" diameter="30" color="primary" *ngIf="isImageUploading"></mat-spinner>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

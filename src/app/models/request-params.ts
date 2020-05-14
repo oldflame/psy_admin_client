@@ -47,6 +47,7 @@ export interface AddImageParams {
   category: string;
   intensity: number;
   imageType: number;
+  fileType: string;
   fileName: string;
   content: string;
 }

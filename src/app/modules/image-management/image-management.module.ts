@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListsModule } from '../general/lists/lists.module';
 import { DialogsModule } from '../general/dialogs/dialogs.module';
 import { AddImageComponent } from './add-image/add-image.component';
+import { NgxFileHelpersModule } from 'ngx-file-helpers';
 
 
 
@@ -21,7 +22,8 @@ import { AddImageComponent } from './add-image/add-image.component';
     FormsModule,
     ReactiveFormsModule,
     ListsModule,
-    DialogsModule
+    DialogsModule,
+    NgxFileHelpersModule
   ]
 })
 export class ImageManagementModule { }
