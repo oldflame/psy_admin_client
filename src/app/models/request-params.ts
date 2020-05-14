@@ -45,6 +45,6 @@ export interface AddTrainingParams {
   description: string;
   keywords: string[];
   scheduleFor: any;
-  questions: string[];
-  images: string[];
+  questionData: { question: string; order: number }[];
+  imageData: { image: string; order: number }[];
 }
