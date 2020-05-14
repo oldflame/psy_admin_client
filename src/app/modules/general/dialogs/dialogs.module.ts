@@ -6,6 +6,7 @@ import { AddQuestionCategoryComponent } from "./add-question-category/add-questi
 import { AddQuestionComponent } from "./add-question/add-question.component";
 import { AddImageCategoryComponent } from "./add-image-category/add-image-category.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AddTrainingComponent } from './add-training/add-training.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AddQuestionCategoryComponent,
     AddQuestionComponent,
     AddImageCategoryComponent,
+    AddTrainingComponent,
   ],
   imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
   exports: [

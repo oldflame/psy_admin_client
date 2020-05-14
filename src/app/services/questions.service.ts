@@ -53,7 +53,7 @@ export class QuestionsService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Add location error", err);
+            console.log("Add Question error", err);
             return of(false);
           })
         )

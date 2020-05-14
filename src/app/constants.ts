@@ -38,6 +38,12 @@ export const QUESTIONS_API = {
   DELETE_QUESTION: "/app/account/deleteQuestion/{questionId}",
 };
 
+export const TRAININGS_API = {
+  GET_ALL_TRAININGS: "/api/account/trainings",
+  ADD_TRAINING: "/api/account/addTraining",
+  DELETE_TRAINING: "/api/account/deleteTraining/{trainingId}"
+};
+
 export enum HTTP_RESPONSE_STATUS {
   OK = 200,
   BAD_REQUEST = 400,

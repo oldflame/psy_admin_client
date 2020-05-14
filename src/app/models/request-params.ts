@@ -39,3 +39,12 @@ export interface AddQuestionParams {
   description: string;
   questionCategory: string;
 }
+
+export interface AddTrainingParams {
+  trainingName: string;
+  description: string;
+  keywords: string[];
+  scheduleFor: any;
+  questions: string[];
+  images: string[];
+}

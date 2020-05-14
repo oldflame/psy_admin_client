@@ -67,6 +67,12 @@ export const ROUTES: RouteInfo[] = [
       {path: "images", title:"Images", type: "link"}
     ]
   },
+  {
+    path: "/training-management/trainings",
+    title: "Trainings",
+    type: "link",
+    icontype: "business",
+  },
 ];
 
 @Component({
