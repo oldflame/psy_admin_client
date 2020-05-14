@@ -8,11 +8,12 @@ import { MaterialModule } from '../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListsModule } from '../general/lists/lists.module';
 import { DialogsModule } from '../general/dialogs/dialogs.module';
+import { AddImageComponent } from './add-image/add-image.component';
 
 
 
 @NgModule({
-  declarations: [CategoriesComponent, ImagesComponent],
+  declarations: [CategoriesComponent, ImagesComponent, AddImageComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(ImageManagementRoutes),

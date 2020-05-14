@@ -8,5 +8,6 @@ export interface Image {
   imageType: number;
   fileName: string;
   url: string;
+  isDeleted: boolean;
   createdAt: any;
 }

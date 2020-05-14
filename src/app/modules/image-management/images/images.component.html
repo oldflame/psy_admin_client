@@ -1,1 +1,12 @@
-<p>images works!</p>
+<div class="page-content">
+    <div class="container-fluid animated fadeIn">
+        <images-list [images]="images$ | async" (imageDeleted)="deleteImage($event)"
+            (imageViewed)="viewImage($event)"></images-list>
+    </div>
+    <button mat-fab color="primary" class="fab" routerLink="/image-management/images/add" matTooltip="Add new image"
+        matTooltipPosition="before">
+        <mat-icon>
+            add
+        </mat-icon>
+    </button>
+</div>

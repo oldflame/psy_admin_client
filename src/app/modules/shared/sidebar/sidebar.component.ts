@@ -64,9 +64,10 @@ export const ROUTES: RouteInfo[] = [
     isCollapsed: true,
     children: [
       {path: "categories", title:"Image Categories", type: "link"},
-      {path: "images", title:"Images", type: "link"}
+      {path: "images", title:"Images", type: "link"},
+      {path: "images/add", title:"Add Image", type: "child"}
     ]
-  },
+  }
 ];
 
 @Component({
