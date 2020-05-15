@@ -7,7 +7,6 @@ import { AddQuestionComponent } from "./add-question/add-question.component";
 import { AddImageCategoryComponent } from "./add-image-category/add-image-category.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AddLocationComponent } from './add-location/add-location.component';
-import {ScrollingModule} from "@angular/cdk/scrolling";
 
 @NgModule({
   declarations: [
@@ -17,7 +16,7 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
     AddImageCategoryComponent,
     AddLocationComponent,
   ],
-    imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, ScrollingModule],
+    imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
   exports: [
     ActionConfirmDialogComponent,
     AddQuestionCategoryComponent,
