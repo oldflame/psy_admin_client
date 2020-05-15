@@ -73,7 +73,6 @@ export const ROUTES: RouteInfo[] = [
     title: "Trainings",
     type: "link",
     icontype: "business",
-  },
   }
 ];
 
