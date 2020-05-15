@@ -7,10 +7,7 @@ import * as _ from "lodash";
 import {MatDialog} from "@angular/material/dialog";
 import {TOAST_TYPE, ToastService} from "../../services/toast.service";
 import {AddLocationComponent} from "../general/dialogs/add-location/add-location.component";
-import {
-  AddImageCategoryParams,
-  AddLocationParams
-} from "../../models/request-params";
+import {ActionConfirmDialogComponent} from "../general/dialogs/action-confirm-dialog/action-confirm-dialog.component";
 
 @Component({
   selector: "locations",
@@ -40,6 +37,42 @@ export class LocationsComponent implements OnInit {
   }
 
   deleteLocation(eventArgs: any) {
+    this.dialogRef = this.dialog.open(ActionConfirmDialogComponent, {
+      width: "450px",
+      closeOnNavigation: true,
+      data: {
+        title: "Confirm Delete Location",
+        messageLine1: "Are you sure you want to delete this location?",
+        messageLine2: "This cannot be undone.",
+        successText: "Delete",
+      },
+    });
+
+    this.dialogRef
+        .afterClosed()
+        .pipe(
+            switchMap((res: boolean) => {
+              if (res) {
+                return this.locationsService.deleteLocation(
+                    eventArgs.locationID
+                );
+              }
+              return EMPTY;
+            })
+        )
+        .subscribe((serverRes: boolean) => {
+          if (serverRes) {
+            this.toastService.showToast(
+                "Location Deleted Successfully!",
+                TOAST_TYPE.SUCCESS
+            );
+          } else {
+            this.toastService.showToast(
+                "Failed to delete location. Try again!",
+                TOAST_TYPE.DANGER
+            );
+          }
+        });
   }
 
   viewLocation(eventArgs: any) {
