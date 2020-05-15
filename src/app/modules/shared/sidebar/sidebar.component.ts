@@ -74,7 +74,6 @@ export const ROUTES: RouteInfo[] = [
     type: "link",
     icontype: "business",
   },
-  }
 ];
 
 @Component({

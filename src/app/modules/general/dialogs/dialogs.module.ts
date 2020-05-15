@@ -45,7 +45,7 @@ import { MomentModule } from 'ngx-moment';
     AddQuestionCategoryComponent,
     AddQuestionComponent,
     AddImageCategoryComponent,
-    AddTrainingComponent
+    AddTrainingComponent,
     EditImageDialogComponent,
     ImageDetailsComponent,
   ],
