@@ -1,9 +1,29 @@
 <div class="page-content">
     <div class="container-fluid animated fadeIn">
-        <div class="row">
+        <search *ngIf="(categories$ | async)?.length > 0" [placeholder]="'Search Categories ...'"
+            hint="Separate search terms using 'Enter' or 'Comma'" (searchChange)="searchTextChanged($event)">
+        </search>
+        <div class="row mt-2">
             <div class="col-12 col-md-8 offset-md-2">
-                <categories-list [categories]="categories$ | async" (categoryDeleted)="deleteCategory($event)">
-                </categories-list>
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h2 class="mb-0">{{showAllCategories ? "All" : "Active"}} Categories</h2>
+                            </div>
+                            <div class="col-6 text-right">
+                                <mat-slide-toggle [formControl]="deletedCategoriesToggle" color="accent">Include Deleted
+                                    Categories
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <categories-list [categories]="categories$ | async | filterCategories: searchTerms"
+                            (categoryDeleted)="deleteCategory($event)" (categoryRestored)="restoreCategory($event)">
+                        </categories-list>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

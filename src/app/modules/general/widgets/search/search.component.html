@@ -1,0 +1,24 @@
+<form #f="ngForm">
+  <mat-form-field class="demo-chip-list">
+    <mat-chip-list #chipList>
+      <mat-chip
+        *ngFor="let term of searchTerms"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(term)"
+      >
+        {{ term }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        #searchChipInput
+        [placeholder]="placeholder"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
+    <mat-hint *ngIf="hintText">{{ hintText }}</mat-hint>
+  </mat-form-field>
+</form>

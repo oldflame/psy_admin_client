@@ -10,6 +10,7 @@ export class CategoriesListComponent implements OnInit, OnChanges {
   @Input("categories") categories: Category[] | QuestionCategory[];
 
   @Output("categoryDeleted") categoryDeleted = new EventEmitter();
+  @Output("categoryRestored") categoryRestored = new EventEmitter();
   @Output("categoryViewed") categoryViewed = new EventEmitter();
   @Output("categoryEdited") categoryEdited = new EventEmitter();
 
@@ -27,6 +28,11 @@ export class CategoriesListComponent implements OnInit, OnChanges {
 
   deleteCategoryClicked($event: any, categoryID: string) {
     this.categoryDeleted.emit({ categoryID });
+    $event.stopPropagation();
+  }
+
+  restoreCategoryClicked($event: any, categoryID: string) {
+    this.categoryRestored.emit({ categoryID });
     $event.stopPropagation();
   }
 

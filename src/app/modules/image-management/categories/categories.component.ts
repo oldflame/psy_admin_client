@@ -9,6 +9,7 @@ import { ActionConfirmDialogComponent } from "../../general/dialogs/action-confi
 import { ToastService, TOAST_TYPE } from "../../../services/toast.service";
 import { AddImageCategoryComponent } from '../../general/dialogs/add-image-category/add-image-category.component';
 import { AddImageCategoryParams } from '../../../models/request-params';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: "categories",
@@ -18,6 +19,11 @@ import { AddImageCategoryParams } from '../../../models/request-params';
 export class CategoriesComponent implements OnInit {
   categories$: Observable<Category[]>;
   dialogRef;
+
+  deletedCategoriesToggle = new FormControl(false);
+  showAllCategories = false;
+
+  searchTerms: string[] = [];
 
   constructor(
     private imageManagementService: ImageManagementService,
@@ -29,12 +35,25 @@ export class CategoriesComponent implements OnInit {
     this.categories$ = this.imageManagementService.imageCategories$.pipe(
       map((imageCategories: Category[]) => {
         if (imageCategories && imageCategories.length > 0) {
+          if (!this.showAllCategories) {
+            imageCategories = imageCategories.filter(category => !category.isDeleted)
+          }
           imageCategories = _.sortBy(imageCategories, "name");
         }
         return imageCategories;
       })
     );
-    this.imageManagementService.getActiveImageCategories().subscribe();
+    this.imageManagementService.getAllImageCategories().subscribe();
+
+    this.deletedCategoriesToggle.valueChanges.subscribe((value) => {
+      this.showAllCategories = value;
+      this.imageManagementService.rebroadcastCategoriesData();
+    })
+  }
+
+  searchTextChanged(eventArgs) {
+    this.searchTerms = eventArgs.searchTerms;
+    console.log("Search for", this.searchTerms);
   }
 
   deleteCategory(eventArgs: any) {
@@ -44,7 +63,6 @@ export class CategoriesComponent implements OnInit {
       data: {
         title: "Confirm Delete Category",
         messageLine1: "Are you sure you want to delete the category?",
-        messageLine2: "This cannot be undone.",
         successText: "Delete",
       },
     });
@@ -70,6 +88,45 @@ export class CategoriesComponent implements OnInit {
         } else {
           this.toastService.showToast(
             "Failed to delete category. Try again!",
+            TOAST_TYPE.DANGER
+          );
+        }
+      });
+  }
+
+  restoreCategory(eventArgs: any) {
+    this.dialogRef = this.dialog.open(ActionConfirmDialogComponent, {
+      width: "450px",
+      closeOnNavigation: true,
+      data: {
+        title: "Confirm Restore Category",
+        messageLine1: "Are you sure you want to restore the category?",
+        successText: "Restore",
+      },
+    });
+
+    this.dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap((res: boolean) => {
+          if (res) {
+            return this.imageManagementService.deleteCategory(
+              eventArgs.categoryID,
+              true
+            );
+          }
+          return EMPTY;
+        })
+      )
+      .subscribe((serverRes: boolean) => {
+        if (serverRes) {
+          this.toastService.showToast(
+            "Category restored Successfully!",
+            TOAST_TYPE.SUCCESS
+          );
+        } else {
+          this.toastService.showToast(
+            "Failed to restore category. Try again!",
             TOAST_TYPE.DANGER
           );
         }

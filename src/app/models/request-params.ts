@@ -48,3 +48,15 @@ export interface AddTrainingParams {
   questionData: { question: string; order: number }[];
   imageData: { image: string; order: number }[];
 }
+
+export interface AddImageParams {
+  name: string;
+  description: string;
+  tags: string[];
+  category: string;
+  intensity: number;
+  imageType: number;
+  fileType: string;
+  fileName: string;
+  content: string;
+}
