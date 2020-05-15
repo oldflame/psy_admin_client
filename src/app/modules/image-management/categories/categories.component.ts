@@ -23,6 +23,8 @@ export class CategoriesComponent implements OnInit {
   deletedCategoriesToggle = new FormControl(false);
   showAllCategories = false;
 
+  searchTerms: string[] = [];
+
   constructor(
     private imageManagementService: ImageManagementService,
     private dialog: MatDialog,
@@ -47,6 +49,11 @@ export class CategoriesComponent implements OnInit {
       this.showAllCategories = value;
       this.imageManagementService.rebroadcastCategoriesData();
     })
+  }
+
+  searchTextChanged(eventArgs) {
+    this.searchTerms = eventArgs.searchTerms;
+    console.log("Search for", this.searchTerms);
   }
 
   deleteCategory(eventArgs: any) {
