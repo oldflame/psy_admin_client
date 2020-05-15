@@ -10,7 +10,7 @@ import { CategoryService } from "src/app/services/category.service";
 export class AddQuestionComponent implements OnInit {
   questionCategories$;
   addQuestionCategoryControl: FormGroup = new FormGroup({
-    questionName: new FormControl("", [Validators.required]),
+    name: new FormControl("", [Validators.required]),
     description: new FormControl(""),
     questionCategory: new FormControl("", [Validators.required]),
   });

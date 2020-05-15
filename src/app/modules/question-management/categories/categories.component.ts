@@ -20,13 +20,13 @@ export class CategoriesComponent implements OnInit {
   categories$: Observable<QuestionCategory[]>;
   showAllCategories = false;
   deletedCategoriesToggle = new FormControl(false);
+  searchTerms: string[] = [];
 
   constructor(
     private dialog: MatDialog,
     private categoryService: CategoryService,
     private toastService: ToastService
   ) {}
-  searchTerms: string[] = [];
   ngOnInit(): void {
     this.categories$ = this.categoryService.categories$.pipe(
       map((questionCategories: QuestionCategory[]) => {
