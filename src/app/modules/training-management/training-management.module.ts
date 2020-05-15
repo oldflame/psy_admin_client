@@ -5,6 +5,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { RouterModule } from '@angular/router';
 import { TrainingManagementRoutes } from './training-management.routing';
 import { DialogsModule } from '../general/dialogs/dialogs.module';
+import { ListsModule } from '../general/lists/lists.module';
 
 
 
@@ -14,7 +15,8 @@ import { DialogsModule } from '../general/dialogs/dialogs.module';
     CommonModule,
     MaterialModule,
     RouterModule.forChild(TrainingManagementRoutes),
-    DialogsModule
+    DialogsModule,
+    ListsModule
   ]
 })
 export class TrainingManagementModule { }

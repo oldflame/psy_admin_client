@@ -2,7 +2,7 @@
     <div class="container-fluid animated fadeIn">
       <div class="row">
           <div class="col-12 col-md-8 offset-md-2">
-              <!-- <categories-list [categories]="questions$ | async" (categoryDeleted)="deleteQuestion($event)"></categories-list> -->
+              <categories-list [categories]="trainings$ | async" (categoryDeleted)="deleteQuestion($event)"></categories-list>
           </div>
       </div>
   </div>

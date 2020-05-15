@@ -37,4 +37,54 @@ export class TrainingService {
         )
       );
   }
+
+  getAllTrainings(): Observable<boolean> {
+    return this.dataService
+      .sendGET(TRAININGS_API.GET_ALL_TRAININGS)
+      .pipe(
+        map(
+          (res: HttpResponse<any>) => {
+            if (res.status == HTTP_RESPONSE_STATUS.OK) {
+              this.trainingSubject.next(res.body);
+            } else {
+              this.trainingSubject.next([]);
+            }
+            return res.status == HTTP_RESPONSE_STATUS.OK;
+          },
+          catchError((err: HttpErrorResponse) => {
+            this.trainingSubject.next([]);
+            return of(false);
+          })
+        )
+      );
+  }
+
+  deleteTraining(trainingId: string): Observable<boolean> {
+    return this.dataService
+      .sendDELETE(
+        TRAININGS_API.DELETE_TRAINING.replace(
+          "{trainingId}",
+          trainingId
+        )
+      )
+      .pipe(
+        map(
+          (res: HttpResponse<any>) => {
+            if (res.status == HTTP_RESPONSE_STATUS.OK) {
+              const trainings = this.trainingSubject.value;
+              const trainingIndexToDelete = _.findIndex(trainings, {
+                _id: trainingId,
+              });
+              trainings.splice(trainingIndexToDelete, 1);
+              this.trainingSubject.next(_.cloneDeep(trainings));
+            }
+            return res.status == HTTP_RESPONSE_STATUS.OK;
+          },
+          catchError((err: HttpErrorResponse) => {
+            console.log("Delete Question Category error", err);
+            return of(false);
+          })
+        )
+      );
+  }
 }

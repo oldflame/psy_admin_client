@@ -39,7 +39,7 @@ export const QUESTIONS_API = {
 };
 
 export const TRAININGS_API = {
-  GET_ALL_TRAININGS: "/api/account/trainings",
+  GET_ALL_TRAININGS: "/api/account/getAllTrainings",
   ADD_TRAINING: "/api/account/addTraining",
   DELETE_TRAINING: "/api/account/deleteTraining/{trainingId}"
 };
