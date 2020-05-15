@@ -22,11 +22,11 @@ export class ToastService {
   constructor(private snackbar: MatSnackBar) {}
   showToast(message: string, type: TOAST_TYPE, from?: string, align?: string) {
     if (message != "" && message != this.messageShown) {  // Prevent duplicate notifications
-     this.snackbar.open(message, 'Dismiss', {
+     this.snackbar.open(message, null, {
        duration: this.durationInSeconds * 1000,
        verticalPosition: 'top',
        horizontalPosition: 'end',
-       panelClass: [`bg-${type}`, 'text-white']
+       panelClass: [`bg-${type}`, 'text-white', 'font-weight-bold']
      });
     }
   }

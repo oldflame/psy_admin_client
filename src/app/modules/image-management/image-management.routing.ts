@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { CategoriesComponent } from "./categories/categories.component";
 import { ImagesComponent } from "./images/images.component";
+import { AddImageComponent } from './add-image/add-image.component';
 
 export const ImageManagementRoutes: Routes = [
   {
@@ -22,6 +23,10 @@ export const ImageManagementRoutes: Routes = [
       {
         path: "",
         component: ImagesComponent,
+      },
+      {
+        path: "add",
+        component: AddImageComponent,
       },
     ],
   },
