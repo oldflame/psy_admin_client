@@ -35,7 +35,7 @@ export interface AddCategoryParams {
 }
 
 export interface AddQuestionParams {
-  questionName: string;
+  name: string;
   description: string;
   questionCategory: string;
 }

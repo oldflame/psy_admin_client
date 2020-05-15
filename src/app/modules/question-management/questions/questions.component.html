@@ -1,4 +1,4 @@
-<div class="page-content">
+<!-- <div class="page-content">
   <div class="container-fluid animated fadeIn">
     <div class="row">
         <div class="col-12 col-md-8 offset-md-2">
@@ -11,4 +11,41 @@
           add
         </mat-icon>
       </button>
+</div> -->
+<div class="page-content">
+  <div class="page-content">
+    <div class="container-fluid animated fadeIn">
+      <search *ngIf="(questions$ | async)?.length > 0" [placeholder]="'Search questions ...'"
+        hint="Separate search terms using 'Enter' or 'Comma'" (searchChange)="searchTextChanged($event)">
+      </search>
+      <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col-6">
+                  <h2 class="mb-0">{{showAllQuestions ? "All" : "Active"}} Questions</h2>
+                </div>
+                <div class="col-6 text-right">
+                  <mat-slide-toggle [formControl]="deletedQuestionsToggle" color="accent">Include Deleted
+                    Questions
+                </mat-slide-toggle>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-0">
+              <categories-list [categories]="questions$ | async | filterCategories: searchTerms" 
+              (categoryDeleted)="deleteQuestion($event)" (categoryRestored)="restoreQuestion($event)">
+              </categories-list>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button mat-fab color="primary" class="fab" (click)=showAddQuestionDialog() matTooltip="Add a Question">
+    <mat-icon>
+      add
+    </mat-icon>
+  </button>
 </div>
