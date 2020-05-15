@@ -12,6 +12,7 @@ import {
   IMAGE_INTENSITY_OPTIONS,
 } from "../../../constants";
 import * as _ from "lodash";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: "images",
@@ -53,7 +54,12 @@ export class ImagesComponent implements OnInit {
         return images;
       })
     );
-    this.imageManagementService.getAllImages(0, 50).subscribe();
+    this.imageManagementService.getAllImages(0, 50).subscribe(
+      () => {},
+      (err: HttpErrorResponse) => {
+        this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
+      }
+    );
   }
 
   deleteImage(eventArgs: any) {

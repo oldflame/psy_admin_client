@@ -16,6 +16,7 @@ import * as _ from "lodash";
 import { AddImageParams } from "src/app/models/request-params";
 import { ToastService, TOAST_TYPE } from "../../../services/toast.service";
 import { Router } from "@angular/router";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "add-image",
@@ -55,7 +56,12 @@ export class AddImageComponent implements OnInit {
 
   ngOnInit(): void {
     this.imageCategories$ = this.imageManagementService.imageCategories$;
-    this.imageManagementService.getActiveImageCategories().subscribe();
+    this.imageManagementService.getActiveImageCategories().subscribe(
+      () => {},
+      (err: HttpErrorResponse) => {
+        this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
+      }
+    );
   }
 
   addTag(event: MatChipInputEvent): void {
@@ -141,9 +147,8 @@ export class AddImageComponent implements OnInit {
 
     this.isImageUploading = true;
     this.imageDataForm.disable();
-    this.imageManagementService
-      .addNewImage(addImageParams)
-      .subscribe((res: boolean) => {
+    this.imageManagementService.addNewImage(addImageParams).subscribe(
+      (res: boolean) => {
         this.isImageUploading = false;
         this.imageDataForm.enable();
         if (res) {
@@ -154,6 +159,10 @@ export class AddImageComponent implements OnInit {
 
           this.router.navigate(["/image-management/images"]);
         }
-      });
+      },
+      (err: HttpErrorResponse) => {
+        this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
+      }
+    );
   }
 }
