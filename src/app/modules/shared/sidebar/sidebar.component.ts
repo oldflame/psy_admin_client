@@ -67,6 +67,13 @@ export const ROUTES: RouteInfo[] = [
       {path: "images", title:"Images", type: "link"},
       {path: "images/add", title:"Add Image", type: "child"}
     ]
+  },
+  {
+    path: "/training-management/trainings",
+    title: "Trainings",
+    type: "link",
+    icontype: "business",
+  },
   }
 ];
 

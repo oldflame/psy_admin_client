@@ -6,6 +6,7 @@ import { AddQuestionCategoryComponent } from "./add-question-category/add-questi
 import { AddQuestionComponent } from "./add-question/add-question.component";
 import { AddImageCategoryComponent } from "./add-image-category/add-image-category.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AddTrainingComponent } from './add-training/add-training.component';
 import { EditImageDialogComponent } from "./edit-image-dialog/edit-image-dialog.component";
 import { NgxFileHelpersModule } from "ngx-file-helpers";
 import { ImageCropperModule } from "ngx-image-cropper";
@@ -18,6 +19,7 @@ import { MomentModule } from 'ngx-moment';
     AddQuestionCategoryComponent,
     AddQuestionComponent,
     AddImageCategoryComponent,
+    AddTrainingComponent,
     EditImageDialogComponent,
     ImageDetailsComponent,
   ],
@@ -43,6 +45,7 @@ import { MomentModule } from 'ngx-moment';
     AddQuestionCategoryComponent,
     AddQuestionComponent,
     AddImageCategoryComponent,
+    AddTrainingComponent
     EditImageDialogComponent,
     ImageDetailsComponent,
   ],

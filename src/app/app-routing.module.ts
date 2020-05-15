@@ -11,6 +11,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { QuestionManagementModule } from './modules/question-management/question-management.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { ImageManagementModule } from './modules/image-management/image-management.module';
+import { TrainingManagementModule } from './modules/training-management/training-management.module';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
       {
         path: "locations",
         loadChildren: () => LocationsModule,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: "training-management",
+        loadChildren: () => TrainingManagementModule,
         canActivate: [AuthGuardService]
       },
     ],
