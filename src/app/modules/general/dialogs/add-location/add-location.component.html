@@ -1,0 +1,81 @@
+<h4 mat-dialog-title>New Location</h4>
+<div>
+    <form [formGroup]="locationForm" class="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" type="text" formControlName="name">
+            <mat-error *ngIf="locationForm.get('name').hasError('required')">Name is
+                <strong>required.</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" type="text-area"
+                   formControlName="description">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Tags</mat-label>
+            <input matInput placeholder="Tags" type="text"
+                   formControlName="tags">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Location Code</mat-label>
+            <input matInput placeholder="Location Code" type="text"
+                   formControlName="code">
+            <mat-error *ngIf="locationForm.get('code').hasError('required')">
+                Location code is <strong>required.</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Address" type="text"
+                   formControlName="address">
+            <mat-error *ngIf="locationForm.get('address').hasError('required')">
+                Address Line 1 is <strong>required.</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="City" type="text"
+                   formControlName="city">
+            <mat-error *ngIf="locationForm.get('city').hasError('required')">
+                City is <strong>required.</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>State</mat-label>
+            <input matInput placeholder="State" type="text"
+                   formControlName="state">
+            <mat-error *ngIf="locationForm.get('state').hasError('required')">
+                State is <strong>required.</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Pin Code</mat-label>
+            <input matInput placeholder="Pin Code" type="text"
+                   formControlName="pincode">
+            <mat-error *ngIf="locationForm.get('pincode').hasError('required')">
+                Zip Code is <strong>required.</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Mobile</mat-label>
+            <input matInput placeholder="10 digit Mobile Number"
+                   type="text"
+                   formControlName="mobile">
+            <mat-error *ngIf="locationForm.get('mobile').hasError('required')">
+                Phone Number is <strong>required.</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="text"
+                   formControlName="email">
+        </mat-form-field>
+    </form>
+    <mat-dialog-actions align="end">
+        <button mat-button color="primary" [mat-dialog-close]>Cancel</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="locationForm.value"
+                [disabled]="locationForm.invalid">Add Location</button>
+    </mat-dialog-actions>
+</div>
