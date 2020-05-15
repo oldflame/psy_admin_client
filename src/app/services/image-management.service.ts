@@ -65,10 +65,30 @@ export class ImageManagementService {
     );
   }
 
-  deleteCategory(imageCategoryID: string): Observable<boolean> {
+  getAllImageCategories(): Observable<boolean> {
+    return this.dataService.sendGET(IMAGES_API.GET_ALL_CATEGORIES).pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          if (res.status == HTTP_RESPONSE_STATUS.OK) {
+            this.categoriesSubject.next(res.body);
+          } else {
+            this.categoriesSubject.next([]);
+          }
+
+          return res.status == HTTP_RESPONSE_STATUS.OK;
+        },
+        catchError((err: HttpErrorResponse) => {
+          this.categoriesSubject.next([]);
+          return of(false);
+        })
+      )
+    );
+  }
+
+  deleteCategory(imageCategoryID: string, doRestore?: boolean): Observable<boolean> {
     return this.dataService
       .sendDELETE(
-        IMAGES_API.DELETE_CATEGORY.replace("{imageCategoryID}", imageCategoryID)
+        IMAGES_API.DELETE_CATEGORY.replace("{imageCategoryID}", imageCategoryID).replace("{doRestore}", (doRestore ? "restore" : "delete"))
       )
       .pipe(
         map(
@@ -80,7 +100,7 @@ export class ImageManagementService {
               });
 
               if (imageCategoryIndexToDelete != -1) {
-                imageCategories.splice(imageCategoryIndexToDelete, 1);
+                imageCategories[imageCategoryIndexToDelete].isDeleted = !doRestore;
                 this.categoriesSubject.next(_.cloneDeep(imageCategories));
               }
             }
@@ -91,6 +111,10 @@ export class ImageManagementService {
           })
         )
       );
+  }
+
+  rebroadcastCategoriesData() {
+    this.categoriesSubject.next(_.cloneDeep(this.categoriesSubject.value))
   }
 
   // Images Services

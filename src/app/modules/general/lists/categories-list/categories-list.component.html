@@ -9,29 +9,23 @@
     </div>
 </ng-template>
 <ng-template #categoriesList>
-    <div class="card">
-        <div class="card-header bg-transparent">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h5 class=" h3 mb-0">Active</h5>
-                </div>
-            </div>
-        </div>
-        <div class="card-body" *ngIf="categories.length > 0; else noCategories">
-            <mat-list>
-                <mat-list-item *ngFor="let category of categories" (click)="viewCategoryClicked($event, category)">
-                    <mat-icon mat-list-icon>photo_filter</mat-icon>
-                    <div mat-line>{{category.name}}</div>
-                    <div mat-line> {{category.description }} </div>
-                    <mat-icon color="warn" class="pointer" matTooltip="Delete Category" matTooltipPosition="below" (click)="deleteCategoryClicked($event, category._id)">delete</mat-icon>
-                    <mat-divider></mat-divider>
-                </mat-list-item>
-            </mat-list>
-        </div>
+    <div *ngIf="categories.length > 0; else noCategories">
+        <mat-list>
+            <mat-list-item *ngFor="let category of categories" (click)="viewCategoryClicked($event, category)">
+                <mat-icon mat-list-icon [ngClass]="{'text-muted': category.isDeleted}">photo_filter</mat-icon>
+                <div mat-line [ngClass]="{'text-muted': category.isDeleted}">{{category.name}}</div>
+                <div mat-line [ngClass]="{'text-muted': category.isDeleted}"> {{category.description }} </div>
+                <mat-icon *ngIf="!category.isDeleted" color="warn" class="pointer" matTooltip="Delete Category" matTooltipPosition="below"
+                    (click)="deleteCategoryClicked($event, category._id)">delete</mat-icon>
+                <mat-icon *ngIf="category.isDeleted" color="primary" class="pointer" matTooltip="Restore Category" matTooltipPosition="below"
+                    (click)="restoreCategoryClicked($event, category._id)">restore</mat-icon>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
     </div>
 </ng-template>
 <ng-template #noCategories>
+    <h4>No Categories Found!</h4>
     <div class="card-body" align="center">
-        <h4>No Categories Found!</h4>
     </div>
 </ng-template>
