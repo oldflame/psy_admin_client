@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { DataService } from "./data.service";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable, of, throwError } from "rxjs";
 import { Question } from "../models/question";
 import { AddQuestionParams } from "../models/request-params";
 import { QUESTIONS_API, HTTP_RESPONSE_STATUS } from "../constants";
@@ -33,7 +33,7 @@ export class QuestionsService {
         catchError((err: HttpErrorResponse) => {
           console.log("Get Questions error", err);
           this.questionSubject.next([]);
-          return of(false);
+          return throwError(err.error);
         })
       )
     );
@@ -54,7 +54,7 @@ export class QuestionsService {
           },
           catchError((err: HttpErrorResponse) => {
             console.log("Add location error", err);
-            return of(false);
+            return throwError(err.error);
           })
         )
       );
@@ -83,7 +83,7 @@ export class QuestionsService {
           },
           catchError((err: HttpErrorResponse) => {
             console.log("Delete Question Category error", err);
-            return of(false);
+            return throwError(err.error);
           })
         )
       );

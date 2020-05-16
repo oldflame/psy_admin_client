@@ -4,11 +4,12 @@ import { AddQuestionComponent } from "../../general/dialogs/add-question/add-que
 import { switchMap } from "rxjs/operators";
 import { EMPTY, Observable } from "rxjs";
 import { QuestionsService } from "src/app/services/questions.service";
-import { CategoryService } from 'src/app/services/category.service';
-import { QuestionCategory } from 'src/app/models/question-category';
-import { ActionConfirmDialogComponent } from '../../general/dialogs/action-confirm-dialog/action-confirm-dialog.component';
-import { ToastService, TOAST_TYPE } from 'src/app/services/toast.service';
-import { Question } from 'src/app/models/question';
+import { CategoryService } from "src/app/services/category.service";
+import { QuestionCategory } from "src/app/models/question-category";
+import { ActionConfirmDialogComponent } from "../../general/dialogs/action-confirm-dialog/action-confirm-dialog.component";
+import { ToastService, TOAST_TYPE } from "src/app/services/toast.service";
+import { Question } from "src/app/models/question";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "questions",
@@ -26,9 +27,13 @@ export class QuestionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.questions$ = this.questionService.questions$.pipe();
-    this.questionService.getQuestions().subscribe();
+    this.questionService.getQuestions().subscribe(
+      () => {},
+      (err: HttpErrorResponse) => {
+        this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
+      }
+    );
   }
-
 
   showAddQuestionDialog() {
     this.dialogRef = this.dialog.open(AddQuestionComponent, {
@@ -46,7 +51,12 @@ export class QuestionsComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe();
+      .subscribe(
+        () => {},
+        (err: HttpErrorResponse) => {
+          this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
+        }
+      );
   }
 
   deleteQuestion(eventArgs: any) {
@@ -66,25 +76,28 @@ export class QuestionsComponent implements OnInit {
       .pipe(
         switchMap((res: boolean) => {
           if (res) {
-            return this.questionService.deleteQuestion(
-              eventArgs.categoryID
-            );
+            return this.questionService.deleteQuestion(eventArgs.categoryID);
           }
           return EMPTY;
         })
       )
-      .subscribe((serverRes: boolean) => {
-        if (serverRes) {
-          this.toastService.showToast(
-            "Category Deleted Successfully!",
-            TOAST_TYPE.SUCCESS
-          );
-        } else {
-          this.toastService.showToast(
-            "Failed to delete category. Try again!",
-            TOAST_TYPE.DANGER
-          );
+      .subscribe(
+        (serverRes: boolean) => {
+          if (serverRes) {
+            this.toastService.showToast(
+              "Category Deleted Successfully!",
+              TOAST_TYPE.SUCCESS
+            );
+          } else {
+            this.toastService.showToast(
+              "Failed to delete category. Try again!",
+              TOAST_TYPE.DANGER
+            );
+          }
+        },
+        (err: HttpErrorResponse) => {
+          this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
         }
-      });
+      );
   }
 }
