@@ -43,6 +43,6 @@ export class LocationListComponent implements OnInit, OnChanges {
   }
 
   editLocationClicked(location: Location) {
-    this.locationEdited.emit({ location })
+    this.locationEdited.emit({ location });
   }
 }

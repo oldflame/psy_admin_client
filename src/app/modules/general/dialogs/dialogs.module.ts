@@ -12,6 +12,7 @@ import { NgxFileHelpersModule } from "ngx-file-helpers";
 import { ImageCropperModule } from "ngx-image-cropper";
 import { ImageDetailsComponent } from './image-details/image-details.component';
 import { MomentModule } from 'ngx-moment';
+import { AddLocationComponent } from './add-location/add-location.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,9 @@ import { MomentModule } from 'ngx-moment';
     AddTrainingComponent,
     EditImageDialogComponent,
     ImageDetailsComponent,
+    AddLocationComponent,
   ],
-  imports: [
+    imports: [
     CommonModule,
     MaterialModule,
     FormsModule,

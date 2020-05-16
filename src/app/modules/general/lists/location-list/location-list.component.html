@@ -23,8 +23,14 @@
                     <mat-icon mat-list-icon>location_on</mat-icon>
                     <div mat-line>{{location.name}}</div>
                     <div mat-line> {{location.description }} </div>
-                    <mat-icon color="warn" (click)="deleteLocationClicked($event, location._id)">delete</mat-icon>
-                    <mat-icon color="warn" (click)="editLocationClicked($event, location)">edit</mat-icon>
+                    <mat-icon color="warn"
+                              class="pointer" matTooltip="Delete Location"
+                              (click)="deleteLocationClicked($event,
+                              location._id)">delete</mat-icon>
+                    <mat-icon color="warn"
+                              class="pointer" matTooltip="Edit Location"
+                              (click)="editLocationClicked($event,
+                              location)">edit</mat-icon>
                     <mat-divider></mat-divider>
                 </mat-list-item>
             </mat-list>
