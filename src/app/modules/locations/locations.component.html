@@ -1,12 +1,40 @@
 <div class="page-content">
     <div class="container-fluid animated fadeIn">
-        <div class="row">
+        <search *ngIf="(locations$ | async)?.length > 0"
+                [placeholder]="'Search Locations ...'"
+                hint="Separate search terms using 'Enter' or 'Comma'" (searchChange)="searchTextChanged($event)">
+        </search>
+
+        <div class="row mt-2">
             <div class="col-12 col-md-8 offset-md-2">
-                <location-list [locations]="locations$ | async" (locationDeleted)="deleteLocation($event)"
-                    (locationViewed)="viewLocation($event)"></location-list>
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h2 class="mb-0">{{showAllLocations ? "All" : "Active"}}
+                                    Locations</h2>
+                            </div>
+                            <div class="col-6 text-right">
+                                <mat-slide-toggle [formControl]="deletedLocationsToggle"
+                                                  color="accent">Include Deleted
+                                    Locations
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <location-list [locations]="locations$ | async |
+                        filterLocations: searchTerms"
+                                       (locationDeleted)="deleteLocation($event)"
+                                       (locationRestored)="restoreLocation($event)"
+                                       (locationViewed)="viewLocation($event)">
+                        </location-list>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <button mat-fab color="primary" class="fab" (click)=addLocation()
             matTooltip="Add new location"
             matTooltipPosition="before">

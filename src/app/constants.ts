@@ -17,7 +17,8 @@ export const ADMIN_API = {
 export const LOCATIONS_API = {
   GET_ACTIVE_LOCATIONS: "/api/account/location",
   ADD_LOCATION: "/api/account/location",
-  DELETE_LOCATION: "/api/account/location/{locationID}",
+  DELETE_LOCATION: "/api/account/deleteLocation/{locationID}/{doRestore}",
+  GET_ALL_LOCATIONS:"/api/account/location/all",
 };
 
 export const IMAGES_API = {
