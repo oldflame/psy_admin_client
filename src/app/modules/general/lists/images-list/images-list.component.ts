@@ -10,6 +10,7 @@ export class ImagesListComponent implements OnInit {
   @Input("images") images: Image[];
 
   @Output("imageDeleted") imageDeleted = new EventEmitter();
+  @Output("imageRestored") imageRestored = new EventEmitter();
   @Output("imageViewed") imageViewed = new EventEmitter();
 
   showImagesLoader = true;
@@ -26,6 +27,11 @@ export class ImagesListComponent implements OnInit {
 
   deleteImageClicked($event: any, imageID: string) {
     this.imageDeleted.emit({ imageID });
+    $event.stopPropagation();
+  }
+
+  restoreImageClicked($event: any, imageID: string) {
+    this.imageRestored.emit({ imageID });
     $event.stopPropagation();
   }
 

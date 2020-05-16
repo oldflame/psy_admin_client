@@ -27,7 +27,7 @@ export const IMAGES_API = {
   DELETE_CATEGORY: "/api/account/imgCategory/{imageCategoryID}/{doRestore}",
   GET_ALL_IMAGES: "/api/account/images/all/{skip}/{limit}",
   ADD_IMAGE: "/api/account/images",
-  DELETE_IMAGE: "/api/account/images/{imageID}",
+  DELETE_IMAGE: "/api/account/images/{imageID}/{doRestore}",
 };
 export const QUESTIONS_CATEGORY_API = {
   GET_ALL_QUESTION_CATEGORIES: "/api/account/questionsCategory",

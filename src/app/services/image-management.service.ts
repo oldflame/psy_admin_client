@@ -160,9 +160,9 @@ export class ImageManagementService {
     );
   }
 
-  deleteImage(imageID: string): Observable<boolean> {
+  deleteImage(imageID: string, doRestore?: boolean): Observable<boolean> {
     return this.dataService
-      .sendDELETE(IMAGES_API.DELETE_IMAGE.replace("{imageID}", imageID))
+      .sendDELETE(IMAGES_API.DELETE_IMAGE.replace("{imageID}", imageID).replace("{doRestore}", (doRestore ? "restore" : "delete")))
       .pipe(
         map(
           (res: HttpResponse<any>) => {
@@ -175,11 +175,11 @@ export class ImageManagementService {
                 _id: imageID,
               });
 
-              // Remove the image at that index from the array
-              images.splice(imageIndexToDelete, 1);
-
-              // Broadcast the new array to all subscribers
-              this.imagesSubject.next(_.cloneDeep(images));
+              if (imageIndexToDelete != -1) {
+                images[imageIndexToDelete].isDeleted = !doRestore;
+                // Broadcast the new array to all subscribers
+                this.imagesSubject.next(_.cloneDeep(images));
+              }
             }
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
@@ -189,5 +189,9 @@ export class ImageManagementService {
           })
         )
       );
+  }
+
+  rebroadcastImagesData() {
+    this.imagesSubject.next(_.cloneDeep(this.imagesSubject.value))
   }
 }

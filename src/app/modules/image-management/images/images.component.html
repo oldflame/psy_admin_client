@@ -1,6 +1,11 @@
 <div class="page-content">
     <div class="container-fluid animated fadeIn">
-        <images-list [images]="images$ | async" (imageDeleted)="deleteImage($event)"
+        <div class="d-flex justify-content-end my-3">
+            <mat-slide-toggle [formControl]="deletedImagesToggle" color="accent">Include Deleted
+                Images
+            </mat-slide-toggle>
+        </div>
+        <images-list [images]="images$ | async" (imageDeleted)="deleteImage($event)" (imageRestored)="restoreImage($event)"
             (imageViewed)="viewImage($event)"></images-list>
     </div>
     <button mat-fab color="primary" class="fab" routerLink="/image-management/images/add" matTooltip="Add new image"

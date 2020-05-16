@@ -12,7 +12,8 @@ import {
   IMAGE_INTENSITY_OPTIONS,
 } from "../../../constants";
 import * as _ from "lodash";
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from "@angular/common/http";
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: "images",
@@ -27,6 +28,9 @@ export class ImagesComponent implements OnInit {
     (option) => option
   );
 
+  deletedImagesToggle = new FormControl(false);
+  showAllImages = false;
+
   constructor(
     private imageManagementService: ImageManagementService,
     private dialog: MatDialog,
@@ -37,9 +41,11 @@ export class ImagesComponent implements OnInit {
     this.images$ = this.imageManagementService.images$.pipe(
       map((images: Image[]) => {
         if (images && images.length > 0) {
-          images = images
-            .filter((image) => !image.isDeleted)
-            .map((image) =>
+          if (!this.showAllImages) {
+            images = images
+              .filter((image) => !image.isDeleted)
+          }
+            images = images.map((image) =>
               _.merge(image, {
                 imageType: _.find(this.imageTypeOptions, {
                   value: image.imageType,
@@ -60,6 +66,11 @@ export class ImagesComponent implements OnInit {
         this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
       }
     );
+
+    this.deletedImagesToggle.valueChanges.subscribe((value) => {
+      this.showAllImages = value;
+      this.imageManagementService.rebroadcastImagesData();
+    });
   }
 
   deleteImage(eventArgs: any) {
@@ -83,19 +94,69 @@ export class ImagesComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe((serverRes: boolean) => {
-        if (serverRes) {
-          this.toastService.showToast(
-            "Image deleted Successfully!",
-            TOAST_TYPE.SUCCESS
-          );
-        } else {
-          this.toastService.showToast(
-            "Failed to delete image. Try again!",
-            TOAST_TYPE.DANGER
-          );
+      .subscribe(
+        (serverRes: boolean) => {
+          if (serverRes) {
+            this.toastService.showToast(
+              "Image deleted Successfully!",
+              TOAST_TYPE.SUCCESS
+            );
+          } else {
+            this.toastService.showToast(
+              "Failed to delete image. Try again!",
+              TOAST_TYPE.DANGER
+            );
+          }
+        },
+        (err: HttpErrorResponse) => {
+          this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
         }
-      });
+      );
+  }
+
+  restoreImage(eventArgs: any) {
+    console.log("Restoring image", eventArgs)
+    this.dialogRef = this.dialog.open(ActionConfirmDialogComponent, {
+      width: "450px",
+      closeOnNavigation: true,
+      data: {
+        title: "Confirm Restore Image",
+        messageLine1: "Are you sure you want to restore the image?",
+        successText: "Restore",
+      },
+    });
+
+    this.dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap((res: boolean) => {
+          if (res) {
+            return this.imageManagementService.deleteImage(
+              eventArgs.imageID,
+              true
+            );
+          }
+          return EMPTY;
+        })
+      )
+      .subscribe(
+        (serverRes: boolean) => {
+          if (serverRes) {
+            this.toastService.showToast(
+              "Image restored successfully!",
+              TOAST_TYPE.SUCCESS
+            );
+          } else {
+            this.toastService.showToast(
+              "Failed to restore image. Try again!",
+              TOAST_TYPE.DANGER
+            );
+          }
+        },
+        (err: HttpErrorResponse) => {
+          this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
+        }
+      );
   }
 
   viewImage(eventArgs: any) {
