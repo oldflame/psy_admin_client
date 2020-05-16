@@ -20,6 +20,7 @@ export class LocationListComponent implements OnInit, OnChanges {
   @Output("locationDeleted") locationDeleted = new EventEmitter();
   @Output("locationViewed") locationViewed = new EventEmitter();
   @Output("locationEdited") locationEdited = new EventEmitter();
+  @Output("locationRestored") locationRestored = new EventEmitter();
 
   showLocationsLoader = true;
 
@@ -42,7 +43,12 @@ export class LocationListComponent implements OnInit, OnChanges {
     this.locationViewed.emit({ location });
   }
 
-  editLocationClicked(location: Location) {
+  editLocationClicked($event: MouseEvent, location: Location) {
     this.locationEdited.emit({ location });
+  }
+
+  restoreLocationClicked($event: any, locationID: string) {
+    this.locationRestored.emit({ locationID });
+    $event.stopPropagation();
   }
 }

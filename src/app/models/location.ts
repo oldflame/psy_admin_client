@@ -10,4 +10,5 @@ export interface Location {
     pincode: string;
     mobile: string;
     email: string;
+    isDeleted: boolean;
 }
