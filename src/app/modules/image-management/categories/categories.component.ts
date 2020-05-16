@@ -7,9 +7,10 @@ import { Category } from "src/app/models/category";
 import { MatDialog } from "@angular/material/dialog";
 import { ActionConfirmDialogComponent } from "../../general/dialogs/action-confirm-dialog/action-confirm-dialog.component";
 import { ToastService, TOAST_TYPE } from "../../../services/toast.service";
-import { AddImageCategoryComponent } from '../../general/dialogs/add-image-category/add-image-category.component';
-import { AddImageCategoryParams } from '../../../models/request-params';
-import { FormControl } from '@angular/forms';
+import { AddImageCategoryComponent } from "../../general/dialogs/add-image-category/add-image-category.component";
+import { AddImageCategoryParams } from "../../../models/request-params";
+import { FormControl } from "@angular/forms";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "categories",
@@ -36,19 +37,26 @@ export class CategoriesComponent implements OnInit {
       map((imageCategories: Category[]) => {
         if (imageCategories && imageCategories.length > 0) {
           if (!this.showAllCategories) {
-            imageCategories = imageCategories.filter(category => !category.isDeleted)
+            imageCategories = imageCategories.filter(
+              (category) => !category.isDeleted
+            );
           }
           imageCategories = _.sortBy(imageCategories, "name");
         }
         return imageCategories;
       })
     );
-    this.imageManagementService.getAllImageCategories().subscribe();
+    this.imageManagementService.getAllImageCategories().subscribe(
+      () => {},
+      (err: HttpErrorResponse) => {
+        this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
+      }
+    );
 
     this.deletedCategoriesToggle.valueChanges.subscribe((value) => {
       this.showAllCategories = value;
       this.imageManagementService.rebroadcastCategoriesData();
-    })
+    });
   }
 
   searchTextChanged(eventArgs) {
@@ -79,19 +87,24 @@ export class CategoriesComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe((serverRes: boolean) => {
-        if (serverRes) {
-          this.toastService.showToast(
-            "Category Deleted Successfully!",
-            TOAST_TYPE.SUCCESS
-          );
-        } else {
-          this.toastService.showToast(
-            "Failed to delete category. Try again!",
-            TOAST_TYPE.DANGER
-          );
+      .subscribe(
+        (serverRes: boolean) => {
+          if (serverRes) {
+            this.toastService.showToast(
+              "Category Deleted Successfully!",
+              TOAST_TYPE.SUCCESS
+            );
+          } else {
+            this.toastService.showToast(
+              "Failed to delete category. Try again!",
+              TOAST_TYPE.DANGER
+            );
+          }
+        },
+        (err: HttpErrorResponse) => {
+          this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
         }
-      });
+      );
   }
 
   restoreCategory(eventArgs: any) {
@@ -118,38 +131,59 @@ export class CategoriesComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe((serverRes: boolean) => {
-        if (serverRes) {
-          this.toastService.showToast(
-            "Category restored Successfully!",
-            TOAST_TYPE.SUCCESS
-          );
-        } else {
-          this.toastService.showToast(
-            "Failed to restore category. Try again!",
-            TOAST_TYPE.DANGER
-          );
+      .subscribe(
+        (serverRes: boolean) => {
+          if (serverRes) {
+            this.toastService.showToast(
+              "Category restored Successfully!",
+              TOAST_TYPE.SUCCESS
+            );
+          } else {
+            this.toastService.showToast(
+              "Failed to restore category. Try again!",
+              TOAST_TYPE.DANGER
+            );
+          }
+        },
+        (err: HttpErrorResponse) => {
+          this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
         }
-      });
+      );
   }
 
   addNewImageCategory() {
     this.dialogRef = this.dialog.open(AddImageCategoryComponent, {
       width: "550px",
-      closeOnNavigation: true
+      closeOnNavigation: true,
     });
 
-    this.dialogRef.afterClosed().pipe(switchMap((res: AddImageCategoryParams) => {
-      if (res) {
-        return this.imageManagementService.addCategory(res);
-      }
-      return EMPTY;
-    })).subscribe((res: boolean) => {
-      if (res) {
-        this.toastService.showToast("Image Category added successfully!", TOAST_TYPE.SUCCESS);
-      } else {
-        this.toastService.showToast("Failed to add image category. Try again!", TOAST_TYPE.DANGER);
-      }
-    })
+    this.dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap((res: AddImageCategoryParams) => {
+          if (res) {
+            return this.imageManagementService.addCategory(res);
+          }
+          return EMPTY;
+        })
+      )
+      .subscribe(
+        (res: boolean) => {
+          if (res) {
+            this.toastService.showToast(
+              "Image Category added successfully!",
+              TOAST_TYPE.SUCCESS
+            );
+          } else {
+            this.toastService.showToast(
+              "Failed to add image category. Try again!",
+              TOAST_TYPE.DANGER
+            );
+          }
+        },
+        (err: HttpErrorResponse) => {
+          this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
+        }
+      );
   }
 }

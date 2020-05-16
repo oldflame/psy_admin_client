@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { DataService } from "./data.service";
 import { IMAGES_API, HTTP_RESPONSE_STATUS } from "../constants";
 import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
@@ -39,7 +39,7 @@ export class ImageManagementService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          return of(false);
+          return throwError(err.error);
         })
       )
     );
@@ -59,7 +59,7 @@ export class ImageManagementService {
         },
         catchError((err: HttpErrorResponse) => {
           this.categoriesSubject.next([]);
-          return of(false);
+          return throwError(err.error);
         })
       )
     );
@@ -79,7 +79,7 @@ export class ImageManagementService {
         },
         catchError((err: HttpErrorResponse) => {
           this.categoriesSubject.next([]);
-          return of(false);
+          return throwError(err.error);
         })
       )
     );
@@ -107,7 +107,7 @@ export class ImageManagementService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            return of(false);
+            return throwError(err.error);
           })
         )
       );
@@ -138,7 +138,7 @@ export class ImageManagementService {
         catchError((err: HttpErrorResponse) => {
           console.log("Get images", err);
           this.imagesSubject.next([]);
-          return of(false);
+          return throwError(err.error);
         })
       );
   }
@@ -155,14 +155,14 @@ export class ImageManagementService {
       }),
       catchError((err: HttpErrorResponse) => {
         console.log("Add image err", err);
-        return of(false);
+        return throwError(err.error);
       })
     );
   }
 
-  deleteImage(imageID: string): Observable<boolean> {
+  deleteImage(imageID: string, doRestore?: boolean): Observable<boolean> {
     return this.dataService
-      .sendDELETE(IMAGES_API.DELETE_IMAGE.replace("{imageID}", imageID))
+      .sendDELETE(IMAGES_API.DELETE_IMAGE.replace("{imageID}", imageID).replace("{doRestore}", (doRestore ? "restore" : "delete")))
       .pipe(
         map(
           (res: HttpResponse<any>) => {
@@ -175,19 +175,23 @@ export class ImageManagementService {
                 _id: imageID,
               });
 
-              // Remove the image at that index from the array
-              images.splice(imageIndexToDelete, 1);
-
-              // Broadcast the new array to all subscribers
-              this.imagesSubject.next(_.cloneDeep(images));
+              if (imageIndexToDelete != -1) {
+                images[imageIndexToDelete].isDeleted = !doRestore;
+                // Broadcast the new array to all subscribers
+                this.imagesSubject.next(_.cloneDeep(images));
+              }
             }
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
             console.log("Delete image error", err);
-            return of(false);
+            return throwError(err.error);
           })
         )
       );
+  }
+
+  rebroadcastImagesData() {
+    this.imagesSubject.next(_.cloneDeep(this.imagesSubject.value))
   }
 }
