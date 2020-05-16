@@ -33,14 +33,20 @@ export const QUESTIONS_CATEGORY_API = {
   GET_ALL_QUESTION_CATEGORIES: "/api/account/questionsCategory",
   ADD_QUESTION_CATEGORY: "/api/account/addQuestionsCategory",
   DELETE_QUESTION_CATEGORY:
-    "/api/account/deleteQuestionCategory/{questionCategoryId}",
+    "/api/account/deleteQuestionCategory/{questionCategoryId}/{doRestore}",
 };
 
 export const QUESTIONS_API = {
   GET_ALL_QUESTIONS: "/api/account/questions",
   GET_QUESTIONS_FOR_CATEGORY: "/api/account/questions/{questioncategory}",
   ADD_QUESTION: "/api/account/addQuestion",
-  DELETE_QUESTION: "/app/account/deleteQuestion/{questionId}",
+  DELETE_QUESTION: "/app/account/deleteQuestion/{questionId}/{doRestore}",
+};
+
+export const TRAININGS_API = {
+  GET_ALL_TRAININGS: "/api/account/getAllTrainings",
+  ADD_TRAINING: "/api/account/addTraining",
+  DELETE_TRAINING: "/api/account/deleteTraining/{trainingId}"
 };
 
 export enum HTTP_RESPONSE_STATUS {

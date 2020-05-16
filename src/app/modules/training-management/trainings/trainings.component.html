@@ -1,0 +1,14 @@
+<div class="page-content">
+    <div class="container-fluid animated fadeIn">
+      <div class="row">
+          <div class="col-12 col-md-8 offset-md-2">
+              <categories-list [categories]="trainings$ | async" (categoryDeleted)="deleteQuestion($event)"></categories-list>
+          </div>
+      </div>
+  </div>
+      <button mat-fab color="primary" class="fab" (click)=showAddTrainingDialog() matTooltip="Add a Training">
+          <mat-icon>
+            add
+          </mat-icon>
+        </button>
+  </div>

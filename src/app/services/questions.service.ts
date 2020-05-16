@@ -60,13 +60,13 @@ export class QuestionsService {
       );
   }
 
-  deleteQuestion(questionId: string): Observable<boolean> {
+  deleteQuestion(questionId: string, doRestore?: boolean): Observable<boolean> {
     return this.dataService
       .sendDELETE(
         QUESTIONS_API.DELETE_QUESTION.replace(
           "{questionId}",
           questionId
-        )
+        ).replace("{doRestore}", (doRestore ? "restore" : "delete"))
       )
       .pipe(
         map(
@@ -76,8 +76,10 @@ export class QuestionsService {
               const categoryIndexToDelete = _.findIndex(questions, {
                 _id: questionId,
               });
-              questions.splice(categoryIndexToDelete, 1);
-              this.questionSubject.next(_.cloneDeep(questions));
+              if (categoryIndexToDelete != -1) {
+                questions[categoryIndexToDelete].isDeleted = !doRestore;
+                this.questionSubject.next(_.cloneDeep(questions));
+              }
             }
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
@@ -87,5 +89,9 @@ export class QuestionsService {
           })
         )
       );
+  }
+
+  rebroadcastCategoriesData() {
+    this.questionSubject.next(_.cloneDeep(this.questionSubject.value))
   }
 }

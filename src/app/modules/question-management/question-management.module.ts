@@ -7,6 +7,9 @@ import { QuestionManagementRoutes } from './question-management.routing';
 import { MaterialModule } from 'src/app/material.module';
 import { DialogsModule } from '../general/dialogs/dialogs.module';
 import { ListsModule } from '../general/lists/lists.module';
+import { WidgetsModule } from '../general/widgets/widgets.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PipesModule } from '../general/pipes/pipes.module';
 
 
 
@@ -17,7 +20,11 @@ import { ListsModule } from '../general/lists/lists.module';
     MaterialModule,
     RouterModule.forChild(QuestionManagementRoutes),
     DialogsModule,
-    ListsModule
+    ListsModule,
+    WidgetsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PipesModule
   ]
 })
 export class QuestionManagementModule { }

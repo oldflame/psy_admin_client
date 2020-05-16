@@ -1,6 +1,7 @@
 export interface Question {
     _id: string;
-    questionName: string;
+    name: string;
+    isDeleted: boolean;
     description: string;
     questionCategory: string;
 }
