@@ -31,6 +31,8 @@ export class ImagesComponent implements OnInit {
   deletedImagesToggle = new FormControl(false);
   showAllImages = false;
 
+  searchTerms: string[] = [];
+
   constructor(
     private imageManagementService: ImageManagementService,
     private dialog: MatDialog,
@@ -71,6 +73,11 @@ export class ImagesComponent implements OnInit {
       this.showAllImages = value;
       this.imageManagementService.rebroadcastImagesData();
     });
+  }
+
+  searchTextChanged(eventArgs) {
+    this.searchTerms = eventArgs.searchTerms;
+    console.log("Search for", this.searchTerms);
   }
 
   deleteImage(eventArgs: any) {
