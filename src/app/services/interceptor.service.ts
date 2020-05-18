@@ -1,11 +1,18 @@
 import { Injectable } from "@angular/core";
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from "@angular/common/http";
+import {
+  HttpInterceptor,
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpErrorResponse,
+} from "@angular/common/http";
 import { APP_SERVER_OPTIONS } from "../config";
-import { SecureStorageService } from './secure-storage.service';
-import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
+import { SecureStorageService } from "./secure-storage.service";
+import { Router } from "@angular/router";
+import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { AuthService } from './auth.service';
+import { AuthService } from "./auth.service";
+import { environment } from "../../environments/environment.prod";
 
 @Injectable({
   providedIn: "root",
@@ -21,7 +28,11 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const serverURL = APP_SERVER_OPTIONS.host + ":" + APP_SERVER_OPTIONS.port;
+    let serverURL = APP_SERVER_OPTIONS.host;
+
+    if (!environment.production) {
+      serverURL += ":" + APP_SERVER_OPTIONS.port;
+    }
 
     const headersToSet = {};
 

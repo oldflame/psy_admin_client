@@ -11,6 +11,8 @@ import { SharedModule } from "./modules/shared/components.module";
 import { AppRoutingModule } from './app-routing.module';
 import { InterceptorService } from './services/interceptor.service';
 import { MaterialModule } from './material.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -19,7 +21,8 @@ import { MaterialModule } from './material.module';
     SharedModule,
     RouterModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [{
