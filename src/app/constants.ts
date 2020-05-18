@@ -4,10 +4,15 @@ export enum GENDER {
   OTHERS = "O",
 }
 
+
 export const AUTH_API = {
   LOGIN: "/api/login",
   REGISTER: "/api/register",
 };
+
+export const OVERVIEW_API = {
+  GET_COUNTS: "/api/account/overview/counts"
+}
 
 export const ADMIN_API = {
   GET_ALL_ADMINS: "/api/account/admin",
