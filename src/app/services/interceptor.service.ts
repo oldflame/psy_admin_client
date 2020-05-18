@@ -31,7 +31,7 @@ export class InterceptorService implements HttpInterceptor {
     let serverURL = APP_SERVER_OPTIONS.host;
 
     console.log("ENV", environment.production)
-    if (environment.production) {
+    if (!environment.production) {
       serverURL = serverURL +  ":" + APP_SERVER_OPTIONS.port;
     }
 
