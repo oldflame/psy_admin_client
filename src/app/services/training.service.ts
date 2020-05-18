@@ -59,13 +59,13 @@ export class TrainingService {
       );
   }
 
-  deleteTraining(trainingId: string): Observable<boolean> {
+  deleteTraining(trainingId: string, doRestore?: boolean): Observable<boolean> {
     return this.dataService
       .sendDELETE(
         TRAININGS_API.DELETE_TRAINING.replace(
           "{trainingId}",
           trainingId
-        )
+        ).replace("{doRestore}", (doRestore ? "restore" : "delete"))
       )
       .pipe(
         map(
@@ -75,16 +75,22 @@ export class TrainingService {
               const trainingIndexToDelete = _.findIndex(trainings, {
                 _id: trainingId,
               });
-              trainings.splice(trainingIndexToDelete, 1);
-              this.trainingSubject.next(_.cloneDeep(trainings));
+              if (trainingIndexToDelete != -1) {
+                trainings[trainingIndexToDelete].isDeleted = !doRestore;
+                this.trainingSubject.next(_.cloneDeep(trainings));
+              }
             }
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Delete Question Category error", err);
+            console.log("Delete Training error", err);
             return of(false);
           })
         )
       );
+  }
+
+  rebroadcastTrainingsData() {
+    this.trainingSubject.next(_.cloneDeep(this.trainingSubject.value))
   }
 }
