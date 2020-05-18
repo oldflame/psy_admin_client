@@ -1,6 +1,7 @@
 export interface Training {
   _id: string;
-  trainingName: string;
+  name: string;
+  isDeleted: boolean;
   description: string;
   keywords: string[];
   scheduleFor: any;

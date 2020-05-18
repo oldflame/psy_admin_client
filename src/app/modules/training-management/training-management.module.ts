@@ -6,6 +6,9 @@ import { RouterModule } from '@angular/router';
 import { TrainingManagementRoutes } from './training-management.routing';
 import { DialogsModule } from '../general/dialogs/dialogs.module';
 import { ListsModule } from '../general/lists/lists.module';
+import { PipesModule } from '../general/pipes/pipes.module';
+import { WidgetsModule } from '../general/widgets/widgets.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +19,11 @@ import { ListsModule } from '../general/lists/lists.module';
     MaterialModule,
     RouterModule.forChild(TrainingManagementRoutes),
     DialogsModule,
-    ListsModule
+    ListsModule,
+    PipesModule,
+    WidgetsModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class TrainingManagementModule { }

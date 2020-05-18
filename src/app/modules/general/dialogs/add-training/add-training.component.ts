@@ -39,7 +39,7 @@ export class AddTrainingComponent implements OnInit {
 
   constructor() {}
   addTrainingControl: FormGroup = new FormGroup({
-    trainingName: new FormControl("", [Validators.required]),
+    name: new FormControl("", [Validators.required]),
     description: new FormControl(""),
     keywords: new FormControl("", [Validators.required]),
     scheduleFor: new FormControl("", [Validators.required]),

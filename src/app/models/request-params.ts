@@ -41,7 +41,7 @@ export interface AddQuestionParams {
 }
 
 export interface AddTrainingParams {
-  trainingName: string;
+  name: string;
   description: string;
   keywords: string[];
   scheduleFor: any;
