@@ -1,0 +1,57 @@
+<h4 mat-dialog-title>Add a new Target Group</h4>
+<mat-dialog-content>
+    <form [formGroup]="addTargetGroupsForm" class="form">
+        <mat-form-field appearance="outline">
+            <mat-label> Target Group Name </mat-label>
+            <input matInput placeholder="Name" type="text" formControlName="name">
+            <mat-error *ngIf="addTargetGroupsForm.get('name').hasError('required')">Name is
+                <strong>required.</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label> Description </mat-label>
+            <input matInput placeholder="Description" type="text-area"
+                   formControlName="description">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label> Keywords </mat-label>
+            <input placeholder="Keywords" matInput type="text"
+                   formControlName="keywords">
+        </mat-form-field>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label> Location </mat-label>
+                        <mat-select formControlName="location">
+                        <mat-option *ngFor="let location of
+                        locations$|async" [value]="location._id">
+                            {{location.name}}
+                        </mat-option>
+                            <mat-error
+                                    *ngIf="addTargetGroupsForm.get('location').hasError('required')">Location is
+                                <strong>required.</strong>
+                            </mat-error>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label> Training </mat-label>
+                    <mat-select formControlName="training">
+                        <mat-option *ngFor="let training of
+                        trainings$|async" [value]="training._id">
+                            {{training.name}}
+                        </mat-option>
+                        <mat-error
+                                *ngIf="addTargetGroupsForm.get('training').hasError('required')">Training is
+                            <strong>required.</strong>
+                        </mat-error>
+                    </mat-select>
+                </mat-form-field>
+    </form>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close color="primary" [mat-dialog-close]>Cancel </button>
+        <button mat-raised-button color="primary" type="submit"
+                [mat-dialog-close]="addTargetGroupsForm.value"
+                [disabled]="addTargetGroupsForm.invalid">Submit</button>
+    </mat-dialog-actions>
+
+</mat-dialog-content>
