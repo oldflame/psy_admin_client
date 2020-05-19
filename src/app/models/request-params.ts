@@ -60,3 +60,11 @@ export interface AddImageParams {
   fileName: string;
   content: string;
 }
+
+export interface AddTargetGroupsParams {
+  name: string;
+  description?: string;
+  keywords?: string[];
+  location:  string ;
+  training: string ;
+}
