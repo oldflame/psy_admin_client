@@ -1,0 +1,13 @@
+curl -X POST \
+  https://fcm.googleapis.com/fcm/send \
+  -H 'Authorization: key=AAAAhMBmrvY:APA91bFkJNx872zq81BpJ-oUrSqSJJOixgIEaOsv4bFJtwZgHXhugx5vT78RdWOXb-JblDfuoDG5RzDEYi_1gg6Y7dhHWMXVY_YozOJPt_M0TnOUQPq6uQyO3NNFDSCtZ4g9gaPXzmXH' \
+  -H 'Content-Type: application/json' \
+  -d '{ 
+ "notification": {
+  "title": "Hello World", 
+  "body": "This is Message from Admin",
+  "icon": "https://pysch-changiz.web.app/assets/img/nature.png",
+  "click_action": "https://pysch-changiz.web.app/"
+ },
+ "registration_ids":["dyHn7zanJaN0ahT5cdPOe_:APA91bFbRFx6pF9cZOWx9iB3jJrXqIkp-zHT2m16CoriKYgjek031WJ_uwt6_u7FoyqR7KsPmOJ3zJA9QsP34xhUlhIzsJfv2MXbZfonRmwDu_O_hSCxvI5tPM7FwvVBruMUAahYjXgu", "5ebb832cf6b74342c22cef2f dW_YyAGlMUDB3Im8H1DyA3:APA91bHvMxUQbouhvHgHldBiJqvEio6027lRqT5nql3InwNDISNQstmBdacke76D8FBHDJ6ug2sNxdlb-PD8oUD7r2BK7Nd7uejthBrVMtPkJWrlP9ZdOmwPCOLmvTIZxcw3XMJ-mDDp"],
+  }'

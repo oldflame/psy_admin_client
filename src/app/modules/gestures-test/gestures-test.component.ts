@@ -11,7 +11,8 @@ export class GesturesTestComponent implements OnInit {
   isNeutral = false;
   isAccepted = false;
 
-  imgURL = `https://picsum.photos/${ window.screen.width }/300`
+  // imgURL = `https://picsum.photos/${ window.screen.width }/${ window.screen.height - 200 }`;
+  imgURL = "https://storage.googleapis.com/download/storage/v1/b/pysch-changiz.appspot.com/o/images%2F5ebdd08d78a6b71d75d6b74d_5ebdd3ac7d35ae282b3a8acb_9166-4k-hd-desktop-wallpapers_28209.jpg?generation=1589498797396345&alt=media"
   constructor(private toastService: ToastService) { }
 
   ngOnInit(): void {

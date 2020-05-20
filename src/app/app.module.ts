@@ -15,6 +15,8 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { HAMMER_GESTURE_CONFIG, HammerModule } from '@angular/platform-browser';
 import { HammerConfig } from "./services/hammer-config.service";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 @NgModule({
   imports: [
@@ -28,6 +30,8 @@ import { HammerConfig } from "./services/hammer-config.service";
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireMessagingModule
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [
