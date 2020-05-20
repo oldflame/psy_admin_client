@@ -74,6 +74,12 @@ export const ROUTES: RouteInfo[] = [
     type: "link",
     icontype: "business",
   },
+  {
+    path: "/gestures-test",
+    title: "Gestures Test",
+    type: "link",
+    icontype: "gesture",
+  },
 ];
 
 @Component({

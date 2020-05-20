@@ -27,9 +27,9 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
+              "./node_modules/animate.css/animate.min.css",
               "src/assets/scss/theme.scss",
               "src/styles.scss",
-              "src/assets/vendor/nucleo/css/nucleo.css",
               "src/assets/scss/argon.scss"
             ],
             "scripts": [
