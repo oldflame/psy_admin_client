@@ -11,6 +11,7 @@ export class GesturesTestComponent implements OnInit {
   isNeutral = false;
   isAccepted = false;
 
+  imgURL = `https://picsum.photos/${ window.screen.width }/300`
   constructor(private toastService: ToastService) { }
 
   ngOnInit(): void {

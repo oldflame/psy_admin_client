@@ -1,12 +1,9 @@
 <div class="page-content pt-3" (swipeup)="imageRejected($event)" (swipedown)="imageAccepted($event)" (swiperight)="imageNeutral($event)" (swipeleft)="resetImage($event)">
     <div class="container-fluid animated fadeIn">
-        <div class="d-inline-flex justify-content-start">
+        <div class="d-flex justify-content-center">
             <div class="card animate__animated animate__faster" (document:animationend)="animationDone()" [ngClass]="{'animate__zoomOutUp': isRejected, 'animate__fadeOutRight': isNeutral}">
                 <div class="card-body">
-                    <div class="card-title">
-                        <h4>Drag this card around</h4>
-                    </div>
-                    <img src="../../../assets/img/theme/angular.jpg" alt="angular-icon">
+                    <img [src]="imgURL" alt="angular-icon">
                 </div>
             </div>
         </div>
