@@ -10,6 +10,7 @@ import { ToastService, TOAST_TYPE } from "src/app/services/toast.service";
 import { FormControl } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
 import * as _ from "lodash";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "trainings",
@@ -26,7 +27,8 @@ export class TrainingsComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private trainingService: TrainingService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -168,5 +170,6 @@ export class TrainingsComponent implements OnInit {
 
   viewTraining(eventArgs: any) {
     console.log("AAVI GAYU",eventArgs);
+    this.router.navigate(['/training-management/trainings/manage'],{queryParams: {id: eventArgs.category._id}})
   }
 }

@@ -9,11 +9,12 @@ import { ListsModule } from '../general/lists/lists.module';
 import { PipesModule } from '../general/pipes/pipes.module';
 import { WidgetsModule } from '../general/widgets/widgets.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UpdateTrainingComponent } from './update-training/update-training.component';
 
 
 
 @NgModule({
-  declarations: [TrainingsComponent],
+  declarations: [TrainingsComponent, UpdateTrainingComponent],
   imports: [
     CommonModule,
     MaterialModule,
