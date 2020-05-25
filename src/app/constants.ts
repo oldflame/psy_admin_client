@@ -50,9 +50,10 @@ export const QUESTIONS_API = {
 };
 
 export const TRAININGS_API = {
-  GET_ALL_TRAININGS: "/api/account/getAllTrainings",
-  ADD_TRAINING: "/api/account/addTraining",
-  DELETE_TRAINING: "/api/account/deleteTraining/{trainingId}/{doRestore}"
+  GET_ALL_TRAININGS: "/api/account/trainings/getAllTrainings",
+  ADD_TRAINING: "/api/account/trainings/addTraining",
+  DELETE_TRAINING: "/api/account/trainings/deleteTraining/{trainingId}/{doRestore}",
+  GET_TRAINING_BY_ID: "/api/account/trainings/{trainingId}"
 };
 
 export const TARGET_GROUPS_API = {

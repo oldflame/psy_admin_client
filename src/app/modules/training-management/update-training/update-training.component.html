@@ -1,1 +1,58 @@
-<p>update-training works!</p>
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-10 col-8 mr-auto ml-auto">
+                <div class="card" *ngIf="training; else trainingLoader">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h2 class="mb-0">{{ training?.name }}</h2>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <h2 class="mb-0">Description</h2>
+                                <p>{{ training.description }}</p>
+                            </div>
+                            <div class="col-6">
+                                <h2 class="mb-0">Scheduled For</h2>
+                                <p>{{ training.scheduleFor | amDateFormat:"MM-DD-YYYY"}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <button mat-raised-button color="primary" class="mx-1" (click)="showQuestionSelectDialog()">
+                                    Add Questions
+                                </button>
+                                <button mat-raised-button color="primary" class="mx-1" (click)="showImageSelectDialog()">
+                                    Add Images
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-10 col-8 mr-auto ml-auto">
+                <mat-tab-group mat-align-tabs="start">
+                    <mat-tab label="Questions">
+                        <categories-list [categories]="training?.questionData">
+                        </categories-list>
+                    </mat-tab>
+                    <mat-tab label="Images">
+                        <images-list [images]="training?.imageData">
+                        </images-list>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+        <ng-template #trainingLoader>
+            <div align="center">
+                <h4>
+                    <mat-spinner mode="indeterminate" color="primary" [diameter]=30></mat-spinner> Fetching Training
+                    Data ...
+                </h4>
+            </div>
+        </ng-template>
+    </div>
+</div>

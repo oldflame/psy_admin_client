@@ -38,6 +38,23 @@ export class TrainingService {
       );
   }
 
+  getTrainingById(trainingId: string): Observable<Training> {
+    return this.dataService.sendGET(TRAININGS_API.GET_TRAINING_BY_ID.replace("{trainingId}",trainingId)).pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          if (res.status == HTTP_RESPONSE_STATUS.OK) {
+            return res.body;
+          }
+          return null;
+        },
+        catchError((err: HttpErrorResponse) => {
+          this.trainingSubject.next([]);
+          return of(null);
+        })
+      )
+    )
+  }
+
   getAllTrainings(): Observable<boolean> {
     return this.dataService
       .sendGET(TRAININGS_API.GET_ALL_TRAININGS)
