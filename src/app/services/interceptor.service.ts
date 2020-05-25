@@ -28,7 +28,7 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let serverURL = APP_SERVER_OPTIONS.host;
+    let serverURL = APP_SERVER_OPTIONS.host +  ":" + APP_SERVER_OPTIONS.port;
 
     if (!environment.production) {
       serverURL += ":" + APP_SERVER_OPTIONS.port;
