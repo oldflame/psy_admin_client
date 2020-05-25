@@ -41,7 +41,7 @@ export const ROUTES: RouteInfo[] = [
     path: "/locations",
     title: "Locations",
     type: "link",
-    icontype: "business",
+    icontype: "location_city",
   },
   {
     path: "/question-management",
@@ -73,6 +73,12 @@ export const ROUTES: RouteInfo[] = [
     title: "Trainings",
     type: "link",
     icontype: "business",
+  },
+  {
+    path: "/target-groups",
+    title: "Target Groups",
+    type: "link",
+    icontype: "group",
   },
 ];
 

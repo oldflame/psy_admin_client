@@ -55,6 +55,14 @@ export const TRAININGS_API = {
   DELETE_TRAINING: "/api/account/deleteTraining/{trainingId}/{doRestore}"
 };
 
+export const TARGET_GROUPS_API = {
+  GET_ALL_TARGET_GROUPS: "/api/account/targetGroups/all",
+  GET_ACTIVE_TARGET_GROUPS: "/api/account/targetGroups",
+  ADD_TARGET_GROUP: "/api/account/addTargetGroups",
+  DELETE_TARGET_GROUP: "/api/account/deleteTargetGroups/{targetGroupID}/{doRestore}",
+  ASSIGN_TRAINING: "/api/account/targetGroups/assignTraining/:targetGroupID/{trainingID}"
+}
+
 export enum HTTP_RESPONSE_STATUS {
   OK = 200,
   BAD_REQUEST = 400,
