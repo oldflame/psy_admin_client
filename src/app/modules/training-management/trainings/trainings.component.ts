@@ -165,4 +165,8 @@ export class TrainingsComponent implements OnInit {
         }
       );
   }
+
+  viewTraining(eventArgs: any) {
+    console.log("AAVI GAYU",eventArgs);
+  }
 }
