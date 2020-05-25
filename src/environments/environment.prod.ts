@@ -1,7 +1,6 @@
 export const environment = {
   production: true,
   HOST: 'https://psy-admin-server.herokuapp.com',
-  PORT: 3000,
   firebase: {
     apiKey: "AIzaSyC2s5W6UGVjmTjRlfM8mVlRFiAj6HUDefo",
     authDomain: "pysch-changiz.firebaseapp.com",
