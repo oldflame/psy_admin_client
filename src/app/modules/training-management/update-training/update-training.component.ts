@@ -15,6 +15,7 @@ import { SelectImageDialogComponent } from "../../general/dialogs/select-image-d
 })
 export class UpdateTrainingComponent implements OnInit {
   training: Training;
+  trainingId: string;
   dialogRef;
 
   constructor(
@@ -28,6 +29,7 @@ export class UpdateTrainingComponent implements OnInit {
       .pipe(
         switchMap((params: any) => {
           if (params && params.id) {
+            this.trainingId = params.id;
             return this.trainingService.getTrainingById(params.id);
           }
           return EMPTY;
@@ -44,9 +46,15 @@ export class UpdateTrainingComponent implements OnInit {
       width: "600px",
       closeOnNavigation: true,
     });
-    this.dialogRef.afterClosed().subscribe((result) => {
-      
-    });
+    this.dialogRef.afterClosed().pipe(
+      switchMap((result) => {
+        console.log("In parent",result);
+        if(result) {
+          return this.trainingService.assignQuestionsToTraining(this.trainingId,result);
+        }
+        return EMPTY
+      }
+    )).subscribe();
   }
 
   showImageSelectDialog() {
@@ -54,8 +62,13 @@ export class UpdateTrainingComponent implements OnInit {
       width: "600px",
       closeOnNavigation: true,
     });
-    this.dialogRef.afterClosed().subscribe((result)=> {
-      console.log("InSIde Parent",result )
-    })
+    this.dialogRef.afterClosed().pipe(
+      switchMap((result) => {
+        if(result) {
+          return this.trainingService.assignImagesToTraining(this.trainingId,result);
+        }
+        return EMPTY
+      }
+    )).subscribe();
   }
 }

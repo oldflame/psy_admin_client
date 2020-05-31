@@ -69,13 +69,12 @@ export interface AddTargetGroupsParams {
   training: string ;
 }
 
-export interface UpdateTraining {
+export interface AssignQuestionsToTrainings {
   _id: string;
-  name: string;
-  isDeleted: boolean;
-  description: string;
-  keywords: string[];
-  scheduleFor: any;
-  questionData: { questionCategory: string; order: number }[];
-  imageData: { imageCategory: string; order: number }[];
+  questionData: { questionCategory: string; order: number };
+}
+
+export interface AssignImagesToTrainings {
+  _id: string;
+  imageData: { imageCategory: string; order: number; duration: number; imageType: number };
 }

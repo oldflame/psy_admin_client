@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AddTrainingParams } from "../models/request-params";
+import { AddTrainingParams, AssignQuestionsToTrainings, AssignImagesToTrainings } from "../models/request-params";
 import { Observable, of, BehaviorSubject } from "rxjs";
 import { DataService } from "./data.service";
 import { QUESTIONS_API, HTTP_RESPONSE_STATUS, TRAININGS_API } from "../constants";
@@ -36,6 +36,38 @@ export class TrainingService {
           })
         )
       );
+  }
+
+  assignQuestionsToTraining(trainingId: string, requestBody: any): Observable<boolean> {
+    return this.dataService.sendPUT(TRAININGS_API.ASSIGN_QUESTIONS_TO_TRAINING.replace("{trainingId}",trainingId),requestBody).pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          if(res.status == HTTP_RESPONSE_STATUS.OK) {
+            return res.body;
+          }
+          return null;
+        },
+        catchError((err: HttpErrorResponse) => {
+          return of(null);
+        })
+      )
+    )
+  }
+
+  assignImagesToTraining(trainingId: string, requestBody: any): Observable<boolean> {
+    return this.dataService.sendPUT(TRAININGS_API.ASSIGN_IMAGES_TO_TRAINING.replace("{trainingId}",trainingId),requestBody).pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          if(res.status == HTTP_RESPONSE_STATUS.OK) {
+            return res.body;
+          }
+          return null;
+        },
+        catchError((err: HttpErrorResponse) => {
+          return of(null);
+        })
+      )
+    )
   }
 
   getTrainingById(trainingId: string): Observable<Training> {

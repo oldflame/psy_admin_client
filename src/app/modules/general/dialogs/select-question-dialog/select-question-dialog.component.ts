@@ -22,25 +22,11 @@ export class SelectQuestionDialogComponent implements OnInit {
     order: new FormControl("", [Validators.required]),
   });
   constructor(
-    private questionService: QuestionsService,
     private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
     this.questionCategories$ = this.categoryService.categories$;
     this.categoryService.getAllQuestionCategories().subscribe();
-    this.updateQuestionControl
-      .get("category")
-      .valueChanges.pipe(
-        switchMap((category) => {
-          if (category) {
-            return this.questionService.getQuestionsForCategory(category);
-          }
-          return EMPTY;
-        })
-      )
-      .subscribe((questions) => {
-        this.questions = questions;
-      });
   }
 }

@@ -5,6 +5,6 @@ export interface Training {
   description: string;
   keywords: string[];
   scheduleFor: any;
-  questionData: { questionCategory: string; order: number }[];
-  imageData: { imageCategory: string; order: number }[];
+  questionData: { questionCategory: string; order: number };
+  imageData: { imageCategory: string; order: number; duration: number; imageType: number};
 }
