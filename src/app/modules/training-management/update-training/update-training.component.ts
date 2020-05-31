@@ -4,9 +4,9 @@ import { switchMap } from "rxjs/operators";
 import { EMPTY } from "rxjs";
 import { TrainingService } from "src/app/services/training.service";
 import { Training } from "src/app/models/trainings";
-import { MatDialog } from '@angular/material/dialog';
-import { SelectQuestionDialogComponent } from '../../general/dialogs/select-question-dialog/select-question-dialog.component';
-import { SelectImageDialogComponent } from '../../general/dialogs/select-image-dialog/select-image-dialog.component';
+import { MatDialog } from "@angular/material/dialog";
+import { SelectQuestionDialogComponent } from "../../general/dialogs/select-question-dialog/select-question-dialog.component";
+import { SelectImageDialogComponent } from "../../general/dialogs/select-image-dialog/select-image-dialog.component";
 
 @Component({
   selector: "update-training",
@@ -39,17 +39,23 @@ export class UpdateTrainingComponent implements OnInit {
       });
   }
 
-  showQuestionSelectDialog(){
+  showQuestionSelectDialog() {
     this.dialogRef = this.dialog.open(SelectQuestionDialogComponent, {
       width: "600px",
-      closeOnNavigation:true
-    })
+      closeOnNavigation: true,
+    });
+    this.dialogRef.afterClosed().subscribe((result) => {
+      
+    });
   }
 
   showImageSelectDialog() {
     this.dialogRef = this.dialog.open(SelectImageDialogComponent, {
       width: "600px",
-      closeOnNavigation:true
+      closeOnNavigation: true,
+    });
+    this.dialogRef.afterClosed().subscribe((result)=> {
+      console.log("InSIde Parent",result )
     })
   }
 }

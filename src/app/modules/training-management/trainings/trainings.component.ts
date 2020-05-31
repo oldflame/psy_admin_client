@@ -169,7 +169,6 @@ export class TrainingsComponent implements OnInit {
   }
 
   viewTraining(eventArgs: any) {
-    console.log("AAVI GAYU",eventArgs);
     this.router.navigate(['/training-management/trainings/manage'],{queryParams: {id: eventArgs.category._id}})
   }
 }

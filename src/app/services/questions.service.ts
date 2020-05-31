@@ -39,6 +39,24 @@ export class QuestionsService {
     );
   }
 
+  getQuestionsForCategory(questionCategoryId: string) {
+    return this.dataService.sendGET(
+      (QUESTIONS_API.GET_QUESTIONS_FOR_CATEGORY).replace("{questionCategory}", questionCategoryId)).pipe(
+        map(
+          (res: HttpResponse<any>) => {
+            if (res.status == HTTP_RESPONSE_STATUS.OK) {
+              return res.body;
+            }
+            return [];
+          },
+          catchError((err: HttpErrorResponse) => {
+            console.log("Get Questions error", err);
+            return throwError(err.error);
+          })
+        )
+    )
+  }
+
   addQuestion(requestBody: AddQuestionParams): Observable<boolean> {
     return this.dataService
       .sendPOST(QUESTIONS_API.ADD_QUESTION, requestBody)

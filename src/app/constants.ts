@@ -44,7 +44,7 @@ export const QUESTIONS_CATEGORY_API = {
 
 export const QUESTIONS_API = {
   GET_ALL_QUESTIONS: "/api/account/questions",
-  GET_QUESTIONS_FOR_CATEGORY: "/api/account/questions/{questioncategory}",
+  GET_QUESTIONS_FOR_CATEGORY: "/api/account/questions/{questionCategory}",
   ADD_QUESTION: "/api/account/addQuestion",
   DELETE_QUESTION: "/app/account/deleteQuestion/{questionId}/{doRestore}",
 };
