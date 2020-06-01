@@ -60,7 +60,6 @@ export class QuestionsComponent implements OnInit {
 
   searchTextChanged(eventArgs) {
     this.searchTerms = eventArgs.searchTerms;
-    console.log("Search for", this.searchTerms);
   }
 
   showAddQuestionDialog() {

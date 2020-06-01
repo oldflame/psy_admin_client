@@ -31,7 +31,6 @@ export class QuestionsService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          console.log("Get Questions error", err);
           this.questionSubject.next([]);
           return throwError(err.error);
         })
@@ -50,7 +49,6 @@ export class QuestionsService {
             return [];
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Get Questions error", err);
             return throwError(err.error);
           })
         )
@@ -71,7 +69,6 @@ export class QuestionsService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Add location error", err);
             return throwError(err.error);
           })
         )
@@ -102,7 +99,6 @@ export class QuestionsService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Delete Question Category error", err);
             return throwError(err.error);
           })
         )

@@ -19,7 +19,7 @@ export class SelectQuestionDialogComponent implements OnInit {
 
   updateQuestionControl: FormGroup = new FormGroup({
     category: new FormControl("", [Validators.required]),
-    order: new FormControl("", [Validators.required]),
+    orderNumber: new FormControl("", [Validators.required]),
   });
   constructor(
     private categoryService: CategoryService

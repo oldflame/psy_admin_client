@@ -36,7 +36,6 @@ export class UpdateTrainingComponent implements OnInit {
         })
       )
       .subscribe((training: Training) => {
-        console.log("Training", training);
         this.training = training;
       });
   }
@@ -48,7 +47,6 @@ export class UpdateTrainingComponent implements OnInit {
     });
     this.dialogRef.afterClosed().pipe(
       switchMap((result) => {
-        console.log("In parent",result);
         if(result) {
           return this.trainingService.assignQuestionsToTraining(this.trainingId,result);
         }

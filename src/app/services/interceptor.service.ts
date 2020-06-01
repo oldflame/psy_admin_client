@@ -30,7 +30,6 @@ export class InterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     let serverURL = APP_SERVER_OPTIONS.host +  ":" + APP_SERVER_OPTIONS.port;
 
-    console.log("ENV", environment.production)
     if (!environment.production) {
       serverURL = serverURL +  ":" + APP_SERVER_OPTIONS.port;
     }

@@ -14,7 +14,6 @@ export class SecureStorageService {
   }
 
   getValue(key: string): any {
-    console.log(key, this.ls.get(key));
     return this.ls.get(key);
   }
 

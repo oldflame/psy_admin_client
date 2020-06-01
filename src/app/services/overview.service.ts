@@ -20,7 +20,6 @@ export class OverviewService {
         return null;
       }),
       catchError((err: HttpErrorResponse) => {
-        console.log("Get counts err", err);
         return throwError(err.error);
       })
     );

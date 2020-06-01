@@ -31,7 +31,6 @@ export class TrainingService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Add Training error", err);
             return of(false);
           })
         )
@@ -132,7 +131,6 @@ export class TrainingService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Delete Training error", err);
             return of(false);
           })
         )

@@ -77,7 +77,6 @@ export class ImagesComponent implements OnInit {
 
   searchTextChanged(eventArgs) {
     this.searchTerms = eventArgs.searchTerms;
-    console.log("Search for", this.searchTerms);
   }
 
   deleteImage(eventArgs: any) {
@@ -122,7 +121,6 @@ export class ImagesComponent implements OnInit {
   }
 
   restoreImage(eventArgs: any) {
-    console.log("Restoring image", eventArgs)
     this.dialogRef = this.dialog.open(ActionConfirmDialogComponent, {
       width: "450px",
       closeOnNavigation: true,
@@ -167,7 +165,6 @@ export class ImagesComponent implements OnInit {
   }
 
   viewImage(eventArgs: any) {
-    console.log("Viewing image: ", eventArgs.image);
     this.dialogRef = this.dialog.open(ImageDetailsComponent, {
       width: "900px",
       closeOnNavigation: true,

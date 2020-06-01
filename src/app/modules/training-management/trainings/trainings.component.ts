@@ -60,7 +60,6 @@ export class TrainingsComponent implements OnInit {
 
   searchTextChanged(eventArgs) {
     this.searchTerms = eventArgs.searchTerms;
-    console.log("Search for", this.searchTerms);
   }
 
   showAddTrainingDialog() {
