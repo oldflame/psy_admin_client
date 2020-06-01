@@ -24,57 +24,72 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <h2>Images Configuration</h2>
-                                <div class="row" *ngIf="training?.imageData">
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <h3 class="mb-0">Category</h3>
-                                        <p>{{ training.imageData.category.name }}</p>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <h3 class="mb-0">Duration</h3>
-                                        <p>{{ training.imageData.duration }}ms</p>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <h3 class="mb-0">Count</h3>
-                                        <p>{{ training.imageData.quantity }}</p>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <h3 class="mb-0">Image Type</h3>
-                                        <p>{{ training.imageData.imageTypeName }}</p>
-                                    </div>
-                                </div>
-                                <div class="row" *ngIf="!training?.imageData">
-                                    <div class="col-12">
-                                        <h6 class="text-center">No images assigned</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <h2>Questions Configuration</h2>
-                                <div class="row" *ngIf="training?.questionData">
-                                    <div class="col-12">
-                                        <h3 class="mb-0">Category</h3>
-                                        <p>{{ training.questionData.category.name }}</p>
-                                    </div>
-                                </div>
-                                <div class="row" *ngIf="!training?.questionData">
-                                    <div class="col-12">
-                                        <h6 class="text-center">No questions assigned</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
                                 <h2 class="mb-0">Tags</h2>
                                 <mat-chip-list aria-label="Tags">
                                     <mat-chip *ngFor="let keyword of training.keywords">{{ keyword }}</mat-chip>
                                 </mat-chip-list>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <h2>Images & Questions Configuration</h2>
+                                <table mat-table [dataSource]="trainingConfigurationForUI" *ngIf="trainingConfigurationForUI && trainingConfigurationForUI.length > 0">
+
+                                    <!--- Note that these columns can be defined in any order.
+                                          The actual rendered columns are set as a property on the row definition" -->
+
+                                    <!-- Order Column -->
+                                    <ng-container matColumnDef="order">
+                                        <th mat-header-cell *matHeaderCellDef> Order </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.orderNumber}} </td>
+                                    </ng-container>
+
+                                    <!-- Action Type Column -->
+                                    <ng-container matColumnDef="actionType">
+                                        <th mat-header-cell *matHeaderCellDef> Images/Questions </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.actionType == 0 ? "Images" : "Questions"}} </td>
+                                    </ng-container>
+
+                                    <!-- category Column -->
+                                    <ng-container matColumnDef="category">
+                                        <th mat-header-cell *matHeaderCellDef> Category </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+                                    </ng-container>
+
+                                    <!-- Duration Column -->
+                                    <ng-container matColumnDef="duration">
+                                        <th mat-header-cell *matHeaderCellDef> Duration </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.actionType == 0 ? element.duration + 'ms' : 'N/A'}} </td>
+                                    </ng-container>
+
+                                    <!-- Image Type Column -->
+                                    <ng-container matColumnDef="imageType">
+                                        <th mat-header-cell *matHeaderCellDef> Image Type </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.actionType == 0 ? element.imageTypeName : 'N/A'}} </td>
+                                    </ng-container>
+
+                                     <!-- Count Column -->
+                                     <ng-container matColumnDef="count">
+                                        <th mat-header-cell *matHeaderCellDef> Count </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{element.actionType == 0 ? element.quantity : 'N/A'}} </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="trainingConfigurationDisplayColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: trainingConfigurationDisplayColumns;">
+                                    </tr>
+                                </table>
+                                <div class="row" *ngIf="!trainingConfigurationForUI || trainingConfigurationForUI.length == 0">
+                                    <div class="col-12">
+                                        <h4 class="text-center">No images or questions assigned</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
                             <div class="col-12 text-right">
                                 <button mat-raised-button color="primary" class="mx-1"
                                     (click)="showQuestionSelectDialog()">

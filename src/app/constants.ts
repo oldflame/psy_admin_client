@@ -4,15 +4,14 @@ export enum GENDER {
   OTHERS = "O",
 }
 
-
 export const AUTH_API = {
   LOGIN: "/api/login",
   REGISTER: "/api/register",
 };
 
 export const OVERVIEW_API = {
-  GET_COUNTS: "/api/account/overview/counts"
-}
+  GET_COUNTS: "/api/account/overview/counts",
+};
 
 export const ADMIN_API = {
   GET_ALL_ADMINS: "/api/account/admin",
@@ -23,7 +22,7 @@ export const LOCATIONS_API = {
   GET_ACTIVE_LOCATIONS: "/api/account/location",
   ADD_LOCATION: "/api/account/location",
   DELETE_LOCATION: "/api/account/deleteLocation/{locationID}/{doRestore}",
-  GET_ALL_LOCATIONS:"/api/account/location/all",
+  GET_ALL_LOCATIONS: "/api/account/location/all",
 };
 
 export const IMAGES_API = {
@@ -54,7 +53,8 @@ export const TRAININGS_API = {
   ADD_TRAINING: "/api/account/trainings/addTraining",
   DELETE_TRAINING: "/api/account/trainings/{trainingId}/{doRestore}",
   GET_TRAINING_BY_ID: "/api/account/trainings/{trainingId}",
-  ASSIGN_QUESTIONS_TO_TRAINING: "/api/account/trainings/{trainingId}/assignQuestions",
+  ASSIGN_QUESTIONS_TO_TRAINING:
+    "/api/account/trainings/{trainingId}/assignQuestions",
   ASSIGN_IMAGES_TO_TRAINING: "/api/account/trainings/{trainingId}/assignImages",
 };
 
@@ -62,9 +62,11 @@ export const TARGET_GROUPS_API = {
   GET_ALL_TARGET_GROUPS: "/api/account/targetGroups/all",
   GET_ACTIVE_TARGET_GROUPS: "/api/account/targetGroups",
   ADD_TARGET_GROUP: "/api/account/addTargetGroups",
-  DELETE_TARGET_GROUP: "/api/account/deleteTargetGroups/{targetGroupID}/{doRestore}",
-  ASSIGN_TRAINING: "/api/account/targetGroups/assignTraining/:targetGroupID/{trainingID}"
-}
+  DELETE_TARGET_GROUP:
+    "/api/account/deleteTargetGroups/{targetGroupID}/{doRestore}",
+  ASSIGN_TRAINING:
+    "/api/account/targetGroups/assignTraining/:targetGroupID/{trainingID}",
+};
 
 export enum HTTP_RESPONSE_STATUS {
   OK = 200,
@@ -109,5 +111,10 @@ export const IMAGE_TYPE_OPTIONS = [
   {
     viewValue: "Negative",
     value: -1,
-  }
+  },
 ];
+
+export enum TRAINING_ACTION_TYPE {
+  IMAGE,
+  QUESTION,
+}

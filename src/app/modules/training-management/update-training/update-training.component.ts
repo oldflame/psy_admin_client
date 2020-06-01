@@ -8,7 +8,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { SelectQuestionDialogComponent } from "../../general/dialogs/select-question-dialog/select-question-dialog.component";
 import { SelectImageDialogComponent } from "../../general/dialogs/select-image-dialog/select-image-dialog.component";
 import * as _ from "lodash";
-import { IMAGE_TYPE_OPTIONS } from "../../../constants";
+import { IMAGE_TYPE_OPTIONS, TRAINING_ACTION_TYPE } from "../../../constants";
 
 @Component({
   selector: "update-training",
@@ -19,6 +19,9 @@ export class UpdateTrainingComponent implements OnInit {
   training: Training;
   trainingId: string;
   dialogRef;
+  trainingConfigurationForUI;
+
+  trainingConfigurationDisplayColumns = ["order", "actionType", "category", "duration", "imageType", "count"];
 
   constructor(
     private dialog: MatDialog,
@@ -43,8 +46,18 @@ export class UpdateTrainingComponent implements OnInit {
       )
       .subscribe((training: Training) => {
         this.training = training;
-        this.training.imageData.imageTypeName = this.getImageTypeNameByValue(
-          this.training.imageData.imageType
+        this.training.imageData.forEach((config) => {
+          config.imageTypeName = this.getImageTypeNameByValue(config.imageType);
+          config.actionType = TRAINING_ACTION_TYPE.IMAGE;
+        });
+
+        this.training.questionData.forEach(
+          (config) => (config.actionType = TRAINING_ACTION_TYPE.QUESTION)
+        );
+
+        this.trainingConfigurationForUI = _.sortBy(
+          _.concat(this.training.imageData, this.training.questionData),
+          (config) => parseInt(config.orderNumber, 10)
         );
       });
   }
@@ -96,6 +109,7 @@ export class UpdateTrainingComponent implements OnInit {
   }
 
   getImageTypeNameByValue(value: number): string {
-    return _.find(IMAGE_TYPE_OPTIONS, { value }).viewValue;
+    const imageType = _.find(IMAGE_TYPE_OPTIONS, { value });
+    return imageType ? imageType.viewValue : "";
   }
 }
