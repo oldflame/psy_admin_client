@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
           }
         },
         (err: HttpErrorResponse) => {
+          this.isLoginLoading = false;
           this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
         }
       );
