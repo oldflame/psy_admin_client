@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AddTrainingParams, AssignQuestionsToTrainings, AssignImagesToTrainings } from "../models/request-params";
-import { Observable, of, BehaviorSubject } from "rxjs";
+import { Observable, of, BehaviorSubject, throwError } from 'rxjs';
 import { DataService } from "./data.service";
 import { QUESTIONS_API, HTTP_RESPONSE_STATUS, TRAININGS_API } from "../constants";
 import { map, catchError } from "rxjs/operators";
@@ -47,7 +47,20 @@ export class TrainingService {
           return null;
         },
         catchError((err: HttpErrorResponse) => {
-          return of(null);
+        return throwError(err.error);
+        })
+      )
+    )
+  }
+
+  removeQuestionsFromTraining(trainingId: string, questionDataId: string): Observable<boolean> {
+    return this.dataService.sendDELETE(TRAININGS_API.REMOVE_QUESTIONS_FROM_TRAINING.replace("{trainingId}",trainingId).replace("{questionDataId}",questionDataId)).pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          return res.status == HTTP_RESPONSE_STATUS.OK;
+        },
+        catchError((err: HttpErrorResponse) => {
+        return throwError(err.error);
         })
       )
     )
@@ -63,7 +76,20 @@ export class TrainingService {
           return null;
         },
         catchError((err: HttpErrorResponse) => {
-          return of(null);
+        return throwError(err.error);
+        })
+      )
+    )
+  }
+
+  removeImagesFromTraining(trainingId: string, imageDataId: string): Observable<boolean> {
+    return this.dataService.sendDELETE(TRAININGS_API.REMOVE_IMAGES_FROM_TRAINING.replace("{trainingId}",trainingId).replace("{imageDataId}",imageDataId)).pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          return res.status == HTTP_RESPONSE_STATUS.OK;
+        },
+        catchError((err: HttpErrorResponse) => {
+        return throwError(err.error);
         })
       )
     )
@@ -80,7 +106,7 @@ export class TrainingService {
         },
         catchError((err: HttpErrorResponse) => {
           this.trainingSubject.next([]);
-          return of(null);
+        return throwError(err.error);
         })
       )
     )

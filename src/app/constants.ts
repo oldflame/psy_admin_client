@@ -55,7 +55,11 @@ export const TRAININGS_API = {
   GET_TRAINING_BY_ID: "/api/account/trainings/{trainingId}",
   ASSIGN_QUESTIONS_TO_TRAINING:
     "/api/account/trainings/{trainingId}/assignQuestions",
+  REMOVE_QUESTIONS_FROM_TRAINING:
+    "/api/account/trainings/{trainingId}/removeQuestions/{questionDataId}",
   ASSIGN_IMAGES_TO_TRAINING: "/api/account/trainings/{trainingId}/assignImages",
+  REMOVE_IMAGES_FROM_TRAINING:
+    "/api/account/trainings/{trainingId}/removeImages/{imageDataId}",
 };
 
 export const TARGET_GROUPS_API = {
