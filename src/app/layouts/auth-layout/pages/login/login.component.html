@@ -22,22 +22,6 @@
     <div class=" row justify-content-center">
       <div class=" col-lg-5 col-md-7">
         <div class=" card bg-secondary border-0 mb-0">
-          <!-- <div class=" card-header bg-transparent pb-5">
-            <div class=" text-muted text-center mt-2 mb-3">
-              <small> Sign in with </small>
-            </div>
-
-            <div class=" btn-wrapper text-center">
-              <a class=" btn btn-neutral btn-icon" href="javascript:void(0)">
-                <span class=" btn-inner--icon">
-                  <img src="assets/img/icons/common/google.svg" />
-                </span>
-
-                <span class=" btn-inner--text"> Google </span>
-              </a>
-            </div>
-          </div> -->
-
           <div class=" card-body px-lg-5 py-lg-5">
             <div class=" text-center text-muted mb-4">
               <small> Sign in with credentials </small>
@@ -71,7 +55,8 @@
                   </mat-form-field>
                 </div>
                 <div class="col-12 text-center">
-                  <button mat-raised-button color="primary" (click)="login()">Login</button>
+                  <button mat-raised-button color="primary" (click)="login()" *ngIf="!isLoginLoading">Login</button>
+                  <mat-spinner mode="indeterminate" color="primary" [diameter]=30 *ngIf="isLoginLoading"></mat-spinner>            
                 </div>
               </div>
             </form>

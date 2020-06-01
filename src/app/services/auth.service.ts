@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable, of, throwError } from "rxjs";
 import { Admin } from "../models/admin";
 import { DataService } from "./data.service";
 import { AUTH_API, HTTP_RESPONSE_STATUS } from "../constants";
@@ -43,7 +43,7 @@ export class AuthService {
         },
         catchError((err: HttpErrorResponse) => {
           this.authSubject.next(null);
-          return of(false);
+          return throwError(err.error);
         })
       )
     );
@@ -56,7 +56,7 @@ export class AuthService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          return of(false);
+          return throwError(err.error);
         })
       )
     );
@@ -64,12 +64,12 @@ export class AuthService {
 
   logout(): boolean {
     this.secureStorageService.clearStorage();
-    this.router.navigate(['/login']);
+    this.router.navigate(["/login"]);
     return true;
   }
 
   getAdminData(): Admin {
-    return this.secureStorageService.getValue('ud') as Admin
+    return this.secureStorageService.getValue("ud") as Admin;
   }
 
   isAuthenticated(): boolean {

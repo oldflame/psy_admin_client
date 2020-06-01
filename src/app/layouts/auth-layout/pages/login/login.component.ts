@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthService } from "../../../../services/auth.service";
 import { ToastService, TOAST_TYPE } from "../../../../services/toast.service";
 import { Router } from "@angular/router";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: "login",
@@ -19,6 +20,8 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
+  isLoginLoading = false;
+
   constructor(
     private authService: AuthService,
     private toastService: ToastService,
@@ -28,16 +31,29 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login() {
+    this.isLoginLoading = true;
     this.authService
       .login(this.loginForm.value.email, this.loginForm.value.password)
-      .subscribe((res: boolean) => {
-        if (res) {
-          this.toastService.showToast(
-            `Welcome, ${this.authService.getAdminData().firstName}`,
-            TOAST_TYPE.SUCCESS
-          );
-          this.router.navigate(['/overview']);
+      .subscribe(
+        (res: boolean) => {
+          this.isLoginLoading = false;
+
+          if (res) {
+            this.toastService.showToast(
+              `Welcome, ${this.authService.getAdminData().firstName}`,
+              TOAST_TYPE.SUCCESS
+            );
+            this.router.navigate(["/overview"]);
+          } else {
+            this.toastService.showToast(
+              "Login failed. Try again!",
+              TOAST_TYPE.DANGER
+            );
+          }
+        },
+        (err: HttpErrorResponse) => {
+          this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
         }
-      });
+      );
   }
 }
