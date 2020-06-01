@@ -7,6 +7,8 @@ import { Training } from "src/app/models/trainings";
 import { MatDialog } from "@angular/material/dialog";
 import { SelectQuestionDialogComponent } from "../../general/dialogs/select-question-dialog/select-question-dialog.component";
 import { SelectImageDialogComponent } from "../../general/dialogs/select-image-dialog/select-image-dialog.component";
+import * as _ from "lodash";
+import { IMAGE_TYPE_OPTIONS } from "../../../constants";
 
 @Component({
   selector: "update-training",
@@ -37,6 +39,7 @@ export class UpdateTrainingComponent implements OnInit {
       )
       .subscribe((training: Training) => {
         this.training = training;
+        this.training.imageData.imageTypeName = this.getImageTypeNameByValue(this.training.imageData.imageType);
       });
   }
 
@@ -45,14 +48,20 @@ export class UpdateTrainingComponent implements OnInit {
       width: "600px",
       closeOnNavigation: true,
     });
-    this.dialogRef.afterClosed().pipe(
-      switchMap((result) => {
-        if(result) {
-          return this.trainingService.assignQuestionsToTraining(this.trainingId,result);
-        }
-        return EMPTY
-      }
-    )).subscribe();
+    this.dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap((result) => {
+          if (result) {
+            return this.trainingService.assignQuestionsToTraining(
+              this.trainingId,
+              result
+            );
+          }
+          return EMPTY;
+        })
+      )
+      .subscribe();
   }
 
   showImageSelectDialog() {
@@ -60,13 +69,23 @@ export class UpdateTrainingComponent implements OnInit {
       width: "600px",
       closeOnNavigation: true,
     });
-    this.dialogRef.afterClosed().pipe(
-      switchMap((result) => {
-        if(result) {
-          return this.trainingService.assignImagesToTraining(this.trainingId,result);
-        }
-        return EMPTY
-      }
-    )).subscribe();
+    this.dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap((result) => {
+          if (result) {
+            return this.trainingService.assignImagesToTraining(
+              this.trainingId,
+              result
+            );
+          }
+          return EMPTY;
+        })
+      )
+      .subscribe();
+  }
+
+  getImageTypeNameByValue(value: number): string {
+    return _.find(IMAGE_TYPE_OPTIONS, { value }).viewValue;
   }
 }

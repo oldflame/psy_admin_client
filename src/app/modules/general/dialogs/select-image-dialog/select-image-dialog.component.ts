@@ -19,6 +19,7 @@ export class SelectImageDialogComponent implements OnInit {
     imageType: new FormControl("", [Validators.required]),
     duration: new FormControl("", [Validators.required]),
     quantity: new FormControl("", [Validators.required]),
+    orderNumber: new FormControl('', [Validators.required])
   });
   ngOnInit(): void {
     this.imageCategories$ = this.imageManagementService.imageCategories$;

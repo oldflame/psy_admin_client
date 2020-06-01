@@ -52,7 +52,7 @@ export const QUESTIONS_API = {
 export const TRAININGS_API = {
   GET_ALL_TRAININGS: "/api/account/trainings/getAllTrainings",
   ADD_TRAINING: "/api/account/trainings/addTraining",
-  DELETE_TRAINING: "/api/account/trainings/deleteTraining/{trainingId}/{doRestore}",
+  DELETE_TRAINING: "/api/account/trainings/{trainingId}/{doRestore}",
   GET_TRAINING_BY_ID: "/api/account/trainings/{trainingId}",
   ASSIGN_QUESTIONS_TO_TRAINING: "/api/account/trainings/{trainingId}/assignQuestions",
   ASSIGN_IMAGES_TO_TRAINING: "/api/account/trainings/{trainingId}/assignImages",

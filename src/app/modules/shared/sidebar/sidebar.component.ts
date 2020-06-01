@@ -51,9 +51,9 @@ export const ROUTES: RouteInfo[] = [
     collapse: "questions-management",
     isCollapsed: true,
     children: [
-      {path: "categories", title:"Question Categories", type: "link"},
-      {path: "questions", title:"Questions", type: "link"}
-    ]
+      { path: "categories", title: "Question Categories", type: "link" },
+      { path: "questions", title: "Questions", type: "link" },
+    ],
   },
   {
     path: "/image-management",
@@ -63,10 +63,10 @@ export const ROUTES: RouteInfo[] = [
     collapse: "image-management",
     isCollapsed: true,
     children: [
-      {path: "categories", title:"Image Categories", type: "link"},
-      {path: "images", title:"Images", type: "link"},
-      {path: "images/add", title:"Add Image", type: "child"}
-    ]
+      { path: "categories", title: "Image Categories", type: "link" },
+      { path: "images", title: "Images", type: "link" },
+      { path: "images/add", title: "Add Image", type: "child" },
+    ],
   },
   {
     path: "/training-management/trainings",
@@ -76,7 +76,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "/training-management/trainings/manage",
-    title: "Update Training",
+    title: "Training Details",
     type: "child",
     icontype: "business",
   },
@@ -86,10 +86,10 @@ export const ROUTES: RouteInfo[] = [
     type: "link",
     icontype: "group",
   },
-   {
+  {
     path: "/gestures-test",
     title: "Gestures Test",
-    type: "link",
+    type: "child",
     icontype: "gesture",
   },
 ];

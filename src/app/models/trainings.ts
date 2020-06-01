@@ -1,3 +1,5 @@
+import { QuestionCategory } from './question-category';
+import { Category } from './category';
 export interface Training {
   _id: string;
   name: string;
@@ -5,6 +7,7 @@ export interface Training {
   description: string;
   keywords: string[];
   scheduleFor: any;
-  questionData: { questionCategory: string; order: number };
-  imageData: { imageCategory: string; order: number; duration: number; imageType: number};
+  questionData: { category: QuestionCategory; order: number };
+  createdAt: string;
+  imageData: { category: Category; order: number; duration: number; imageType: number, imageTypeName?:string, quantity: number};
 }
