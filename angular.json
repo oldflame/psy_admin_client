@@ -24,9 +24,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/firebase-messaging-sw.js",
               "src/manifest.webmanifest"
             ],
             "styles": [
+              "./node_modules/animate.css/animate.min.css",
               "src/assets/scss/theme.scss",
               "src/styles.scss",
               "src/assets/scss/argon.scss"
@@ -64,7 +66,9 @@
               "aot": true,
               "extractLicenses": false,
               "vendorChunk": false,
-              "buildOptimizer": false
+              "buildOptimizer": false,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },

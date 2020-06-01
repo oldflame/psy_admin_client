@@ -12,6 +12,7 @@ import { QuestionManagementModule } from './modules/question-management/question
 import { LocationsModule } from './modules/locations/locations.module';
 import { ImageManagementModule } from './modules/image-management/image-management.module';
 import { TrainingManagementModule } from './modules/training-management/training-management.module';
+import { GesturesTestModule } from './modules/gestures-test/gestures-test.module';
 import {TargetGroupsModule} from "./modules/target-groups/target-groups.module";
 
 const routes: Routes = [
@@ -50,6 +51,10 @@ const routes: Routes = [
         canActivate: [AuthGuardService]
       },
       {
+        path: "gestures-test",
+        loadChildren: () => GesturesTestModule,
+        canActivate: [AuthGuardService]
+      },
         path: "target-groups",
         loadChildren: () => TargetGroupsModule,
         canActivate: [AuthGuardService]

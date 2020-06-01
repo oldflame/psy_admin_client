@@ -1,0 +1,11 @@
+<div class="page-content pt-3" (swipeup)="imageRejected()" (swipedown)="imageAccepted()" (swiperight)="imageNeutral()" (swipeleft)="resetImage()">
+    <div class="container-fluid animated fadeIn">
+        <div class="d-flex justify-content-center">
+            <div class="card animate__animated animate__faster" (document:animationend)="animationDone()" [ngClass]="{'animate__zoomOut': isRejected, 'animate__fadeOutRight': isNeutral, 'animate__zoomIn': isAccepted}">
+                <div class="card-body">
+                    <img [src]="imgURL" alt="angular-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
