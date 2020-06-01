@@ -61,7 +61,6 @@ export class CategoriesComponent implements OnInit {
 
   searchTextChanged(eventArgs) {
     this.searchTerms = eventArgs.searchTerms;
-    console.log("Search for", this.searchTerms);
   }
 
   deleteCategory(eventArgs: any) {

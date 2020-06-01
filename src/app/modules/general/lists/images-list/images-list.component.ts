@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { Image } from '../../../../models/image';
 
 @Component({
@@ -6,7 +6,7 @@ import { Image } from '../../../../models/image';
   templateUrl: './images-list.component.html',
   styleUrls: ['./images-list.component.scss']
 })
-export class ImagesListComponent implements OnInit {
+export class ImagesListComponent implements OnInit, OnChanges {
   @Input("images") images: Image[];
 
   @Output("imageDeleted") imageDeleted = new EventEmitter();

@@ -136,7 +136,6 @@ export class ImageManagementService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         }),
         catchError((err: HttpErrorResponse) => {
-          console.log("Get images", err);
           this.imagesSubject.next([]);
           return throwError(err.error);
         })
@@ -154,7 +153,6 @@ export class ImageManagementService {
         return res.status == HTTP_RESPONSE_STATUS.OK;
       }),
       catchError((err: HttpErrorResponse) => {
-        console.log("Add image err", err);
         return throwError(err.error);
       })
     );
@@ -184,7 +182,6 @@ export class ImageManagementService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Delete image error", err);
             return throwError(err.error);
           })
         )

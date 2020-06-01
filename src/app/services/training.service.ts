@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AddTrainingParams } from "../models/request-params";
+import { AddTrainingParams, AssignQuestionsToTrainings, AssignImagesToTrainings } from "../models/request-params";
 import { Observable, of, BehaviorSubject } from "rxjs";
 import { DataService } from "./data.service";
 import { QUESTIONS_API, HTTP_RESPONSE_STATUS, TRAININGS_API } from "../constants";
@@ -31,11 +31,59 @@ export class TrainingService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Add Training error", err);
             return of(false);
           })
         )
       );
+  }
+
+  assignQuestionsToTraining(trainingId: string, requestBody: any): Observable<boolean> {
+    return this.dataService.sendPUT(TRAININGS_API.ASSIGN_QUESTIONS_TO_TRAINING.replace("{trainingId}",trainingId),requestBody).pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          if(res.status == HTTP_RESPONSE_STATUS.OK) {
+            return res.body;
+          }
+          return null;
+        },
+        catchError((err: HttpErrorResponse) => {
+          return of(null);
+        })
+      )
+    )
+  }
+
+  assignImagesToTraining(trainingId: string, requestBody: any): Observable<boolean> {
+    return this.dataService.sendPUT(TRAININGS_API.ASSIGN_IMAGES_TO_TRAINING.replace("{trainingId}",trainingId),requestBody).pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          if(res.status == HTTP_RESPONSE_STATUS.OK) {
+            return res.body;
+          }
+          return null;
+        },
+        catchError((err: HttpErrorResponse) => {
+          return of(null);
+        })
+      )
+    )
+  }
+
+  getTrainingById(trainingId: string): Observable<Training> {
+    return this.dataService.sendGET(TRAININGS_API.GET_TRAINING_BY_ID.replace("{trainingId}",trainingId)).pipe(
+      map(
+        (res: HttpResponse<any>) => {
+          if (res.status == HTTP_RESPONSE_STATUS.OK) {
+            return res.body;
+          }
+          return null;
+        },
+        catchError((err: HttpErrorResponse) => {
+          this.trainingSubject.next([]);
+          return of(null);
+        })
+      )
+    )
   }
 
   getAllTrainings(): Observable<boolean> {
@@ -83,7 +131,6 @@ export class TrainingService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Delete Training error", err);
             return of(false);
           })
         )

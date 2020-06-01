@@ -36,7 +36,6 @@ export class TargetGroupsService {
                         return res.status == HTTP_RESPONSE_STATUS.OK;
                     },
                     catchError((err: HttpErrorResponse) => {
-                        console.log("Get Target Group error", err);
                         this.targetGroupSubject.next([]);
                         return throwError(err.error);
                     })
@@ -66,7 +65,6 @@ export class TargetGroupsService {
                         return res.status == HTTP_RESPONSE_STATUS.OK;
                     },
                     catchError((err: HttpErrorResponse) => {
-                        console.log("Add target groups error", err);
                         return of(false);
                     })
                 )
@@ -101,7 +99,6 @@ export class TargetGroupsService {
                         return res.status == HTTP_RESPONSE_STATUS.OK;
                     },
                     catchError((err: HttpErrorResponse) => {
-                        console.log("Delete Target Group error", err);
                         return of(false);
                     })
                 )

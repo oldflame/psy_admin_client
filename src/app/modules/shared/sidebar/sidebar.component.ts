@@ -75,6 +75,12 @@ export const ROUTES: RouteInfo[] = [
     icontype: "business",
   },
   {
+    path: "/training-management/trainings/manage",
+    title: "Update Training",
+    type: "child",
+    icontype: "business",
+  },
+  {
     path: "/target-groups",
     title: "Target Groups",
     type: "link",

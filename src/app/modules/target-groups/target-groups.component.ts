@@ -57,7 +57,6 @@ export class TargetGroupsComponent implements OnInit {
 
     searchTextChanged(eventArgs) {
       this.searchTerms = eventArgs.searchTerms;
-      console.log("Search for", this.searchTerms);
     }
 
     addTargetGroup() {
@@ -162,6 +161,5 @@ export class TargetGroupsComponent implements OnInit {
     }
 
     viewTargetGroup(eventArgs: any) {
-      console.log("view target group");
     }
 }
