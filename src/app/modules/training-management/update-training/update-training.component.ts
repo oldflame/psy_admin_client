@@ -27,6 +27,10 @@ export class UpdateTrainingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getTrainingData();
+  }
+
+  getTrainingData() {
     this.route.queryParams
       .pipe(
         switchMap((params: any) => {
@@ -39,7 +43,9 @@ export class UpdateTrainingComponent implements OnInit {
       )
       .subscribe((training: Training) => {
         this.training = training;
-        this.training.imageData.imageTypeName = this.getImageTypeNameByValue(this.training.imageData.imageType);
+        this.training.imageData.imageTypeName = this.getImageTypeNameByValue(
+          this.training.imageData.imageType
+        );
       });
   }
 
@@ -61,7 +67,9 @@ export class UpdateTrainingComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.getTrainingData();
+      });
   }
 
   showImageSelectDialog() {
@@ -82,7 +90,9 @@ export class UpdateTrainingComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.getTrainingData();
+      });
   }
 
   getImageTypeNameByValue(value: number): string {

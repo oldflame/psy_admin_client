@@ -37,7 +37,7 @@ export class TrainingService {
       );
   }
 
-  assignQuestionsToTraining(trainingId: string, requestBody: any): Observable<boolean> {
+  assignQuestionsToTraining(trainingId: string, requestBody: any): Observable<any> {
     return this.dataService.sendPUT(TRAININGS_API.ASSIGN_QUESTIONS_TO_TRAINING.replace("{trainingId}",trainingId),requestBody).pipe(
       map(
         (res: HttpResponse<any>) => {
