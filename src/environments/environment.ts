@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  HOST: 'http://localhost',
-  PORT: 7000,
+  HOST: 'http://localhost:7000',
   firebase: {
     apiKey: "AIzaSyC2s5W6UGVjmTjRlfM8mVlRFiAj6HUDefo",
     authDomain: "pysch-changiz.firebaseapp.com",
