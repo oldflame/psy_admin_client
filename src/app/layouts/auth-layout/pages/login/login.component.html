@@ -54,7 +54,7 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
-                <div class="col-12 text-center" align="center">
+                <div class="col-12 d-flex justify-content-center">
                   <button mat-raised-button color="primary" (click)="login()" *ngIf="!isLoginLoading">Login</button>
                   <mat-spinner mode="indeterminate" color="primary" [diameter]=30 *ngIf="isLoginLoading"></mat-spinner>            
                 </div>
