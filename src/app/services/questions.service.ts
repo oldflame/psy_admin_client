@@ -31,12 +31,28 @@ export class QuestionsService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          console.log("Get Questions error", err);
           this.questionSubject.next([]);
           return throwError(err.error);
         })
       )
     );
+  }
+
+  getQuestionsForCategory(questionCategoryId: string) {
+    return this.dataService.sendGET(
+      (QUESTIONS_API.GET_QUESTIONS_FOR_CATEGORY).replace("{questionCategory}", questionCategoryId)).pipe(
+        map(
+          (res: HttpResponse<any>) => {
+            if (res.status == HTTP_RESPONSE_STATUS.OK) {
+              return res.body;
+            }
+            return [];
+          },
+          catchError((err: HttpErrorResponse) => {
+            return throwError(err.error);
+          })
+        )
+    )
   }
 
   addQuestion(requestBody: AddQuestionParams): Observable<boolean> {
@@ -53,7 +69,6 @@ export class QuestionsService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Add location error", err);
             return throwError(err.error);
           })
         )
@@ -84,7 +99,6 @@ export class QuestionsService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Delete Question Category error", err);
             return throwError(err.error);
           })
         )

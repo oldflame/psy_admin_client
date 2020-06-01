@@ -44,16 +44,27 @@ export const QUESTIONS_CATEGORY_API = {
 
 export const QUESTIONS_API = {
   GET_ALL_QUESTIONS: "/api/account/questions",
-  GET_QUESTIONS_FOR_CATEGORY: "/api/account/questions/{questioncategory}",
+  GET_QUESTIONS_FOR_CATEGORY: "/api/account/questions/{questionCategory}",
   ADD_QUESTION: "/api/account/addQuestion",
   DELETE_QUESTION: "/app/account/deleteQuestion/{questionId}/{doRestore}",
 };
 
 export const TRAININGS_API = {
-  GET_ALL_TRAININGS: "/api/account/getAllTrainings",
-  ADD_TRAINING: "/api/account/addTraining",
-  DELETE_TRAINING: "/api/account/deleteTraining/{trainingId}/{doRestore}"
+  GET_ALL_TRAININGS: "/api/account/trainings/getAllTrainings",
+  ADD_TRAINING: "/api/account/trainings/addTraining",
+  DELETE_TRAINING: "/api/account/trainings/deleteTraining/{trainingId}/{doRestore}",
+  GET_TRAINING_BY_ID: "/api/account/trainings/{trainingId}",
+  ASSIGN_QUESTIONS_TO_TRAINING: "/api/account/trainings/{trainingId}/assignQuestions",
+  ASSIGN_IMAGES_TO_TRAINING: "/api/account/trainings/{trainingId}/assignImages",
 };
+
+export const TARGET_GROUPS_API = {
+  GET_ALL_TARGET_GROUPS: "/api/account/targetGroups/all",
+  GET_ACTIVE_TARGET_GROUPS: "/api/account/targetGroups",
+  ADD_TARGET_GROUP: "/api/account/addTargetGroups",
+  DELETE_TARGET_GROUP: "/api/account/deleteTargetGroups/{targetGroupID}/{doRestore}",
+  ASSIGN_TRAINING: "/api/account/targetGroups/assignTraining/:targetGroupID/{trainingID}"
+}
 
 export enum HTTP_RESPONSE_STATUS {
   OK = 200,

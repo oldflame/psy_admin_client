@@ -26,11 +26,9 @@ export class EditImageDialogComponent implements OnInit {
   }
 
   imageLoaded() {
-    console.log("Image Loaded");
   }
 
   loadImageFailed() {
-    console.log("Image load failed");
     this.toastService.showToast('Failed To Load Image. Try again!', TOAST_TYPE.DANGER);
     this.dialogRef.close();
   }

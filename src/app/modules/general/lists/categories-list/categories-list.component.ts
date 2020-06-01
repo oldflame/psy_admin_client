@@ -36,7 +36,7 @@ export class CategoriesListComponent implements OnInit, OnChanges {
     $event.stopPropagation();
   }
 
-  viewCategoryClicked(category: Category) {
+  viewCategoryClicked(eventArgs: any, category: Category) {
     this.categoryViewed.emit({ category });
   }
 

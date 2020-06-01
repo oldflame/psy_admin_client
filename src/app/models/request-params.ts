@@ -60,3 +60,21 @@ export interface AddImageParams {
   fileName: string;
   content: string;
 }
+
+export interface AddTargetGroupsParams {
+  name: string;
+  description?: string;
+  keywords?: string[];
+  location:  string ;
+  training: string ;
+}
+
+export interface AssignQuestionsToTrainings {
+  _id: string;
+  questionData: { questionCategory: string; order: number };
+}
+
+export interface AssignImagesToTrainings {
+  _id: string;
+  imageData: { imageCategory: string; order: number; duration: number; imageType: number };
+}

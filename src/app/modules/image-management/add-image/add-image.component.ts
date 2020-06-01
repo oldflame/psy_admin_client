@@ -88,7 +88,6 @@ export class AddImageComponent implements OnInit {
   }
 
   getSelectedFile(eventArgs: any) {
-    console.log("File selected: ", eventArgs);
     if (eventArgs.content) {
       this.selectedImage = {
         content: eventArgs.content,
@@ -113,7 +112,6 @@ export class AddImageComponent implements OnInit {
       .pipe(
         switchMap((croppedImage: any) => {
           if (croppedImage) {
-            console.log("Cropped image", croppedImage);
             this.selectedImage.content = croppedImage.base64;
             this.imagePreview = this.selectedImage.content;
             return EMPTY;
@@ -139,7 +137,6 @@ export class AddImageComponent implements OnInit {
       this.selectedImage,
       { tags: this.tags }
     );
-    console.log("Adding Image: ", addImageParams);
     this.toastService.showToast(
       "Uploading image. Please wait...",
       TOAST_TYPE.INFO

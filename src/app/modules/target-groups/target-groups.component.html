@@ -1,0 +1,46 @@
+<div class="page-content">
+    <div class="container-fluid animated fadeIn">
+        <search *ngIf="(targetGroups$ | async)?.length > 0"
+                [placeholder]="'Search Target Groups ...'"
+                hint="Separate search terms using 'Enter' or 'Comma'" (searchChange)="searchTextChanged($event)">
+        </search>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12 col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <h2 class="mb-0">{{showAllTargetGroups ? "All" : "Active"}}
+                                Target Groups
+                            </h2>
+                        </div>
+                        <div class="col-6 text-right">
+                            <mat-slide-toggle [formControl]="deletedTargetGroupsToggle"
+                                              color="accent">Include Deleted
+                                Target Groups
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <target-groups-list [targetGroups]="targetGroups$ | async |
+                        filterTargetGroups: searchTerms"
+                                   (targetGroupDeleted)="deleteTargetGroup($event)"
+                                   (targetGroupRestored)="restoreTargetGroup($event)"
+                                   (targetGroupViewed)="viewTargetGroup($event)">
+                    </target-groups-list>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button mat-fab color="primary" class="fab" (click)=addTargetGroup()
+            matTooltip="Add new target group"
+            matTooltipPosition="before">
+        <mat-icon>
+            add
+        </mat-icon>
+    </button>
+</div>

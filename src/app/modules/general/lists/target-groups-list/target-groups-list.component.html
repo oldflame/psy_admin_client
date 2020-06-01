@@ -1,0 +1,49 @@
+<div
+        *ngIf="showTargetGroupsLoader === true; then targetGroupsLoader else
+        targetGroupsList"></div>
+<ng-template #targetGroupsLoader>
+    <div class="row mt-3">
+        <div class="col-12" align="center">
+            <h4>
+                <mat-spinner mode="indeterminate" color="primary"
+                             [diameter]=30></mat-spinner> Fetching Target Groups
+                ...
+            </h4>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #targetGroupsList>
+    <div class="card-body" *ngIf="targetGroups.length > 0; else noTargetGroups">
+        <mat-list>
+            <mat-list-item *ngFor="let targetGroup of targetGroups"
+                           (click)="viewTargetGroupClicked($event, targetGroup)">
+                <mat-icon mat-list-icon [ngClass]="{'text-muted':
+                    targetGroup.isDeleted}">people_on</mat-icon>
+                <div mat-line
+                     [ngClass]="{'text-muted': targetGroup.isDeleted}">{{targetGroup.name}}</div>
+                <div mat-line [ngClass]="{'text-muted': targetGroup.isDeleted}">
+                    {{targetGroup.description }} </div>
+
+                <mat-icon *ngIf="!targetGroup.isDeleted" color="warn"
+                          class="pointer" matTooltip="Delete Target Group"
+                          matTooltipPosition="below"
+                          (click)="deleteTargetGroupClicked($event,
+                              targetGroup._id)">delete</mat-icon>
+                <mat-icon *ngIf="targetGroup.isDeleted" color="primary"
+                          class="pointer" matTooltip="Restore Target Group"
+                          matTooltipPosition="below"
+                          (click)="restoreTargetGroupClicked($event,
+                              targetGroup._id)">restore
+                </mat-icon>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</ng-template>
+
+<ng-template #noTargetGroups>
+    <div class="card-body" align="center">
+        <h4>No Target Groups Found!</h4>
+    </div>
+</ng-template>

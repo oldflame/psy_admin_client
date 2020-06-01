@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pysch": {
+    "pysch-admin": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -75,21 +75,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pysch:build"
+            "browserTarget": "pysch-admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pysch:build:production"
+              "browserTarget": "pysch-admin:build:production"
             },
             "development": {
-              "browserTarget": "pysch:build:development"
+              "browserTarget": "pysch-admin:build:development"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pysch:build"
+            "browserTarget": "pysch-admin:build"
           }
         },
         "test": {
@@ -125,7 +125,7 @@
         }
       }
     },
-    "pysch-e2e": {
+    "pysch-admin-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -134,11 +134,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "pysch:serve"
+            "devServerTarget": "pysch-admin:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "pysch:serve:production"
+              "devServerTarget": "pysch-admin:serve:production"
             }
           }
         },
@@ -154,7 +154,7 @@
       }
     }
   },
-  "defaultProject": "pysch",
+  "defaultProject": "pysch-admin",
   "cli": {
     "analytics": false
   }

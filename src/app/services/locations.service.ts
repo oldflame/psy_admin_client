@@ -31,7 +31,6 @@ export class LocationsService {
                         return res.status == HTTP_RESPONSE_STATUS.OK;
                     },
                     catchError((err: HttpErrorResponse) => {
-                        console.log("Get Locations error", err);
                         this.locationSubject.next([]);
                         return throwError(err.error);
                     })
@@ -51,7 +50,6 @@ export class LocationsService {
           return res.status == HTTP_RESPONSE_STATUS.OK;
         },
         catchError((err: HttpErrorResponse) => {
-          console.log("Get active location error", err);
           this.locationSubject.next([]);
           return of(false);
         })
@@ -81,7 +79,6 @@ export class LocationsService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Add location error", err);
             return of(false);
           })
         )
@@ -120,7 +117,6 @@ export class LocationsService {
             return res.status == HTTP_RESPONSE_STATUS.OK;
           },
           catchError((err: HttpErrorResponse) => {
-            console.log("Delete Location error", err);
             return of(false);
           })
         )

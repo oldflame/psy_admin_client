@@ -56,7 +56,6 @@ export class LocationsComponent implements OnInit {
 
   searchTextChanged(eventArgs) {
     this.searchTerms = eventArgs.searchTerms;
-    console.log("Search for", this.searchTerms);
   }
 
   deleteLocation(eventArgs: any) {
@@ -161,6 +160,5 @@ export class LocationsComponent implements OnInit {
   }
 
   viewLocation(eventArgs: any) {
-    console.log("view location");
   }
 }

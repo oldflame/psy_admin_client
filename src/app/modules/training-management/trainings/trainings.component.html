@@ -21,7 +21,7 @@
             </div>
             <div class="card-body pt-0">
               <categories-list [categories]="trainings$ | async | filterCategories: searchTerms"
-                (categoryDeleted)="deleteTraining($event)" (categoryRestored)="restoreTraining($event)">
+                (categoryDeleted)="deleteTraining($event)" (categoryRestored)="restoreTraining($event)" (categoryViewed)="viewTraining($event)">
               </categories-list>
             </div>
           </div>

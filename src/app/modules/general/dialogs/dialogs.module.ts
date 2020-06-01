@@ -13,6 +13,9 @@ import { ImageCropperModule } from "ngx-image-cropper";
 import { ImageDetailsComponent } from './image-details/image-details.component';
 import { MomentModule } from 'ngx-moment';
 import { AddLocationComponent } from './add-location/add-location.component';
+import { AddTargetGroupsComponent } from './add-target-groups/add-target-groups.component';
+import { SelectImageDialogComponent } from './select-image-dialog/select-image-dialog.component';
+import { SelectQuestionDialogComponent } from './select-question-dialog/select-question-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { AddLocationComponent } from './add-location/add-location.component';
     EditImageDialogComponent,
     ImageDetailsComponent,
     AddLocationComponent,
+    AddTargetGroupsComponent,
+    SelectImageDialogComponent,
+    SelectQuestionDialogComponent,
   ],
     imports: [
     CommonModule,

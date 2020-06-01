@@ -29,7 +29,6 @@ export class InterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const serverURL = APP_SERVER_OPTIONS.host;
-
     const headersToSet = {};
 
     if (req.url.indexOf("/account") !== -1) {
