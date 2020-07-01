@@ -28,4 +28,16 @@ export class UsersManagementService {
       return throwError(err);
     }));
   }
+
+  getImageResponseTrends(userId: string) {
+    return this.dataService.sendGET(USERS_API.GET_IMAGE_RESPONSE_TRENDS.replace('{userId}', userId)).pipe(map((res: HttpResponse<any>) => {
+      if (res.status === HTTP_RESPONSE_STATUS.OK) {
+        return res.body
+      } else {
+        return null;
+      }
+    }), catchError((err: HttpErrorResponse) => {
+      return throwError(err);
+    }));
+  }
 }

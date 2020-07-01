@@ -1,0 +1,55 @@
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <h2 class="mb-0">Response time variation over training sessions</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <highcharts class="mt-2" [Highcharts]="Highcharts" [options]="timeChartOptions" *ngIf="!showChartLoader; else chartLoader"></highcharts>
+                        <ng-template #chartLoader>
+                          <div class="row">
+                            <div class="col-12" align="center">
+                              <h4>
+                                <mat-spinner mode="indeterminate" color="primary" [diameter]=30></mat-spinner> Fetching Chart Data ...
+                              </h4>
+                            </div>
+                          </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <h2 class="mb-0">Response accuracy variation over training sessions</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <highcharts class="mt-2" [Highcharts]="Highcharts" [options]="accuracyChartOptions" *ngIf="!showChartLoader; else chartLoader"></highcharts>
+                        <ng-template #chartLoader>
+                          <div class="row">
+                            <div class="col-12" align="center">
+                              <h4>
+                                <mat-spinner mode="indeterminate" color="primary" [diameter]=30></mat-spinner> Fetching Chart Data ...
+                              </h4>
+                            </div>
+                          </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
