@@ -19,12 +19,7 @@
                 <div mat-line>
                     Joined on {{user.createdAt | amDateFormat: "MM/DD/YYYY hh:mm:ss a" }} </div>
 
-                <div mat-line>
-                    <h6 class="text-success">Active</h6>
-                </div>
-
-                <button mat-button color="warn" *ngIf="user.isActive" (click)="toggleActivityClicked(user._id, $event)">Deactivate</button>
-                <button mat-button color="primary" *ngIf="!user.isActive" (click)="toggleActivityClicked(user._id, $event)">Activate</button>
+                    <mat-icon matTooltip="View Details" matTooltipPosition="before">read_more</mat-icon>
                 <mat-divider></mat-divider>
             </mat-list-item>
         </mat-list>

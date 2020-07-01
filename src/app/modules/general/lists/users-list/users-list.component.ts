@@ -10,7 +10,6 @@ export class UsersListComponent implements OnInit, OnChanges {
   @Input("users") users: User[];
 
   @Output("userViewed") userViewed = new EventEmitter();
-  @Output("userActiveToggled") userActiveToggled = new EventEmitter();
 
   showUsersLoader = true;
 
@@ -27,10 +26,5 @@ export class UsersListComponent implements OnInit, OnChanges {
 
   viewUserClicked(user: User) {
     this.userViewed.emit({ user });
-  }
-
-  toggleActivityClicked(userId: string, $event) {
-    this.userActiveToggled.emit({userId});
-    $event.stopPropagation();
   }
 }
