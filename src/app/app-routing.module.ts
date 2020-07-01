@@ -14,6 +14,7 @@ import { ImageManagementModule } from "./modules/image-management/image-manageme
 import { TrainingManagementModule } from "./modules/training-management/training-management.module";
 import { GesturesTestModule } from "./modules/gestures-test/gestures-test.module";
 import { TargetGroupsModule } from "./modules/target-groups/target-groups.module";
+import { UsersManagementModule } from './modules/users-management/users-management.module';
 
 const routes: Routes = [
   {
@@ -58,6 +59,11 @@ const routes: Routes = [
       {
         path: "target-groups",
         loadChildren: () => TargetGroupsModule,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: "users",
+        loadChildren: () => UsersManagementModule,
         canActivate: [AuthGuardService],
       },
     ],

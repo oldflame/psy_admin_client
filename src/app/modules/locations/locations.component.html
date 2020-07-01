@@ -1,5 +1,5 @@
 <div class="page-content">
-    <div class="container-fluid animated fadeIn">
+    <div class="container-fluid animate__animted animate__fadeIn">
         <search *ngIf="(locations$ | async)?.length > 0"
                 [placeholder]="'Search Locations ...'"
                 hint="Separate search terms using 'Enter' or 'Comma'" (searchChange)="searchTextChanged($event)">
