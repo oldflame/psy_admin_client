@@ -73,7 +73,8 @@ export const TARGET_GROUPS_API = {
 };
 
 export const USERS_API = {
-  GET_USERS_LIST: '/api/account/users'
+  GET_USERS_LIST: '/api/account/users',
+  GET_IMAGE_RESPONSE_TRENDS: '/api/account/users/imageResponseTrends/{userId}'
 }
 
 export enum HTTP_RESPONSE_STATUS {

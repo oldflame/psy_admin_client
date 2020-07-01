@@ -5,16 +5,19 @@ import { MaterialModule } from 'src/app/material.module';
 import { RouterModule } from '@angular/router';
 import { UsersManagementRoutes } from './users-management.routing';
 import { ListsModule } from '../general/lists/lists.module';
+import { TrendsComponent } from './trends/trends.component';
+import { WidgetsModule } from '../general/widgets/widgets.module';
 
 
 
 @NgModule({
-  declarations: [UsersManagementComponent],
+  declarations: [UsersManagementComponent, TrendsComponent],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule.forChild(UsersManagementRoutes),
-    ListsModule
+    ListsModule,
+    WidgetsModule
   ]
 })
 export class UsersManagementModule { }

@@ -98,6 +98,12 @@ export const ROUTES: RouteInfo[] = [
     type: "link",
     icontype: "face",
   },
+  {
+    path: "/users/trends",
+    title: "User Management - Progress",
+    type: "child",
+    icontype: "multiline_chart",
+  },
 ];
 
 @Component({

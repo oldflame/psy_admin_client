@@ -3,6 +3,7 @@ import { UsersManagementService } from 'src/app/services/users-management.servic
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { ToastService, TOAST_TYPE } from 'src/app/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'users-management',
@@ -12,7 +13,7 @@ import { ToastService, TOAST_TYPE } from 'src/app/services/toast.service';
 export class UsersManagementComponent implements OnInit {
   users$: Observable<User[]>;
 
-  constructor(private usersManagementService: UsersManagementService, private toastService: ToastService) { }
+  constructor(private usersManagementService: UsersManagementService, private toastService: ToastService, private router: Router) { }
 
   ngOnInit(): void {
     this.users$ = this.usersManagementService.users$;
@@ -22,7 +23,8 @@ export class UsersManagementComponent implements OnInit {
   }
 
   viewUser(eventArgs) {
-    console.log('Viewing User', eventArgs)
+    console.log('Viewing User', eventArgs);
+    this.router.navigate(['/users/trends'], {queryParams: {q: eventArgs.user._id}});
   }
 
   toggleUserActive(eventArgs) {
