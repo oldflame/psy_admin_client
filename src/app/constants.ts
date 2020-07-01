@@ -25,6 +25,10 @@ export const LOCATIONS_API = {
   GET_ALL_LOCATIONS: "/api/account/location/all",
 };
 
+export const USER_API = {
+  GET_ALL_USERS: "/api/account/user/all",
+};
+
 export const IMAGES_API = {
   ADD_CATEGORY: "/api/account/imgCategory",
   GET_ACTIVE_CATEGORIES: "/api/account/imgCategory",

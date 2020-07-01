@@ -1,3 +1,4 @@
+import { UserDetailsModule } from './modules/user-details/user-details.module';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
@@ -58,6 +59,11 @@ const routes: Routes = [
       {
         path: "target-groups",
         loadChildren: () => TargetGroupsModule,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: "user-details",
+        loadChildren: () => UserDetailsModule,
         canActivate: [AuthGuardService],
       },
     ],

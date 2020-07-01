@@ -87,6 +87,12 @@ export const ROUTES: RouteInfo[] = [
     icontype: "group",
   },
   {
+    path: "/user-details",
+    title: "User Details",
+    type: "link",
+    icontype: "group",
+  },
+  {
     path: "/gestures-test",
     title: "Gestures Test",
     type: "child",

@@ -209,6 +209,33 @@
           </div>
         </div>
       </div>
+
+
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="card card-stats">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title text-uppercase text-muted mb-0">
+                  View all Users
+                </h5>
+                <span class="h2 font-weight-bold mb-0"> {{ entityCounts.users || 'N/A' }} </span>
+              </div>
+
+              <div class="col-auto">
+                <div class="icon icon-shape bg-gradient-primary text-white rounded-circle shadow">
+                  <mat-icon>touch_app</mat-icon>
+                </div>
+              </div>
+            </div>
+
+            <p class=" mt-3 mb-0 text-sm" routerLink="/user-details">
+              <span class="text-nowrap pointer"> View all Users </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

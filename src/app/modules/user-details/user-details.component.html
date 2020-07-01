@@ -1,0 +1,23 @@
+<div class="page-content">
+    <div class="container-fluid animated fadeIn">
+        <search *ngIf="(users$ | async)?.length > 0"
+                [placeholder]="'Search Users ...'"
+                hint="Separate search terms using 'Enter' or 'Comma'" (searchChange)="searchTextChanged($event)">
+            </search>
+
+        <div class="row mt-2">
+            <div class="col-12 col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <user-list [users]="users$ | async | filterUsers: searchTerms" (userViewed)="viewUser($event)">
+
+                        </user-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
