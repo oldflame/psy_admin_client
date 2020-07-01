@@ -6,6 +6,7 @@ import { CategoriesListComponent } from "./categories-list/categories-list.compo
 import { ImagesListComponent } from "./images-list/images-list.component";
 import { MomentModule } from 'ngx-moment';
 import { TargetGroupsListComponent } from './target-groups-list/target-groups-list.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { TargetGroupsListComponent } from './target-groups-list/target-groups-li
     CategoriesListComponent,
     ImagesListComponent,
     TargetGroupsListComponent,
+    UsersListComponent,
   ],
   imports: [CommonModule, MaterialModule, MomentModule],
   exports: [
@@ -20,6 +22,7 @@ import { TargetGroupsListComponent } from './target-groups-list/target-groups-li
     CategoriesListComponent,
     ImagesListComponent,
     TargetGroupsListComponent,
+    UsersListComponent
   ],
 })
 export class ListsModule {}

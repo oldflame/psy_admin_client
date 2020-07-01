@@ -92,6 +92,12 @@ export const ROUTES: RouteInfo[] = [
     type: "child",
     icontype: "gesture",
   },
+  {
+    path: "/users",
+    title: "User Management",
+    type: "link",
+    icontype: "face",
+  },
 ];
 
 @Component({

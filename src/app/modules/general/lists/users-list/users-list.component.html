@@ -1,0 +1,37 @@
+<div *ngIf="showUsersLoader === true; then usersLoader else usersList"></div>
+<ng-template #usersLoader>
+    <div class="row mt-3">
+        <div class="col-12" align="center">
+            <h4>
+                <mat-spinner mode="indeterminate" color="primary" [diameter]=30></mat-spinner> Fetching Users ...
+            </h4>
+        </div>
+    </div>
+</ng-template>
+<ng-template #usersList>
+    <div class="card-body" *ngIf="users.length > 0; else noUsers">
+        <h4 *ngIf="users && users.length > 0">{{ users?.length }} {{ users?.length == 1 ? 'user' : 'users' }} found</h4>
+        <mat-list>
+            <mat-list-item *ngFor="let user of users" (click)="viewUserClicked(user)" class="pointer">
+                <mat-icon mat-list-icon>face</mat-icon>
+                <div mat-line>
+                    <strong>{{user._id}}</strong></div>
+                <div mat-line>
+                    Joined on {{user.createdAt | amDateFormat: "MM/DD/YYYY hh:mm:ss a" }} </div>
+
+                <div mat-line>
+                    <h6 class="text-success">Active</h6>
+                </div>
+
+                <button mat-button color="warn" *ngIf="user.isActive" (click)="toggleActivityClicked(user._id, $event)">Deactivate</button>
+                <button mat-button color="primary" *ngIf="!user.isActive" (click)="toggleActivityClicked(user._id, $event)">Activate</button>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</ng-template>
+<ng-template #noUsers>
+    <div class="card-body" align="center">
+        <h4>No Users Found!</h4>
+    </div>
+</ng-template>

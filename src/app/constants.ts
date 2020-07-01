@@ -72,6 +72,10 @@ export const TARGET_GROUPS_API = {
     "/api/account/targetGroups/assignTraining/:targetGroupID/{trainingID}",
 };
 
+export const USERS_API = {
+  GET_USERS_LIST: '/api/account/users'
+}
+
 export enum HTTP_RESPONSE_STATUS {
   OK = 200,
   BAD_REQUEST = 400,
