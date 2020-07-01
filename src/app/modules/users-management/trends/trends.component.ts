@@ -60,12 +60,12 @@ export class TrendsComponent implements OnInit {
       accuracyPoints.push(dataPt.accuracy);
     });
 
-    this.timeChartOptions = this.drawLineChart([{name: 'Response Time', data: timePoints}], 0, null);
-    this.accuracyChartOptions = this.drawLineChart([{name: 'Accuracy', data: accuracyPoints}], 0, 100);
+    this.timeChartOptions = this.drawLineChart([{name: 'Response Time', data: timePoints}], 0, null, 'ms');
+    this.accuracyChartOptions = this.drawLineChart([{name: 'Accuracy', data: accuracyPoints}], 0, 100, '%');
     this.showChartLoader = false;
   }
 
-  drawLineChart(seriesData, min, max) {
+  drawLineChart(seriesData, min: number, max: number, unit: string) {
     const self = this;
     return {
       chart: {
@@ -97,7 +97,7 @@ export class TrendsComponent implements OnInit {
       tooltip: {
         formatter: function() {
           console.log(this);
-          return "<b>" + this.series.name + "</b><br>" + parseInt(this.y, 10) + '%';
+          return "<b>" + this.series.name + "</b><br>" + parseInt(this.y, 10) + unit;
         },
       },
       plotOptions: {
