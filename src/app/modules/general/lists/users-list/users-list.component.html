@@ -12,14 +12,14 @@
     <div class="card-body" *ngIf="users.length > 0; else noUsers">
         <h4 *ngIf="users && users.length > 0">{{ users?.length }} {{ users?.length == 1 ? 'user' : 'users' }} found</h4>
         <mat-list>
-            <mat-list-item *ngFor="let user of users" (click)="viewUserClicked(user)" class="pointer">
+            <mat-list-item *ngFor="let user of users" class="pointer" (click)="viewUserDetailsClicked(user)">
                 <mat-icon mat-list-icon>face</mat-icon>
                 <div mat-line>
-                    <strong>{{user._id}}</strong></div>
+                    <strong>{{user.firstName + " " + user.lastName}}</strong></div>
                 <div mat-line>
-                    Joined on {{user.createdAt | amDateFormat: "MM/DD/YYYY hh:mm:ss a" }} </div>
-
-                    <mat-icon matTooltip="View Details" matTooltipPosition="before">read_more</mat-icon>
+                    Joined on {{user.createdAt | amDateFormat: "MM/DD/YYYY hh:mm:ss a" }} 
+                </div>
+                    <mat-icon matTooltip="View Details" matTooltipPosition="before" class="m-2">read_more</mat-icon>
                 <mat-divider></mat-divider>
             </mat-list-item>
         </mat-list>

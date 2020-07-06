@@ -1,3 +1,4 @@
+import { TrainingSession } from './../models/training-session';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { User } from '../models/user';
@@ -40,4 +41,29 @@ export class UsersManagementService {
       return throwError(err);
     }));
   }
+
+  getUserById(userId: string) {
+    return this.dataService.sendGET(USERS_API.GET_USER_BY_ID.replace('{userId}', userId)).pipe(map((res: HttpResponse<any>) => {
+      if (res.status === HTTP_RESPONSE_STATUS.OK) {
+        return res.body
+      } else {
+        return null;
+      }
+    }), catchError((err: HttpErrorResponse) => {
+      return throwError(err);
+    }));
+  }
+
+  getUserTrainings(userId: string) {
+    return this.dataService.sendGET(USERS_API.GET_USER_TRAININGS.replace('{userId}', userId)).pipe(map((res: HttpResponse<any>) => {
+      if (res.status === HTTP_RESPONSE_STATUS.OK) {
+        return res.body as TrainingSession[]
+      } else {
+        return null;
+      }
+    }), catchError((err: HttpErrorResponse) => {
+      return throwError(err);
+    }));
+  }
+
 }

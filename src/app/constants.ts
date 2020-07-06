@@ -74,7 +74,9 @@ export const TARGET_GROUPS_API = {
 
 export const USERS_API = {
   GET_USERS_LIST: '/api/account/users',
-  GET_IMAGE_RESPONSE_TRENDS: '/api/account/users/imageResponseTrends/{userId}'
+  GET_USER_BY_ID: '/api/account/users/{userId}',
+  GET_IMAGE_RESPONSE_TRENDS: '/api/account/users/imageResponseTrends/{userId}',
+  GET_USER_TRAININGS: '/api/account/users/trainingSession/{userId}'
 }
 
 export enum HTTP_RESPONSE_STATUS {
@@ -126,4 +128,17 @@ export const IMAGE_TYPE_OPTIONS = [
 export enum TRAINING_ACTION_TYPE {
   IMAGE,
   QUESTION,
+}
+
+export enum ETHNICITY {
+  "Hispanic",
+  "Not Hispanic",
+}
+
+export enum RACE {
+  "American Indian",
+  "Asian",
+  "Black African American",
+  "Native Hawaiian Pacific Islander",
+  "White",
 }

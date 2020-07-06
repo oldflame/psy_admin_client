@@ -22,9 +22,9 @@ export class UsersManagementComponent implements OnInit {
     })
   }
 
-  viewUser(eventArgs) {
-    console.log('Viewing User', eventArgs);
-    this.router.navigate(['/users/trends'], {queryParams: {q: eventArgs.user._id}});
+  viewUserDetails(eventArgs) {
+    console.log('Viewing User Details', eventArgs);
+    this.router.navigate(['/users/trainingdetails'], {queryParams: {q: eventArgs.user._id}});
   }
 
   toggleUserActive(eventArgs) {

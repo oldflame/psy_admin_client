@@ -7,11 +7,12 @@ import { UsersManagementRoutes } from './users-management.routing';
 import { ListsModule } from '../general/lists/lists.module';
 import { TrendsComponent } from './trends/trends.component';
 import { WidgetsModule } from '../general/widgets/widgets.module';
+import { DetailsComponent } from './details/details.component';
 
 
 
 @NgModule({
-  declarations: [UsersManagementComponent, TrendsComponent],
+  declarations: [UsersManagementComponent, TrendsComponent, DetailsComponent],
   imports: [
     CommonModule,
     MaterialModule,

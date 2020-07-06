@@ -1,3 +1,4 @@
+import { DetailsComponent } from './details/details.component';
 import { Routes } from "@angular/router";
 import { UsersManagementComponent } from './users-management.component';
 import { TrendsComponent } from './trends/trends.component';
@@ -13,6 +14,10 @@ export const UsersManagementRoutes: Routes = [
             {
                 path: "trends",
                 component: TrendsComponent,
+            },
+            {
+                path: "trainingdetails",
+                component: DetailsComponent,
             },
         ],
     },

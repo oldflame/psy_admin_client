@@ -15,7 +15,9 @@
                         </div>
                     </div>
                     <div class="card-body pt-0">
-                        <users-list [users]="users$ | async" (userViewed)="viewUser($event)" (userActiveToggled)="toggleUserActive($event)"></users-list>
+                        <users-list [users]="users$ | async"
+                        (userDetailsViewed)="viewUserDetails($event)" 
+                        (userActiveToggled)="toggleUserActive($event)"></users-list>
                     </div>
                 </div>
             </div>
