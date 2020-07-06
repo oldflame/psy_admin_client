@@ -22,6 +22,7 @@ export class TrendsComponent implements OnInit {
   timeChartOptions;
   accuracyChartOptions;
   showChartLoader = true;
+  userId: string;
 
   constructor(
     private usersManagementService: UsersManagementService,
@@ -34,6 +35,7 @@ export class TrendsComponent implements OnInit {
       .pipe(
         switchMap((params) => {
           if (params && params.q) {
+            this.userId = params.q;
             return this.usersManagementService.getImageResponseTrends(params.q);
           }
           return EMPTY;
