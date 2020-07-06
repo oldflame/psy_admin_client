@@ -8,9 +8,7 @@ import { User } from 'src/app/models/user';
 })
 export class UsersListComponent implements OnInit, OnChanges {
   @Input("users") users: User[];
-
-  @Output("userViewed") userViewed = new EventEmitter();
-
+  @Output("userDetailsViewed") userDetailsViewed = new EventEmitter();
   showUsersLoader = true;
 
   constructor() {}
@@ -24,7 +22,7 @@ export class UsersListComponent implements OnInit, OnChanges {
 
   ngOnInit() {}
 
-  viewUserClicked(user: User) {
-    this.userViewed.emit({ user });
+  viewUserDetailsClicked(user: User) {
+    this.userDetailsViewed.emit({ user });
   }
 }

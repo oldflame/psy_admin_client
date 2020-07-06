@@ -104,6 +104,12 @@ export const ROUTES: RouteInfo[] = [
     type: "child",
     icontype: "multiline_chart",
   },
+  {
+    path: "/users/trainingdetails",
+    title: "User Management - Details",
+    type: "child",
+    icontype: "multiline_chart",
+  },
 ];
 
 @Component({

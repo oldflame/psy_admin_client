@@ -183,7 +183,7 @@ export class UpdateTrainingComponent implements OnInit {
         },
         (err: HttpErrorResponse) => {
           this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
-        }
+        },
       );
   }
 }
