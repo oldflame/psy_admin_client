@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { ToastService, TOAST_TYPE } from 'src/app/services/toast.service';
 import { Router } from '@angular/router';
+import { TrainingSession } from 'src/app/models/training-session';
 
 @Component({
   selector: 'users-management',
@@ -31,4 +32,13 @@ export class UsersManagementComponent implements OnInit {
     console.log('Toggling user active', eventArgs);
   }
 
+  exportTrainingData() {
+    console.log("Exporting training data");
+    this.usersManagementService.getAllTrainingSessions()
+    .subscribe((trainingSessions: TrainingSession[]) => { 
+      console.log(trainingSessions);
+    }, (err) => {
+      this.toastService.showToast(err.error.msg, TOAST_TYPE.DANGER);
+    })
+  }
 }

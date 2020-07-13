@@ -55,7 +55,21 @@ export class UsersManagementService {
   }
 
   getUserTrainings(userId: string) {
-    return this.dataService.sendGET(USERS_API.GET_USER_TRAININGS.replace('{userId}', userId)).pipe(map((res: HttpResponse<any>) => {
+    return this.dataService.sendGET(USERS_API.GET_USER_TRAININGS.replace('{userId}', userId))
+    .pipe(map((res: HttpResponse<any>) => {
+      if (res.status === HTTP_RESPONSE_STATUS.OK) {
+        return res.body as TrainingSession[]
+      } else {
+        return null;
+      }
+    }), catchError((err: HttpErrorResponse) => {
+      return throwError(err);
+    }));
+  }
+  
+  getAllTrainingSessions() {
+    return this.dataService.sendGET(USERS_API.GET_ALL_TRAINING_SESSIONS)
+    .pipe(map((res: HttpResponse<any>) => {
       if (res.status === HTTP_RESPONSE_STATUS.OK) {
         return res.body as TrainingSession[]
       } else {
