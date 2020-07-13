@@ -66,7 +66,7 @@ export class UsersManagementService {
       return throwError(err);
     }));
   }
-  
+
   getAllTrainingSessions() {
     return this.dataService.sendGET(USERS_API.GET_ALL_TRAINING_SESSIONS)
     .pipe(map((res: HttpResponse<any>) => {
