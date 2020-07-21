@@ -8,11 +8,12 @@ import { ListsModule } from '../general/lists/lists.module';
 import { TrendsComponent } from './trends/trends.component';
 import { WidgetsModule } from '../general/widgets/widgets.module';
 import { DetailsComponent } from './details/details.component';
+import { TrainingResultsComponent } from './training-results/training-results.component';
 
 
 
 @NgModule({
-  declarations: [UsersManagementComponent, TrendsComponent, DetailsComponent],
+  declarations: [UsersManagementComponent, TrendsComponent, DetailsComponent, TrainingResultsComponent],
   imports: [
     CommonModule,
     MaterialModule,

@@ -76,7 +76,8 @@ export const USERS_API = {
   GET_USERS_LIST: '/api/account/users',
   GET_USER_BY_ID: '/api/account/users/{userId}',
   GET_IMAGE_RESPONSE_TRENDS: '/api/account/users/imageResponseTrends/{userId}',
-  GET_USER_TRAININGS: '/api/account/users/trainingSession/{userId}'
+  GET_USER_TRAININGS: '/api/account/users/trainingSession/{userId}',
+  GET_TRAINING_SESSION_BY_ID: '/api/account/user/trainingSession/{sessionId}'
 }
 
 export enum HTTP_RESPONSE_STATUS {

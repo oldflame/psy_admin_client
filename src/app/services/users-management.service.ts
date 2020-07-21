@@ -66,4 +66,22 @@ export class UsersManagementService {
     }));
   }
 
+  findTrainingSessionById(sessionId: string) {
+    return this.dataService
+      .sendGET(
+        USERS_API.GET_TRAINING_SESSION_BY_ID.replace('{sessionId}', sessionId)
+      )
+      .pipe(
+        map((res: HttpResponse<any>) => {
+          if (res.status == HTTP_RESPONSE_STATUS.OK) {
+            return res.body;
+          }
+          return [];
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(err.error);
+        })
+      );
+  }
+
 }
